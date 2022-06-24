@@ -1,0 +1,13 @@
+A route table contains a set of rules, called routes, that determine where network traffic from your subnet or gateway is directed.
+
+Your VPC has an implicit router.
+Your VPC automatically comes with a main route table that you can modify.
+You can create additional custom route tables for your VPC.
+Each subnet must be associated with a route table, which controls the routing for the
+subnet. If you don’t explicitly associate a subnet with a particular route table, the subnet
+uses the main route table.
+You can replace the main route table with a custom table that you’ve created so that each
+new subnet is automatically associated with it.
+Each route in a table specifies a destination CIDR and a target; for example, traffic
+destined for 172.16.0.0/12 is targeted for the VPG. AWS uses the most specific route that
+matches the traffic to determine how to route the traffic.
