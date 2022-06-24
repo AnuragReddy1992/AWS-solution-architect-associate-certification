@@ -1,0 +1,22 @@
+VPC
+-----------------------
+
+it is a virtual private cloud and also secured logical private cloud
+it is a component of network and content delivery 
+
+vpc requisites
+---------------------------------
+1. Create VPC
+2. Create Internet gateway and attached the VPC
+3. Create the public and private subnets
+4. Create the public and private route tables
+5. Start at edit subnet association go to action and I need the subnet association and matching the public to public and private to private
+6. then login to the server public server.
+
+Subnet
+----------------
+subnet is a dividing the large network to small network
+
+CIDR blocks define subnets (for example, 10.0.1.0/24 and 192.168.0.0/24).
+The smallest subnet that you can create is a /28 (16 IP addresses). AWS reserves the first four
+IP addresses and the last IP address of every subnet for internal networking purposes.
