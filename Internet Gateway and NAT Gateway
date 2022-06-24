@@ -1,0 +1,12 @@
+
+Internet Gateway (IGW) allows instances with public IPs to access the internet. NAT Gateway (NGW) allows instances with no public IPs to access the internet.
+
+You can attach only one internet gateway to a VPC at a time.
+
+An internet gateway is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet.
+
+When a connection times out, a NAT gateway returns an RST packet to any resources behind the NAT gateway that attempt to continue the connection .
+When a connection times out, a NAT instance sends a FIN packet to resources behind the NAT instance to close the connection.
+
+A router is a device that is capable of sending and receiving data packets between computer networks, also creating an overlay network. A Gateway, on the other hand,
+joins dissimilar systems. Gateway it is defined as a network entity that allows a network to interface with another network with different protocols.
