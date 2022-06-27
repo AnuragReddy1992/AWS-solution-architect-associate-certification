@@ -1,0 +1,235 @@
+Question #121Topic 1
+A business is in the process of transferring its apps to AWS. At the moment, on-premises apps create hundreds of terabytes of data, which is kept on a shared file system. The organization is using a cloud-based analytics solution to derive insights from this data on an hourly basis.
+The business requires a solution to manage continuous data transfer between its on-premises shared file system and Amazon S3. Additionally, the solution must be capable of coping with brief gaps in internet access.
+
+Which data transmission options should the business utilize to achieve these requirements?
+
+A. AWS DataSync
+B. AWS Migration Hub
+C. AWS Snowball Edge Storage Optimized
+D. AWS Transfer for SFTP
+ 
+Question #122Topic 1
+A business wishes to manage a fleet of Amazon EC2 instances using AWS Systems Manager. No EC2 instances are permitted to have internet access, per the company's security needs. A solutions architect is responsible for designing network connection between EC2 instances and Systems Manager while adhering to this security requirement.
+
+Which solution will satisfy these criteria?
+
+A. Deploy the EC2 instances into a private subnet with no route to the internet.
+B. Configure an interface VPC endpoint for Systems Manager. Update routes to use the endpoint.
+C. Deploy a NAT gateway into a public subnet. Configure private subnets with a default route to the NAT gateway.
+D. Deploy an internet gateway. Configure a network ACL to deny traffic to all destinations except Systems Manager.
+ 
+Question #123Topic 1
+On Amazon EC2 instances, a business runs an application. The application is deployed on private subnets inside the us-east-1 Region's three Availability Zones. The instances must have internet access in order to download files. The organization is looking for a design that is readily accessible across the Region.
+
+Which solution should be done to guarantee that internet access is not disrupted?
+
+A. Deploy a NAT instance in a private subnet of each Availability Zone.
+B. Deploy a NAT gateway in a public subnet of each Availability Zone.
+C. Deploy a transit gateway in a private subnet of each Availability Zone.
+D. Deploy an internet gateway in a public subnet of each Availability Zone.
+ 
+Question #124Topic 1
+A business operates a distant plant with unstable connection. The factory must collect and interpret machine and sensor data in order to detect items on its conveyor belts and begin robotic movement to route them to the appropriate spot. For on-premises control systems, predictable low-latency computing processing is critical.
+
+Which data processing solution should the manufacturer use?
+
+A. Amazon CloudFront Lambda@Edge functions
+B. An Amazon EC2 instance that has enhanced networking enabled
+C. An Amazon EC2 instance that uses an AWS Global Accelerator
+D. An Amazon Elastic Block Store (Amazon EBS) volume on an AWS Snowball Edge cluster 
+Question #125Topic 1
+An application is deployed across various Availability Zones using Amazon EC2 instances. The instances are deployed behind an Application Load Balancer in an Amazon EC2 Auto Scaling group. The program operates optimally when the CPU usage of the Amazon EC2 instances is close to or equal to 40%.
+
+What should a solutions architect do to ensure that the required performance is maintained throughout all group instances?
+
+A. Use a simple scaling policy to dynamically scale the Auto Scaling group.
+B. Use a target tracking policy to dynamically scale the Auto Scaling group.
+C. Use an AWS Lambda function to update the desired Auto Scaling group capacity.
+D. Use scheduled scaling actions to scale up and scale down the Auto Scaling group.
+ 
+Question #126Topic 1
+The web application of a business is hosted on Amazon EC2 instances and is protected by an Application Load Balancer. The corporation recently altered its policy, requiring that the application be accessible exclusively from a single nation.
+
+Which setup will satisfy this criterion?
+
+A. Configure the security group for the EC2 instances.
+B. Configure the security group on the Application Load Balancer.
+C. Configure AWS WAF on the Application Load Balancer in a VPC.
+D. Configure the network ACL for the subnet that contains the EC2 instances.
+ 
+Question #127Topic 1
+AWS Lambda functions are being developed and deployed by an engineering team. The team must build roles and administer policies in AWS IAM in order to set the Lambda functions' rights.
+
+How should the team's permissions be adjusted to correspond to the principle of least privilege?
+
+A. Create an IAM role with a managed policy attached. Allow the engineering team and the Lambda functions to assume this role.
+B. Create an IAM group for the engineering team with an IAMFullAccess policy attached. Add all the users from the team to this IAM group.
+C. Create an execution role for the Lambda functions. Attach a managed policy that has permission boundaries specific to these Lambda functions.
+D. Create an IAM role with a managed policy attached that has permission boundaries specific to the Lambda functions. Allow the engineering team to assume this role. 
+Question #128Topic 1
+A business is migrating from on-premises Oracle to Amazon Aurora PostgreSQL. Numerous apps write to the same tables in the database. The apps must be transferred sequentially, with a month between migrations. Management has raised worry about the database's heavy read and write activity. Throughout the entire migration process, the data must be maintained in sync across both databases.
+
+What recommendations should a solutions architect make?
+
+A. Use AWS DataSync for the initial migration. Use AWS Database Migration Service (AWS DMS) to create a change data capture (CDC) replication task and a table mapping to select all cables.
+B. Use AWS DataSync for the initial migration. Use AWS Database Migration Service (AWS DMS) to create a full load plus change data capture (CDC) replication task and a table mapping to select all tables.
+C. Use the AWS Schema Conversion Tool with AWS DataBase Migration Service (AWS DMS) using a memory optimized replication instance. Create a full load plus change data capture (CDC) replication task and a table mapping to select all tables.
+D. Use the AWS Schema Conversion Tool with AWS Database Migration Service (AWS DMS) using a compute optimized replication instance. Create a full load plus change data capture (CDC) replication task and a table mapping to select the largest tables.
+ 
+Question #129Topic 1
+A solutions architect is migrating static content from an Amazon EC2 instance-hosted public website to an Amazon S3 bucket. The static assets will be distributed using an Amazon CloudFront distribution. The EC2 instances' security group limits access to a subset of IP ranges. Access to static material should be regulated in a similar manner.
+
+Which combination of actions will satisfy these criteria? (Select two.)
+
+A. Create an origin access identity (OAI) and associate it with the distribution. Change the permissions in the bucket policy so that only the OAI can read the objects.
+B. Create an AWS WAF web ACL that includes the same IP restrictions that exist in the EC2 security group. Associate this new web ACL with the CloudFront distribution.
+C. Create a new security group that includes the same IP restrictions that exist in the current EC2 security group. Associate this new security group with the CloudFront distribution.
+D. Create a new security group that includes the same IP restrictions that exist in the current EC2 security group. Associate this new security group with the S3 bucket hosting the static content.
+E. Create a new IAM role and associate the role with the distribution. Change the permissions either on the S3 bucket or on the files within the S3 bucket so that only the newly created IAM role has read and download permissions.
+ 
+Question #130Topic 1
+AWS is used by an ecommerce firm to operate a multi-tier application. Amazon EC2 hosts both the front-end and back-end layers, while Amazon RDS for MySQL hosts the database. The backend tier is responsible for communication with the RDS instance. There are many requests to the database to get identical datasets, which results in performance slowdowns.
+
+Which actions should be performed to optimize the backend's performance?
+
+A. Implement Amazon SNS to store the database calls.
+B. Implement Amazon ElastiCache to cache the large datasets.
+C. Implement an RDS for MySQL read replica to cache database calls.
+D. Implement Amazon Kinesis Data Firehose to stream the calls to the database.
+
+Question #131Topic 1
+A user owns a MySQL database, which is used by a variety of customers that anticipate a maximum delay of 100 milliseconds on queries. Once an entry is recorded in the database, it is almost never modified. Clients get access to a maximum of one record at a time.
+Due to rising customer demand, database access has expanded tremendously. As a consequence, the resulting load will quickly surpass the capability of even the most costly hardware available. The user want to move to AWS and is open to experimenting with new database systems.
+
+Which solution would resolve the database load problem and provide nearly limitless future scalability?
+
+A. Amazon RDS
+B. Amazon DynamoDB
+C. Amazon Redshift
+D. AWS Data Pipeline
+ 
+Question #132Topic 1
+Amazon DynamoDB is being used by an entertainment firm to store media metadata. The application requires extensive reading and often encounters delays. The organization lacks the people necessary to manage extra operational expenses and requires an increase in DynamoDB's performance efficiency without changing the application.
+
+What solution architecture approach should be recommended to satisfy this requirement?
+
+A. Use Amazon ElastiCache for Redis.
+B. Use Amazon DynamoDB Accelerator (DAX).
+C. Replicate data by using DynamoDB global tables.
+D. Use Amazon ElastiCache for Memcached with Auto Discovery enabled.
+ 
+Question #133Topic 1
+In a branch office, a firm runs an application in a tiny data closet with no virtualized computing resources. The application's data is saved on a network file system (NFS) volume. Daily offsite backups of the NFS volume are required by compliance requirements.
+
+Which solution satisfies these criteria?
+
+A. Install an AWS Storage Gateway file gateway on premises to replicate the data to Amazon S3.
+B. Install an AWS Storage Gateway file gateway hardware appliance on premises to replicate the data to Amazon S3.
+C. Install an AWS Storage Gateway volume gateway with stored volumes on premises to replicate the data to Amazon S3.
+D. Install an AWS Storage Gateway volume gateway with cached volumes on premises to replicate the data to Amazon S3.
+ 
+Question #134Topic 1
+A business is using AWS to host an election reporting website for consumers worldwide. The website makes use of Amazon EC2 instances in an Auto Scaling group with Application Load Balancers for the web and application layers. The database layer is powered by Amazon RDS for MySQL. The website is updated once an hour with election results and has previously seen hundreds of individuals check the data.
+The firm anticipates a big boost in demand in the coming months as a result of impending elections in many nations. A solutions architect's objective is to increase the website's capacity to manage increased demand while limiting the requirement for more EC2 instances.
+
+Which solution will satisfy these criteria?
+
+A. Launch an Amazon ElastiCache cluster to cache common database queries.
+B. Launch an Amazon CloudFront web distribution to cache commonly requested website content.
+C. Enable disk-based caching on the EC2 instances to cache commonly requested website content.
+D. Deploy a reverse proxy into the design using an EC2 instance with caching enabled for commonly requested website content.
+ 
+Question #135Topic 1
+Amazon S3 is used by a corporation to store historical weather recordings. The records are accessed through a URL that refers to a domain name on the company's website. Subscriptions enable users from all around the globe to access this material. Although the organization's core domain name is hosted by a third-party operator, the company recently transferred some of its services to Amazon Route 53. The corporation want to consolidate contracts, minimize user latency, and lower the cost of offering the application to subscribers.
+
+Which solution satisfies these criteria?
+
+A. Create a web distribution on Amazon CloudFront to serve the S3 content for the application. Create a CNAME record in a Route 53 hosted zone that points to the CloudFront distribution, resolving to the application's URL domain name.
+B. Create a web distribution on Amazon CloudFront to serve the S3 content for the application. Create an ALIAS record in the Amazon Route 53 hosted zone that points to the CloudFront distribution, resolving to the application's URL domain name.
+C. Create an A record in a Route 53 hosted zone for the application. Create a Route 53 traffic policy for the web application, and configure a geolocation rule. Configure health checks to check the health of the endpoint and route DNS queries to other endpoints if an endpoint is unhealthy.
+D. Create an A record in a Route 53 hosted zone for the application. Create a Route 53 traffic policy for the web application, and configure a geoproximity rule. Configure health checks to check the health of the endpoint and route DNS queries to other endpoints if an endpoint is unhealthy.
+ 
+Question #136Topic 1
+A business is developing a web application that will be accessible over the internet. The application is hosted on Amazon EC2 for Linux instances that leverage Amazon RDS MySQL Multi-AZ DB instances to store sensitive user data. Public subnets are used for EC2 instances, whereas private subnets are used for RDS DB instances. The security team has required that web-based attacks on database instances be prevented.
+
+What recommendations should a solutions architect make?
+
+A. Ensure the EC2 instances are part of an Auto Scaling group and are behind an Application Load Balancer. Configure the EC2 instance iptables rules to drop suspicious web traffic. Create a security group for the DB instances. Configure the RDS security group to only allow port 3306 inbound from the individual EC2 instances.
+B. Ensure the EC2 instances are part of an Auto Scaling group and are behind an Application Load Balancer. Move DB instances to the same subnets that EC2 instances are located in. Create a security group for the DB instances. Configure the RDS security group to only allow port 3306 inbound from the individual EC2 instances.
+C. Ensure the EC2 instances are part of an Auto Scaling group and are behind an Application Load Balancer. Use AWS WAF to monitor inbound web traffic for threats. Create a security group for the web application servers and a security group for the DB instances. Configure the RDS security group to only allow port 3306 inbound from the web application server security group.
+D. Ensure the EC2 instances are part of an Auto Scaling group and are behind an Application Load Balancer. Use AWS WAF to monitor inbound web traffic for threats. Configure the Auto Scaling group to automatically create new DB instances under heavy traffic. Create a security group for the RDS DB instances. Configure the RDS security group to only allow port 3306 inbound.
+ 
+Question #137Topic 1
+A solutions architect is responsible for designing a solution for migrating a persistent database from on-premises to AWS. According to the database administrator, the database needs 64,000 IOPS. If feasible, the database administrator wishes to host the database instance on a single Amazon Elastic Block Store (Amazon EBS) volume.
+
+Which option satisfies the database administrator's requirements the most effectively?
+
+A. Use an instance from the I3 I/O optimized family and leverage local ephemeral storage to achieve the IOPS requirement.
+B. Create a Nitro-based Amazon EC2 instance with an Amazon Elastic Block Store (Amazon EBS) Provisioned IOPS SSD (io1) volume attached. Configure the volume to have 64,000 IOPS.
+C. Create and map an Amazon Elastic File System (Amazon EFS) volume to the database instance and use the volume to achieve the required IOPS for the database.
+D. Provision two volumes and assign 32,000 IOPS to each. Create a logical volume at the operating system level that aggregates both volumes to achieve the IOPS requirements.
+ 
+Question #138Topic 1
+A solutions architect is tasked with the responsibility of creating the architecture for a new application that will be deployed to the AWS Cloud. Amazon EC2 On-Demand Instances will be used to execute the application, which will automatically scale across different Availability Zones. Throughout the day, the EC2 instances will scale up and down periodically. The load distribution will be handled by an Application Load Balancer (ALB). The architecture must be capable of managing dispersed session data. The firm is ready to make necessary adjustments to the code.
+
+What is the solution architect's responsibility in ensuring that the design enables distributed session data management?
+
+A. Use Amazon ElastiCache to manage and store session data.
+B. Use session affinity (sticky sessions) of the ALB to manage session data.
+C. Use Session Manager from AWS Systems Manager to manage the session.
+D. Use the GetSessionToken API operation in AWS Security Token Service (AWS STS) to manage the session.
+ 
+Question #139Topic 1
+Multiple Amazon EC2 Linux instances are used by a business in a VPC to execute applications that need a hierarchical directory structure. The apps must be able to access and write to shared storage fast and simultaneously.
+
+How is this accomplished?
+
+A. Create an Amazon Elastic File System (Amazon EFS) file system and mount it from each EC2 instance.
+B. Create an Amazon S3 bucket and permit access from all the EC2 instances in the VPC.
+C. Create a file system on an Amazon Elastic Block Store (Amazon EBS) Provisioned IOPS SSD (io1) volume. Attach the volume to all the EC2 instances.
+D. Create file systems on Amazon Elastic Block Store (Amazon EBS) volumes attached to each EC2 instance. Synchronize the Amazon Elastic Block Store (Amazon EBS) volumes across the different EC2 instances.
+ 
+Question #140Topic 1
+A solutions architect is in the process of transferring a document management task to Amazon Web Services. The workload stores and tracks 7 terabytes of contract documents on a shared storage file system and an external database. The majority of records are archived and ultimately recovered for future reference. During the migration, the application cannot be updated, and the storage solution must be highly available.
+Web servers that are part of an Auto Scaling group on Amazon EC2 collect and store documents. There may be up to 12 instances in the Auto Scaling group.
+
+Which option best fits these criteria in terms of cost-effectiveness?
+
+A. Provision an enhanced networking optimized EC2 instance to serve as a shared NFS storage system.
+B. Create an Amazon S3 bucket that uses the S3 Standard-Infrequent Access (S3 Standard-IA) storage class. Mount the S3 bucket to the EC2 instances in the Auto Scaling group.
+C. Create an SFTP server endpoint by using AWS Transfer for SFTP and an Amazon S3 bucket. Configure the EC2 instances in the Auto Scaling group to connect to the SFTP server.
+D. Create an Amazon Elastic File System (Amazon EFS) file system that uses the EFS Standard-Infrequent Access (EFS Standard-IA) storage class. Mount the file system to the EC2 instances in the Auto Scaling group.
+
+Question #141Topic 1
+A business maintains monthly phone records. Statistically, recorded data may be referred to randomly within a year but is seldom retrieved beyond that time period.
+Files less than a year old must be queried and retrieved immediately. It is okay for there to be a delay in obtaining older files. A solutions architect must ensure that the captured data is stored at the lowest possible cost.
+
+Which option is the MOST CHEAPEST?
+
+A. Store individual files in Amazon S3 Glacier and store search metadata in object tags created in S3 Glacier Query S3 Glacier tags and retrieve the files from S3 Glacier.
+B. Store individual files in Amazon S3. Use lifecycle policies to move the files to Amazon S3 Glacier after1 year. Query and retrieve the files from Amazon S3 or S3 Glacier.
+C. Archive individual files and store search metadata for each archive in Amazon S3. Use lifecycle policies to move the files to Amazon S3 Glacier after 1 year. Query and retrieve the files by searching for metadata from Amazon S3.
+D. Archive individual files in Amazon S3. Use lifecycle policies to move the files to Amazon S3 Glacier after 1 year. Store search metadata in Amazon DynamoDB. Query the files from DynamoDB and retrieve them from Amazon S3 or S3 Glacier.
+ 
+Question #142Topic 1
+A business want to move a workload to AWS. The chief information security officer demands that any data stored in the cloud be encrypted at rest. The organization desires total control over the encryption key lifecycle management process.
+Independent of AWS CloudTrail, the organization must be able to promptly delete key material and audit key use. The selected services should interface with other AWS storage services.
+
+Which services adhere to these security standards?
+
+A. AWS CloudHSM with the CloudHSM client
+B. AWS Key Management Service (AWS KMS) with AWS CloudHSM
+C. AWS Key Management Service (AWS KMS) with an external key material origin
+D. AWS Key Management Service (AWS KMS) with AWS managed customer master keys (CMKs) 
+
+Question #143Topic 1
+A business hosts an application on Amazon Web Services (AWS) and utilizes Amazon DynamoDB as the database. To handle data from the database, the organization adds Amazon EC2 instances to a private network. The organization connects to DynamoDB using two NAT instances.
+The corporation want to decommission its NAT instances. A solutions architect must develop a solution that connects to DynamoDB and is self-managing.
+
+Which approach is the MOST cost-effective in terms of meeting these requirements?
+
+A. Create a gateway VPC endpoint to provide connectivity to DynamoDB.
+B. Configure a managed NAT gateway to provide connectivity to DynamoDB.
+C. Establish an AWS Direct Connect connection between the private network and DynamoDB.
+D. Deploy an AWS PrivateLink endpoint service between the private network and DynamoDB.
