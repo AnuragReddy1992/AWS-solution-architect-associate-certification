@@ -1,0 +1,275 @@
+Question #58Topic 1
+A solutions architect is developing a hybrid application on the Amazon Web Services (AWS) cloud. AWS Direct Link (DX) will be used to connect the on-premises data center to AWS. Between AWS and the on-premises data center, the application connection must be very durable.
+
+Which DX setup should be used to satisfy these criteria?
+
+A. Configure a DX connection with a VPN on top of it.
+B. Configure DX connections at multiple DX locations.
+C. Configure a DX connection using the most reliable DX partner.
+D. Configure multiple virtual interfaces on top of a DX connection.
+ 
+Question #59Topic 1
+A financial institution uses AWS to host a web application. The program retrieves current stock prices using an Amazon API Gateway Regional API endpoint. The security staff at the organization has detected an upsurge in API queries. The security team is worried that HTTP flood attacks may result in the application being rendered inoperable.
+A solutions architect must create a defense against this form of assault.
+
+Which method satisfies these criteria with the LEAST amount of operational overhead?
+
+A. Create an Amazon CloudFront distribution in front of the API Gateway Regional API endpoint with a maximum TTL of 24 hours.
+B. Create a Regional AWS WAF web ACL with a rate-based rule. Associate the web ACL with the API Gateway stage.
+C. Use Amazon CloudWatch metrics to monitor the Count metric and alert the security team when the predefined rate is reached.
+D. Create an Amazon CloudFront distribution with Lambda@Edge in front of the API Gateway Regional API endpoint. Create an AWS Lambda function to block requests from IP addresses that exceed the predefined rate.
+ 
+Question #60Topic 1
+A business wishes to automate the evaluation of the security of its Amazon EC2 instances. The organization must verify and show that the development process adheres to security and compliance requirements.
+
+What actions should a solutions architect take to ensure that these criteria are met?
+
+A. Use Amazon Macie to automatically discover, classify and protect the EC2 instances.
+B. Use Amazon GuardDuty to publish Amazon Simple Notification Service (Amazon SNS) notifications.
+C. Use Amazon Inspector with Amazon CloudWatch to publish Amazon Simple Notification Service (Amazon SNS) notifications
+D. Use Amazon EventBridge (Amazon CloudWatch Events) to detect and react to changes in the status of AWS Trusted Advisor checks.
+
+Question #61Topic 1
+On Amazon EC2, a corporation is operating a highly secure application that is backed up by an Amazon RDS database. All personally identifiable information (PII) must be encrypted at rest to comply with compliance standards.
+
+Which solution should a solutions architect propose in order to achieve this need with the MINIMUM number of infrastructure changes?
+
+A. Deploy AWS Certificate Manager to generate certificates. Use the certificates to encrypt the database volume.
+B. Deploy AWS CloudHSM, generate encryption keys, and use the customer master key (CMK) to encrypt database volumes.
+C. Configure SSL encryption using AWS Key Management Service customer master keys (AWS KMS CMKs) to encrypt database volumes.
+D. Configure Amazon Elastic Block Store (Amazon EBS) encryption and Amazon RDS encryption with AWS Key Management Service (AWS KMS) keys to encrypt instance and database volumes.
+ 
+Question #62Topic 1
+The following IAM policy has been established by a solutions architect.
+
+
+Which actions will the policy permit?
+
+A. An AWS Lambda function can be deleted from any network.
+B. An AWS Lambda function can be created from any network.
+C. An AWS Lambda function can be deleted from the 100.220.0.0/20 network.
+D. An AWS Lambda function can be deleted from the 220.100.16.0/20 network.
+ 
+Question #63Topic 1
+On Amazon Aurora, a business is operating a database. Every nightfall, the database is inactive. When user traffic surges in the early hours, an application that makes large reads on the database will face performance concerns. When reading from the database during these peak hours, the program encounters timeout issues. Due to the lack of a dedicated operations crew, the organization need an automated solution to solve performance concerns.
+
+Which activities should a solutions architect take to ensure that the database automatically adjusts to the increasing read load? (Select two.)
+
+A. Migrate the database to Aurora Serverless.
+B. Increase the instance size of the Aurora database.
+C. Configure Aurora Auto Scaling with Aurora Replicas.
+D. Migrate the database to an Aurora multi-master cluster.
+E. Migrate the database to an Amazon RDS for MySQL Multi-AZ deployment.
+ 
+Question #64Topic 1
+An Amazon EC2 instance-based application requires access to an Amazon DynamoDB database. The EC2 instance and DynamoDB table are both managed by the same AWS account. Permissions must be configured by a solutions architect.
+
+Which approach will provide the EC2 instance least privilege access to the DynamoDB table?
+
+A. Create an IAM role with the appropriate policy to allow access to the DynamoDB table. Create an instance profile to assign this IAM role to the EC2 instance.
+B. Create an IAM role with the appropriate policy to allow access to the DynamoDB table. Add the EC2 instance to the trust relationship policy document to allow it to assume the role.
+C. Create an IAM user with the appropriate policy to allow access to the DynamoDB table. Store the credentials in an Amazon S3 bucket and read them from within the application code directly.
+D. Create an IAM user with the appropriate policy to allow access to the DynamoDB table. Ensure that the application stores the IAM credentials securely on local storage and uses them to make the DynamoDB calls.
+ 
+Question #65Topic 1
+A business uses Amazon EC2 instances to operate an API-based inventory reporting application. The program makes use of an Amazon DynamoDB database to store data. The distribution centers of the corporation use an on-premises shipping application that communicates with an API to update inventory prior to generating shipping labels. Each day, the organization has seen application outages, resulting in missed transactions.
+
+What should a solutions architect propose to increase the resilience of an application?
+
+A. Modify the shipping application to write to a local database.
+B. Modify the application APIs to run serverless using AWS Lambda
+C. Configure Amazon API Gateway to call the EC2 inventory application APIs.
+D. Modify the application to send inventory updates using Amazon Simple Queue Service (Amazon SQS). 
+Question #66Topic 1
+Amazon EC2 instances on private subnets are used to execute an application. The application requires access to a table in Amazon DynamoDB.
+
+What is the MOST SECURE method of accessing the table without allowing traffic to exit the AWS network?
+
+A. Use a VPC endpoint for DynamoDB.
+B. Use a NAT gateway in a public subnet.
+C. Use a NAT instance in a private subnet.
+D. Use the internet gateway attached to the VPC.
+ 
+Question #67Topic 1
+On a single Amazon EC2 instance, a business runs an ASP.NET MVC application. Due to a recent spike in application usage, users are experiencing poor response times during lunch hours. The firm must address this issue using the least amount of settings possible.
+
+What recommendations should a solutions architect make to satisfy these requirements?
+
+A. Move the application to AWS Elastic Beanstalk. Configure load-based auto scaling and time-based scaling to handle scaling during lunch hours.
+B. Move the application to Amazon Elastic Container Service (Amazon ECS). Create an AWS Lambda function to handle scaling during lunch hours.
+C. Move the application to Amazon Elastic Container Service (Amazon ECS). Configure scheduled scaling for AWS Application Auto Scaling during lunch hours.
+D. Move the application to AWS Elastic Beanstalk. Configure load-based auto scaling, and create an AWS Lambda function to handle scaling during lunch hours.
+ 
+Question #68Topic 1
+A business is in the process of migrating its on-premises application to AWS. Program servers and a Microsoft SQL Server database comprise the application. The database cannot be transferred to another engine due to the application's NET code using SQL Server functionality. The company's goal is to maximize availability while decreasing operational and administration costs.
+
+What actions should a solutions architect take to achieve this?
+
+A. Install SQL Server on Amazon EC2 in a Multi-AZ deployment.
+B. Migrate the data to Amazon RDS for SQL Server in a Multi-AZ deployment.
+C. Deploy the database on Amazon RDS for SQL Server with Multi-AZ Replicas.
+D. Migrate the data to Amazon RDS for SQL Server in a cross-Region Multi-AZ deployment.
+ 
+Question #69Topic 1
+Amazon Redshift is being used by a business to do analytics and produce customer reports. The corporation just obtained an extra 50 terabytes of demographic data on its customers. The data is saved in Amazon S3 in.csv files. The organization need a system that efficiently merges data and visualizes the findings.
+
+What recommendations should a solutions architect make to satisfy these requirements?
+
+A. Use Amazon Redshift Spectrum to query the data in Amazon S3 directly and join that data with the existing data in Amazon Redshift. Use Amazon QuickSight to build the visualizations.
+B. Use Amazon Athena to query the data in Amazon S3. Use Amazon QuickSight to join the data from Athena with the existing data in Amazon Redshift and to build the visualizations.
+C. Increase the size of the Amazon Redshift cluster, and load the data from Amazon S3. Use Amazon EMR Notebooks to query the data and build the visualizations in Amazon Redshift.
+D. Export the data from the Amazon Redshift cluster into Apache Parquet files in Amazon S3. Use Amazon Elasticsearch Service (Amazon ES) to query the data. Use Kibana to visualize the results.
+ 
+Question #70Topic 1
+Each month, a business keeps 200 GB of data on Amazon S3. At the conclusion of each month, the corporation must analyze this data to calculate the number of things sold in each sales area during the preceding month.
+
+Which analytics approach is the MOST cost-effective option for the business?
+
+A. Create an Amazon Elasticsearch Service (Amazon ES) cluster. Query the data in Amazon ES. Visualize the data by using Kibana.
+B. Create a table in the AWS Glue Data Catalog. Query the data in Amazon S3 by using Amazon Athena. Visualize the data in Amazon QuickSight.
+C. Create an Amazon EMR cluster. Query the data by using Amazon EMR, and store the results in Amazon S3. Visualize the data in Amazon QuickSight.
+D. Create an Amazon Redshift cluster. Query the data in Amazon Redshift, and upload the results to Amazon S3. Visualize the data in Amazon QuickSight.
+
+Question #71Topic 1
+A business's data layer is powered by Amazon RDS for PostgreSQL databases. The organization must adopt database password rotation.
+
+Which option satisfies this criterion with the LEAST amount of operational overhead?
+
+A. Store the password in AWS Secrets Manager. Enable automatic rotation on the secret.
+B. Store the password in AWS Systems Manager Parameter Store. Enable automatic rotation on the parameter.
+C. Store the password in AWS Systems Manager Parameter Store. Write an AWS Lambda function that rotates the password.
+D. Store the password in AWS Key Management Service (AWS KMS). Enable automatic rotation on the customer master key (CMK).
+ 
+Question #72Topic 1
+A business intends to transfer a TCP-based application onto the company's virtual private cloud (VPC). The program is available to the public over an unsupported TCP port via a physical device located in the company's data center. This public endpoint has a latency of less than 3 milliseconds and can handle up to 3 million requests per second. The organization needs the new public endpoint in AWS to function at the same level of performance.
+
+What solution architecture approach should be recommended to satisfy this requirement?
+
+A. Deploy a Network Load Balancer (NLB). Configure the NLB to be publicly accessible over the TCP port that the application requires.
+B. Deploy an Application Load Balancer (ALB). Configure the ALB to be publicly accessible over the TCP port that the application requires.
+C. Deploy an Amazon CloudFront distribution that listens on the TCP port that the application requires. Use an Application Load Balancer as the origin.
+D. Deploy an Amazon API Gateway API that is configured with the TCP port that the application requires. Configure AWS Lambda functions with provisioned concurrency to process the requests.
+ 
+Question #73Topic 1
+Within the same AWS account, a firm has two VPCs situated in the us-west-2 Region. The business must permit network communication between these VPCs. Each month, about 500 GB of data will be transferred between the VPCs.
+
+Which approach is the MOST cost-effective for connecting these VPCs?
+
+A. Implement AWS Transit Gateway to connect the VPCs. Update the route tables of each VPC to use the transit gateway for inter-VPC communication.
+B. Implement an AWS Site-to-Site VPN tunnel between the VPCs. Update the route tables of each VPC to use the VPN tunnel for inter-VPC communication.
+C. Set up a VPC peering connection between the VPCs. Update the route tables of each VPC to use the VPC peering connection for inter-VPC communication.
+D. Set up a 1 GB AWS Direct Connect connection between the VPCs. Update the route tables of each VPC to use the Direct Connect connection for inter-VPC communication.
+ 
+Question #74Topic 1
+A business's production workload is hosted on an Amazon Aurora MySQL DB cluster comprised of six Aurora Replicas. The corporation wishes to automate the distribution of near-real-time reporting requests from one of its departments among three Aurora Replicas. These three copies are configured differently from the rest of the DB cluster in terms of computation and memory.
+
+Which solution satisfies these criteria?
+
+A. Create and use a custom endpoint for the workload.
+B. Create a three-node cluster clone and use the reader endpoint.
+C. Use any of the instance endpoints for the selected three nodes.
+D. Use the reader endpoint to automatically distribute the read-only workload.
+ 
+Question #75Topic 1
+A business's on-premises data center has reached its storage limit. The organization wishes to shift its storage system to AWS while keeping bandwidth costs as low as possible. The solution must enable rapid and cost-free data retrieval.
+
+How are these stipulations to be met?
+
+A. Deploy Amazon S3 Glacier Vault and enable expedited retrieval. Enable provisioned retrieval capacity for the workload.
+B. Deploy AWS Storage Gateway using cached volumes. Use Storage Gateway to store data in Amazon S3 while retaining copies of frequently accessed data subsets locally.
+C. Deploy AWS Storage Gateway using stored volumes to store data locally. Use Storage Gateway to asynchronously back up point-in-time snapshots of the data to Amazon S3.
+D. Deploy AWS Direct Connect to connect with the on-premises data center. Configure AWS Storage Gateway to store data locally. Use Storage Gateway to asynchronously back up point-in-time snapshots of the data to Amazon S3.
+ 
+Question #76Topic 1
+Within a month of being bought, a newly acquired firm is needed to establish its own infrastructure on AWS and transfer various apps to the cloud. Each application requires the transmission of around 50 TB of data. Following the transfer, this firm and its parent company will need secure network connection with constant throughput between its data centers and apps. A solutions architect must guarantee that data transfer occurs just once and that network connection is maintained.
+
+Which solution will satisfy these criteria?
+
+A. AWS Direct Connect for both the initial transfer and ongoing connectivity.
+B. AWS Site-to-Site VPN for both the initial transfer and ongoing connectivity.
+C. AWS Snowball for the initial transfer and AWS Direct Connect for ongoing connectivity.
+D. AWS Snowball for the initial transfer and AWS Site-to-Site VPN for ongoing connectivity.
+ 
+Question #77Topic 1
+A solutions architect must create a solution that retrieves data every two minutes from an internet-based third-party web service. Each data retrieval is performed using a Python script in less than 100 milliseconds. The answer is a JSON object of less than 1 KB in size including sensor data. The architect of the solution must keep both the JSON object and the date.
+
+Which approach is the most cost-effective in meeting these requirements?
+
+A. Deploy an Amazon EC2 instance with a Linux operating system. Configure a cron job to run the script every 2 minutes. Extend the script to store the JSON object along with the timestamp in a MySQL database that is hosted on an Amazon RDS DB instance.
+B. Deploy an Amazon EC2 instance with a Linux operating system to extend the script to run in an infinite loop every 2 minutes. Store the JSON object along with the timestamp in an Amazon DynamoDB table that uses the timestamp as the primary key. Run the script on the EC2 instance.
+C. Deploy an AWS Lambda function to extend the script to store the JSON object along with the timestamp in an Amazon DynamoDB table that uses the timestamp as the primary key. Use an Amazon EventBridge (Amazon CloudWatch Events) scheduled event that is initiated every 2 minutes to invoke the Lambda function.
+D. Deploy an AWS Lambda function to extend the script to run in an infinite loop every 2 minutes. Store the JSON object along with the timestamp in an Amazon DynamoDB table that uses the timestamp as the primary key. Ensure that the script is called by the handler function that is configured for the Lambda function.
+ 
+Question #78Topic 1
+A business does not currently have any file sharing services. A new project needs file storage that can be mounted as a disk for on-premises desktop computers. Before users can access the storage, the file server must authenticate them against an Active Directory domain.
+
+Which service enables Active Directory users to deploy storage on their workstations as a drive?
+
+A. Amazon S3 Glacier
+B. AWS DataSync
+C. AWS Snowball Edge
+D. AWS Storage Gateway 
+
+Question #79Topic 1
+A corporation with an on-premises application is transitioning to AWS to boost the flexibility and availability of the application. The present design makes considerable use of a Microsoft SQL Server database. The firm want to investigate other database solutions and, if necessary, migrate database engines.
+The development team does a complete copy of the production database every four hours in order to create a test database. Users will encounter delay during this time period.
+
+What database should a solution architect propose as a replacement?
+
+A. Use Amazon Aurora with Multi-AZ Aurora Replicas and restore from mysqldump for the test database.
+B. Use Amazon Aurora with Multi-AZ Aurora Replicas and restore snapshots from Amazon RDS for the test database.
+C. Use Amazon RDS for MySQL with a Multi-AZ deployment and read replicas, and use the standby instance for the test database.
+D. Use Amazon RDS for SQL Server with a Multi-AZ deployment and read replicas, and restore snapshots from RDS for the test database. 
+
+Question #80Topic 1
+On Amazon EC2 instances, a business runs an application. The volume of traffic to the webpage grows significantly during business hours and then falls.
+The CPU usage of an Amazon EC2 instance is a good measure of the application's end-user demand. The organization has specified a minimum group size of two EC2 instances and a maximum group size of ten EC2 instances for an Auto Scaling group.
+The firm is worried that the Auto Scaling group's existing scaling policy may be incorrect. The organization must prevent excessive EC2 instance provisioning and paying unneeded fees.
+
+What recommendations should a solutions architect make to satisfy these requirements?
+
+A. Configure Amazon EC2 Auto Scaling to use a scheduled scaling plan and launch an additional 8 EC2 instances during business hours.
+B. Configure AWS Auto Scaling to use a scaling plan that enables predictive scaling. Configure predictive scaling with a scaling mode of forecast and scale, and to enforce the maximum capacity setting during scaling.
+C. Configure a step scaling policy to add 4 EC2 instances at 50% CPU utilization and add another 4 EC2 instances at 90% CPU utilization. Configure scale-in policies to perform the reverse and remove EC2 instances based on the two values.
+D. Configure AWS Auto Scaling to have a desired capacity of 5 EC2 instances, and disable any existing scaling policies. Monitor the CPU utilization metric for 1 week. Then create dynamic scaling policies that are based on the observed values.
+
+Question #81Topic 1
+A business has launched a mobile multiplayer game. The game demands real-time monitoring of participants' latitude and longitude positions. The game's data storage must be capable of quick updates and location retrieval.
+The game stores location data on an Amazon RDS for PostgreSQL DB instance with read replicas. The database is unable to sustain the speed required for reading and writing changes during high use times. The game's user base is rapidly growing.
+
+What should a solutions architect do to optimize the data tier's performance?
+
+A. Take a snapshot of the existing DB instance. Restore the snapshot with Multi-AZ enabled.
+B. Migrate from Amazon RDS to Amazon Elasticsearch Service (Amazon ES) with Kibana.
+C. Deploy Amazon DynamoDB Accelerator (DAX) in front of the existing DB instance. Modify the game to use DAX.
+D. Deploy an Amazon ElastiCache for Redis cluster in front of the existing DB instance. Modify the game to use Redis. 
+Question #82Topic 1
+A company's on-premises infrastructure and AWS need a secure connection. This connection does not need a large quantity of bandwidth and is capable of handling a limited amount of traffic. The link should be established immediately.
+
+Which way is the MOST CHEAPEST for establishing this sort of connection?
+
+A. Implement a client VPN.
+B. Implement AWS Direct Connect.
+C. Implement a bastion host on Amazon EC2.
+D. Implement an AWS Site-to-Site VPN connection.
+ 
+Question #83Topic 1
+A business is developing a web-based application that will operate on Amazon EC2 instances distributed across several Availability Zones. The online application will enable access to a collection of over 900 TB of text content. The corporation expects times of heavy demand for the online application. A solutions architect must guarantee that the text document storage component can scale to meet the application's demand at all times. The corporation is concerned about the solution's total cost.
+
+Which storage system best satisfies these criteria in terms of cost-effectiveness?
+
+A. Amazon Elastic Block Store (Amazon EBS)
+B. Amazon Elastic File System (Amazon EFS)
+C. Amazon Elasticsearch Service (Amazon ES)
+D. Amazon S3 
+
+Question #84Topic 1
+A business is using a tape backup system to offshore store critical application data. Daily data volume is in the neighborhood of 50 TB. For regulatory requirements, the firm must maintain backups for seven years. Backups are infrequently viewed, and a week's notice is normally required before restoring a backup.
+The organization is now investigating a cloud-based solution in order to cut storage expenses and the operational load associated with tape management. Additionally, the organization wants to ensure that the move from tape backups to the cloud is as seamless as possible.
+
+Which storage option is the CHEAPEST?
+
+A. Use Amazon Storage Gateway to back up to Amazon Glacier Deep Archive.
+B. Use AWS Snowball Edge to directly integrate the backups with Amazon S3 Glacier.
+C. Copy the backup data to Amazon S3 and create a lifecycle policy to move the data to Amazon S3 Glacier.
+D. Use Amazon Storage Gateway to back up to Amazon S3 and create a lifecycle policy to move the backup to Amazon S3 Glacier.
