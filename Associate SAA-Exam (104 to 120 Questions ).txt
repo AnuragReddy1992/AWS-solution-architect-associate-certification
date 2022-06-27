@@ -1,0 +1,171 @@
+Question #104Topic 1
+A new employee has been hired as a deployment engineer by a corporation. The deployment engineer will construct several AWS resources using AWS CloudFormation templates. A solutions architect desires that the deployment engineer execute job functions with the least amount of privilege possible.
+
+Which steps should the solutions architect do in conjunction to reach this goal? (Select two.)
+
+A. Have the deployment engineer use AWS account roof user credentials for performing AWS CloudFormation stack operations.
+B. Create a new IAM user for the deployment engineer and add the IAM user to a group that has the PowerUsers IAM policy attached.
+C. Create a new IAM user for the deployment engineer and add the IAM user to a group that has the Administrate/Access IAM policy attached.
+D. Create a new IAM User for the deployment engineer and add the IAM user to a group that has an IAM policy that allows AWS CloudFormation actions only.
+E. Create an IAM role for the deployment engineer to explicitly define the permissions specific to the AWS CloudFormation stack and launch stacks using Dial IAM role.
+ 
+Question #105Topic 1
+A corporation is using AWS to construct a new machine learning model solution. The models are constructed as self-contained microservices that get around 1 GB of model data from Amazon S3 and put it into memory during startup. The models are accessed by users through an asynchronous API. Users may submit a single request or a batch of requests and designate the destination for the results.
+Hundreds of people benefit from the company's models. The models' use habits are erratic. Certain models may go days or weeks without being used. Other models may get hundreds of queries concurrently.
+
+Which solution satisfies these criteria?
+
+A. The requests from the API are sent to an Application Load Balancer (ALB). Models are deployed as AWS Lambda functions invoked by the ALB.
+B. The requests from the API are sent to the models Amazon Simple Queue Service (Amazon SQS) queue. Models are deployed as AWS Lambda functions triggered by SQS events AWS Auto Scaling is enabled on Lambda to increase the number of vCPUs based on the SQS queue size.
+C. The requests from the API are sent to the model's Amazon Simple Queue Service (Amazon SQS) queue. Models are deployed as Amazon Elastic Container Service (Amazon ECS) services reading from the queue AWS App Mesh scales the instances of the ECS cluster based on the SQS queue size.
+D. The requests from the API are sent to the models Amazon Simple Queue Service (Amazon SQS) queue. Models are deployed as Amazon Elastic Container Service (Amazon ECS) services reading from the queue AWS Auto Scaling is enabled on Amazon ECS for both the cluster and copies of the service based on the queue size.
+ 
+Question #106Topic 1
+A business developed a meal ordering application that collects and maintains user data for future research. On an Amazon EC2 instance, the application's static front end is installed. The front-end application communicates with the back-end application, which is hosted on a different EC2 instance. The data is subsequently stored in Amazon RDS by the backend application.
+
+What should a solutions architect do to decouple and scalability the architecture?
+
+A. Use Amazon S3 to serve the front-end application, which sends requests to Amazon EC2 to execute the backend application. The backend application will process and store the data in Amazon RDS.
+B. Use Amazon S3 to serve the front-end application and write requests to an Amazon Simple Notification Service (Amazon SNS) topic. Subscribe Amazon EC2 instances to the HTTP/HTTPS endpoint of the topic, and process and store the data in Amazon RDS.
+C. Use an EC2 instance to serve the front end and write requests to an Amazon SQS queue. Place the backend instance in an Auto Scaling group, and scale based on the queue depth to process and store the data in Amazon RDS.
+D. Use Amazon S3 to serve the static front-end application and send requests to Amazon API Gateway, which writes the requests to an Amazon SQS queue. Place the backend instances in an Auto Scaling group, and scale based on the queue depth to process and store the data in Amazon RDS.
+ 
+Question #107Topic 1
+Each month, a leasing firm prepares and delivers PDF statements to all of its clients. Each statement is around 400 KB in length. Customers may obtain their statements from the website for a period of up to 30 days after they are created. Customers are sent a ZIP file containing all of their statements at the conclusion of their three-year lease.
+
+Which storage method is the MOST cost-effective in this situation?
+
+A. Store the statements using the Amazon S3 Standard storage class. Create a lifecycle policy to move the statements to Amazon S3 Glacier storage after 1 day.
+B. Store the statements using the Amazon S3 Glacier storage class. Create a lifecycle policy to move the statements to Amazon S3 Glacier Deep Archive storage after 30 days.
+C. Store the statements using the Amazon S3 Standard storage class. Create a lifecycle policy to move the statements to Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA) storage after 30 days.
+D. Store the statements using the Amazon S3 Standard-Infrequent Access (S3 Standard-IA) storage class. Create a lifecycle policy to move the statements to Amazon S3 Glacier storage after 30 days. 
+Question #108Topic 1
+A company's ecommerce site is seeing a rise in visitor visits. The company's shop is implemented as a two-tier two application on Amazon EC2 instances, with a web layer and a separate database tier. As traffic rises, the organization detects severe delays in delivering timely marketing and purchase confirmation emails to consumers due to the design. The organization wishes to decrease the amount of time spent addressing difficult email delivery problems and to cut operating costs.
+
+What actions should a solutions architect take to ensure that these criteria are met?
+
+A. Create a separate application tier using EC2 instances dedicated to email processing.
+B. Configure the web instance to send email through Amazon Simple Email Service (Amazon SES).
+C. Configure the web instance to send email through Amazon Simple Notification Service (Amazon SNS).
+D. Create a separate application tier using EC2 instances dedicated to email processing. Place the instances in an Auto Scaling group.
+ 
+Question #109Topic 1
+A business's application makes use of AWS Lambda functions. A code examination reveals that database credentials are being kept in the source code of a Lambda function, which violates the company's security policy. To comply with security policy requirements, credentials must be safely maintained and automatically cycled on a regular basis.
+
+What should a solutions architect propose as the MOST SECURE method of meeting these requirements?
+
+A. Store the password in AWS CloudHSM. Associate the Lambda function with a role that can use the key ID to retrieve the password from CloudHSM. Use CloudHSM to automatically rotate the password.
+B. Store the password in AWS Secrets Manager. Associate the Lambda function with a role that can use the secret ID to retrieve the password from Secrets Manager. Use Secrets Manager to automatically rotate the password.
+C. Store the password in AWS Key Management Service (AWS KMS). Associate the Lambda function with a role that can use the key ID to retrieve the password from AWS KMS. Use AWS KMS to automatically rotate the uploaded password.
+D. Move the database password to an environment variable that is associated with the Lambda function. Retrieve the password from the environment variable by invoking the function. Create a deployment script to automatically rotate the password.
+ 
+Question #110Topic 1
+A firm just launched a two-tier application in the us-east-1 Region's two Availability Zones. Databases are located on a private subnet, whereas web servers are located on a public subnet. The VPC is connected to the internet through an internet gateway. Amazon EC2 instances are used to host the application and database. The database servers are unable to connect to the internet in order to get fixes. A solutions architect must create a system that ensures database security while incurring the fewest operating costs.
+
+Which solution satisfies these criteria?
+
+A. Deploy a NAT gateway inside the public subnet for each Availability Zone and associate it with an Elastic IP address. Update the routing table of the private subnet to use it as the default route.
+B. Deploy a NAT gateway inside the private subnet for each Availability Zone and associate it with an Elastic IP address. Update the routing table of the private subnet to use it as the default route.
+C. Deploy two NAT instances inside the public subnet for each Availability Zone and associate them with Elastic IP addresses. Update the routing table of the private subnet to use it as the default route.
+D. Deploy two NAT instances inside the private subnet for each Availability Zone and associate them with Elastic IP addresses. Update the routing table of the private subnet to use it as the default route.
+
+Question #111Topic 1
+For each of its developer accounts, a corporation has configured AWS CloudTrail logs to transport log files to an Amazon S3 bucket. The organization has established a centralized AWS account for the purpose of facilitating administration and auditing. Internal auditors need access to CloudTrail logs, however access to all developer account users must be limited. The solution should be both secure and efficient.
+
+How should a solutions architect address these considerations?
+
+A. Configure an AWS Lambda function in each developer account to copy the log files to the central account. Create an IAM role in the central account for the auditor. Attach an IAM policy providing read-only permissions to the bucket.
+B. Configure CloudTrail from each developer account to deliver the log files to an S3 bucket in the central account. Create an IAM user in the central account for the auditor. Attach an IAM policy providing full permissions to the bucket.
+C. Configure CloudTrail from each developer account to deliver the log files to an S3 bucket in the central account. Create an IAM role in the central account for the auditor. Attach an IAM policy providing read-only permissions to the bucket.
+D. Configure an AWS Lambda function in the central account to copy the log files from the S3 bucket in each developer account. Create an IAM user in the central account for the auditor. Attach an IAM policy providing full permissions to the bucket.
+ 
+Question #112Topic 1
+A solutions architect is improving a website in preparation for a forthcoming musical performance. Real-time streaming of the performances will be accessible, as well as on-demand viewing. The event is anticipated to draw a large internet audience from across the world.
+
+Which service will optimize both real-time and on-demand steaming performance?
+
+A. Amazon CloudFront
+B. AWS Global Accelerator
+C. Amazon Route S3
+D. Amazon S3 Transfer Acceleration
+ 
+Question #113Topic 1
+A database is hosted on an Amazon RDS MySQL 5.6 Multi-AZ DB instance that is subjected to high-volume reads. When evaluating read performance from a secondary AWS Region, application developers detect a considerable lag. The developers need a solution that has a read replication latency of less than one second.
+
+What recommendations should the solutions architect make?
+
+A. Install MySQL on Amazon EC2 in the secondary Region.
+B. Migrate the database to Amazon Aurora with cross-Region replicas.
+C. Create another RDS for MySQL read replica in the secondary Region.
+D. Implement Amazon ElastiCache to improve database query performance.
+ 
+Question #114Topic 1
+Currently, a business runs a web application that is backed up by an Amazon RDS MySQL database. It features daily automatic backups that are not encrypted. A security audit entails the encryption of future backups and the destruction of unencrypted backups. Before deleting the previous backups, the firm will create at least one encrypted backup.
+
+What should be done to allow encrypted backups in the future?
+
+A. Enable default encryption for the Amazon S3 bucket where backups are stored.
+B. Modify the backup section of the database configuration to toggle the Enable encryption check box.
+C. Create a snapshot of the database. Copy it to an encrypted snapshot. Restore the database from the encrypted snapshot.
+D. Enable an encrypted read replica on RDS for MySQL. Promote the encrypted read replica to primary. Remove the original database instance.
+ 
+Question #115Topic 1
+Each entry to a company's facility is equipped with badge readers. When badges are scanned, the readers transmit an HTTPS message indicating who tried to enter that specific entry.
+A solutions architect must develop a system that will handle these sensor signals. The solution must be highly accessible, with the findings made available for analysis by the company's security staff.
+
+Which system design should be recommended by the solutions architect?
+
+A. Launch an Amazon EC2 instance to serve as the HTTPS endpoint and to process the messages. Configure the EC2 instance to save the results to an Amazon S3 bucket.
+B. Create an HTTPS endpoint in Amazon API Gateway. Configure the API Gateway endpoint to invoke an AWS Lambda function to process the messages and save the results to an Amazon DynamoDB table.
+C. Use Amazon Route 53 to direct incoming sensor messages to an AWS Lambda function. Configure the Lambda function to process the messages and save the results to an Amazon DynamoDB table.
+D. Create a gateway VPC endpoint for Amazon S3. Configure a Site-to-Site VPN connection from the facility network to the VPC so that sensor data can be written directly to an S3 bucket by way of the VPC endpoint.
+ 
+Question #116Topic 1
+A business maintains on-premises servers that operate a relational database. The existing database handles a large volume of read requests from users in various places. The organization want to transition to AWS with little effort. The database solution should facilitate catastrophe recovery while not interfering with the existing traffic flow of the business.
+
+Which solution satisfies these criteria?
+
+A. Use a database in Amazon RDS with Multi-AZ and at least one read replica.
+B. Use a database in Amazon RDS with Multi-AZ and at least one standby replica.
+C. Use databases hosted on multiple Amazon EC2 instances in different AWS Regions.
+D. Use databases hosted on Amazon EC2 instances behind an Application Load Balancer in different Availability Zones.
+ 
+Question #117Topic 1
+On AWS, a business is developing a document storage solution. The application is deployed across different Amazon EC2 Availability Zones. The firm demands a highly accessible document storage. When requested, documentation must be returned quickly. The lead engineer has setup the application to store documents in Amazon Elastic Block Store (Amazon EBS), but is open to examine additional solutions to fulfill the availability requirement.
+
+What recommendations should a solutions architect make?
+
+A. Snapshot the EBS volumes regularly and build new volumes using those snapshots in additional Availability Zones.
+B. Use Amazon Elastic Block Store (Amazon EBS) for the EC2 instance root volumes. Configure the application to build the document store on Amazon S3.
+C. Use Amazon Elastic Block Store (Amazon EBS) for the EC2 instance root volumes. Configure the application to build the document store on Amazon S3 Glacier.
+D. Use at least three Provisioned IOPS EBS volumes for EC2 instances. Mount the volumes to the EC2 instances in a RAID 5 configuration.
+ 
+Question #118Topic 1
+A business wishes to keep track of its AWS charges for financial reporting purposes. The cloud operations team is developing an architecture for querying AWS Cost and Usage Reports for all member accounts in the AWS Organizations management account. Once a month, the team must execute this query and give a full analysis of the bill.
+
+Which solution meets these needs in the MOST scalable and cost-effective manner?
+
+A. Enable Cost and Usage Reports in the management account. Deliver reports to Amazon Kinesis. Use Amazon EMR for analysis.
+B. Enable Cost and Usage Reports in the management account. Deliver the reports to Amazon S3. Use Amazon Athena for analysis.
+C. Enable Cost and Usage Reports for member accounts. Deliver the reports to Amazon S3. Use Amazon Redshift for analysis.
+D. Enable Cost and Usage Reports for member accounts. Deliver the reports to Amazon Kinesis. Use Amazon QuickSight for analysis.
+ 
+Question #119Topic 1
+A solutions architect desires that all new users meet particular difficulty standards and are required to rotate their IAM user passwords on a regular basis.
+
+What is the solution architect's role in achieving this?
+
+A. Set an overall password policy for the entire AWS account
+B. Set a password policy for each IAM user in the AWS account.
+C. Use third-party vendor software to set password requirements.
+D. Attach an Amazon CloudWatch rule to the Create_newuser event to set the password with the appropriate requirements.
+ 
+Question #120Topic 1
+A business uses AWS to host its website. The organization has utilized Amazon EC2 Auto Scaling to accommodate the extremely fluctuating demand. Management is worried that the firm is overprovisioning its infrastructure, particularly at the three-tier application's front end. A solutions architect's primary responsibility is to guarantee that costs are minimized without sacrificing performance.
+
+What is the solution architect's role in achieving this?
+
+A. Use Auto Scaling with Reserved Instances.
+B. Use Auto Scaling with a scheduled scaling policy.
+C. Use Auto Scaling with the suspend-resume feature.
+D. Use Auto Scaling with a target tracking scaling policy.
