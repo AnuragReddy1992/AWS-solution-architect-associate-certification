@@ -1,0 +1,213 @@
+Question #243Topic 1
+Amazon Route 53 latency-based routing is being used by a firm to route requests to their UDP-based application for customers worldwide. The program is hosted on redundant servers inside the company's own data centers in the United States, Asia, and Europe. The application must be hosted on-premises in accordance with the company's compliance standards. The organization want to enhance the application's performance and availability.
+
+What actions should a solutions architect take to ensure that these criteria are met?
+
+A. Configure three Network Load Balancers (NLBs) in the three AWS Regions to address the on-premises endpoints. Create an accelerator by using AWS Global Accelerator, and register the NLBs as its endpoints. Provide access to the application by using a CNAME that points to the accelerator DNS.
+B. Configure three Application Load Balancers (ALBs) in the three AWS Regions to address the on-premises endpoints. Create an accelerator by using AWS Global Accelerator, and register the ALBs as its endpoints. Provide access to the application by using a CNAME that points to the accelerator DNS.
+C. Configure three Network Load Balancers (NLBs) in the three AWS Regions to address the on-premises endpoints. In Route 53, create a latency-based record that points to the three NLBs, and use it as an origin for an Amazon CloudFront distribution. Provide access to the application by using a CNAME that points to the CloudFront DNS.
+D. Configure three Application Load Balancers (ALBs) in the three AWS Regions to address the on-premises endpoints. In Route 53, create a latency-based record that points to the three ALBs, and use it as an origin for an Amazon CloudFront distribution. Provide access to the application by using a CNAME that points to the CloudFront DNS.
+ 
+Question #244Topic 1
+A business is developing a massively multiplayer online game. The game communicates through UDP, thus it is critical that the client and backend have a low latency. The backend is hosted on Amazon EC2 instances that may be scaled across various AWS Regions. The firm requires a high level of availability for the game in order for consumers worldwide to have access to it at all times.
+
+What actions should a solutions architect take to ensure that these criteria are met?
+
+A. Deploy Amazon CloudFront to support the global traffic. Configure CloudFront with an origin group to allow access to EC2 instances in multiple Regions.
+B. Deploy an Application Load Balancer in one Region to distribute traffic to EC2 instances in each Region that hosts the game's backend instances.
+C. Deploy Amazon CloudFront to support an origin access identity (OAI). Associate the OAI with EC2 instances in each Region to support global traffic.
+D. Deploy a Network Load Balancer in each Region to distribute the traffic. Use AWS Global Accelerator to route traffic to the correct Regional endpoint.
+ 
+Question #245Topic 1
+A business wishes to relocate its accounting system from an on-premises data center to an AWS Region. Priority one should be given to data security and an unalterable audit log. The organization must conduct compliance audits on all AWS operations. Although the organization has activated AWS CloudTrail, it want to ensure that it complies with these criteria.
+
+Which safeguards and security measures should a solutions architect use to safeguard and secure CloudTrail? (Select two.)
+
+A. Enable CloudTrail log file validation.
+B. Install the CloudTrail Processing Library.
+C. Enable logging of Insights events in CloudTrail.
+D. Enable custom logging from the on-premises resources.
+E. Create an AWS Config rule to monitor whether CloudTrail is configured to use server-side encryption with AWS KMS managed encryption keys (SSE-KMS). 
+Question #246Topic 1
+A solutions architect is developing a new service to be used in conjunction with Amazon API Gateway. The service's request patterns will be erratic, ranging from zero to over 500 per second. The entire quantity of data that must be persisted in a backend database is now less than 1 GB, with unpredictability about future expansion. Simple key-value queries may be used to query data.
+
+Which AWS service combination would best suit these requirements? (Select two.)
+
+A. AWS Fargate
+B. AWS Lambda
+C. Amazon DynamoDB
+D. Amazon EC2 Auto Scaling
+E. MySQL-compatible Amazon Aurora
+ 
+Question #247Topic 1
+Management has chosen to allow IPv6 on all AWS VPCs. After a period of time, a solutions architect attempts to create a new instance and gets an error indicating that the subnet does not have enough accessible IP address space.
+
+What is the solution architect's role in resolving this?
+
+A. Check to make sure that only IPv6 was used during the VPC creation.
+B. Create a new IPv4 subnet with a larger range, and then launch the instance.
+C. Create a new IPv6-only subnet with a large range, and then launch the instance.
+D. Disable the IPv4 subnet and migrate all instances to IPv6 only. Once that is complete, launch the instance.
+ 
+Question #248Topic 1
+A business uses AWS Organizations in conjunction with two AWS accounts: Logistics and Sales. The Logistics account is responsible for the operation of an Amazon Redshift cluster. Amazon EC2 instances are included in the Sales account. The Sales account requires access to the Amazon Redshift cluster owned by the Logistics account.
+
+What should a solutions architect propose as the MOST cost-effective way to accomplish this requirement?
+
+A. Set up VPC sharing with the Logistics account as the owner and the Sales account as the participant to transfer the data.
+B. Create an AWS Lambda function in the Logistics account to transfer data to the Amazon EC2 instances in the Sales account.
+C. Create a snapshot of the Amazon Redshift cluster, and share the snapshot with the Sales account. In the Sales account, restore the cluster by using the snapshot ID that is shared by the Logistics account.
+D. Run COPY commands to load data from Amazon Redshift into Amazon S3 buckets in the Logistics account. Grant permissions to the Sales account to access the S3 buckets of the Logistics account.
+ 
+Question #249Topic 1
+A business is presenting their application to the internet using an Application Load Balancer (ALB). The organization identifies out-of-the-ordinary traffic access patterns across the application. A solutions architect must increase visibility into the infrastructure in order to assist the business in comprehending these anomalies.
+
+What is the MOST OPTIMAL option that satisfies these requirements?
+
+A. Create a table in Amazon Athena for AWS CloudTrail logs. Create a query for the relevant information.
+B. Enable ALB access logging to Amazon S3. Create a table in Amazon Athena, and query the logs.
+C. Enable ALB access logging to Amazon S3. Open each file in a text editor, and search each line for the relevant information.
+D. Use Amazon EMR on a dedicated Amazon EC2 instance to directly query the ALB to acquire traffic access log information.
+ 
+Question #250Topic 1
+The operations team of a business already has an Amazon S3 bucket set to send notifications to an Amazon SQS queue when new items are generated in the bucket. Additionally, the development team want to get notifications when new objects are generated. The present workflow of the operations team must be maintained.
+
+Which solution would meet these criteria?
+
+A. Create another SQS queue. Update the S3 events in the bucket to also update the new queue when a new object is created.
+B. Create a new SQS queue that only allows Amazon S3 to access the queue. Update Amazon S3 to update this queue when a new object is created.
+C. Create an Amazon SNS topic and SQS queue for the bucket updates. Update the bucket to send events to the new topic. Updates both queues to poll Amazon SNS.
+D. Create an Amazon SNS topic and SQS queue for the bucket updates. Update the bucket to send events to the new topic. Add subscriptions for both queues in the topic.
+
+Question #251Topic 1
+A solutions architect is creating storage for an Amazon Linux-based high performance computing (HPC) environment. The workload saves and analyzes a huge number of engineering drawings, which necessitates the use of shared storage and high-performance computation.
+
+Which storage choice is the best?
+
+A. Amazon Elastic File System (Amazon EFS)
+B. Amazon FSx for Lustre
+C. Amazon EC2 instance store
+D. Amazon Elastic Block Store (Amazon EBS) Provisioned IOPS SSD (io1)
+ 
+Question #252Topic 1
+A business is planning to build a public-facing web application on Amazon Web Services (AWS). The architecture comprises of Amazon EC2 instances contained inside a Virtual Private Cloud (VPC) and protected by an Elastic Load Balancer (ELB). The DNS is managed by a third-party provider. The solutions architect of the business must offer a solution for detecting and defending against large-scale DDoS assaults.
+
+Which solution satisfies these criteria?
+
+A. Enable Amazon GuardDuty on the account.
+B. Enable Amazon Inspector on the EC2 instances.
+C. Enable AWS Shield and assign Amazon Route 53 to it.
+D. Enable AWS Shield Advanced and assign the ELB to it.
+ 
+Question #253Topic 1
+A business is shifting to the Amazon Web Services (AWS) Cloud. The initial workload to move is a file server. The file share must be accessible through the Server Message Block (SMB) protocol.
+
+Which AWS managed service satisfies these criteria?
+
+A. Amazon Elastic Block Store (Amazon EBS)
+B. Amazon EC2
+C. Amazon FSx
+D. Amazon S3
+ 
+Question #254Topic 1
+A business is deploying a new application on an Amazon Elastic Container Service (Amazon ECS) cluster, using the Fargate ECS task launch type. The firm is monitoring CPU and memory use in anticipation of the program receiving a significant volume of traffic upon launch. However, the corporation desires cost savings as usage declines.
+
+What recommendations should a solutions architect make?
+
+A. Use Amazon EC2 Auto Scaling to scale at certain periods based on previous traffic patterns.
+B. Use an AWS Lambda function to scale Amazon ECS based on metric breaches that trigger an Amazon CloudWatch alarm.
+C. Use Amazon EC2 Auto Scaling with simple scaling policies to scale when ECS metric breaches trigger an Amazon CloudWatch alarm.
+D. Use AWS Application Auto Scaling with target tracking policies to scale when ECS metric breaches trigger an Amazon CloudWatch alarm.
+ 
+Question #255Topic 1
+A business has an AWS-hosted website. The database backend is hosted on Amazon RDS for MySQL and consists of a main instance and five read replicas to accommodate scalability requirements. To provide a consistent user experience, read replicas should be no more than one second behind the original instance.
+As the website's traffic continues to grow, the copies lag farther behind at peak moments, resulting in user complaints when searches return inconsistent results. A solutions architect's goal should be to minimize replication latency with little modifications to the application's code or operational requirements.
+
+Which solution satisfies these criteria?
+
+A. Migrate the database to Amazon Aurora MySQL. Replace the MySQL read replicas with Aurora Replicas and enable Aurora Auto Scaling
+B. Deploy an Amazon ElastiCache for Redis cluster in front of the database. Modify the website to check the cache before querying the database read endpoints.
+C. Migrate the database from Amazon RDS to MySQL running on Amazon EC2 compute instances. Choose very large compute optimized instances for all replica nodes.
+D. Migrate the database to Amazon DynamoDB. Initially provision a large number of read capacity units (RCUs) to support the required throughput with on- demand capacity scaling enabled.
+ 
+Question #256Topic 1
+A business has users from all over the world using an application that is installed in many AWS Regions, exposing public static IP addresses. When users use the program through the internet, they encounter performance issues.
+
+What should a solutions architect propose as a means of lowering internet latency?
+
+A. Set up AWS Global Accelerator and add endpoints.
+B. Set up AWS Direct Connect locations in multiple Regions.
+C. Set up an Amazon CloudFront distribution to access an application.
+D. Set up an Amazon Route 53 geoproximity routing policy to route traffic.
+ 
+Question #257Topic 1
+A business requires the development of a reporting solution on AWS. SQL queries must be supported by the solution for data analysts to execute on the data. Each day, the data analysts will do less than ten queries. Each day, the corporation adds 3 GB of fresh data to its on-premises relational database. This data must be sent to AWS in order for reporting chores to be performed.
+
+What should a solutions architect propose as the CHEAPEST way to achieve these requirements?
+
+A. Use AWS Database Migration Service (AWS DMS) to replicate the data from the on-premises database into Amazon S3. Use Amazon Athena to query the data.
+B. Use an Amazon Kinesis Data Firehose delivery stream to deliver the data into an Amazon Elasticsearch Service (Amazon ES) cluster. Run the queries in Amazon ES.
+C. Export a daily copy of the data from the on-premises database. Use an AWS Storage Gateway file gateway to store and copy the export into Amazon S3. Use an Amazon EMR cluster to query the data.
+D. Use AWS Database Migration Service (AWS DMS) to replicate the data from the on-premises database and load it into an Amazon Redshift cluster. Use the Amazon Redshift cluster to query the data.
+ 
+Question #258Topic 1
+A business is using an Amazon S3 bucket to store data that has been submitted by several departments from various locations. The finance manager finds that 10 TB of S3 Standard storage data has been charged each month during an AWS Well-Architected assessment. However, executing the command to select all files and folders in the AWS Management Console for Amazon S3 results in a total size of 5 TB.
+
+What may be the potential reasons for this discrepancy? (Select two.)
+
+A. Some files are stored with deduplication.
+B. The S3 bucket has versioning enabled.
+C. There are incomplete S3 multipart uploads.
+D. The S3 bucker has AWS Key Management Service (AWS KMS) enabled.
+E. The S3 bucket has Intelligent-Tiering enabled.
+ 
+Question #259Topic 1
+On AWS, a business is creating an ecommerce website. This website is constructed on a three-tier design that contains a MySQL database in an Amazon Aurora MySQL Multi-AZ deployment. The internet application must be highly available, and will be deployed in an AWS Region with three Availability Zones initially. The program generates a statistic that indicates the amount of load it is experiencing.
+
+Which solution satisfies these criteria?
+
+A. Configure an Application Load Balancer (ALB) with Amazon EC2 Auto Scaling behind the ALB with scheduled scaling
+B. Configure an Application Load Balancer (ALB) and Amazon EC2 Auto Scaling behind the ALB with a simple scaling policy.
+C. Configure a Network Load Balancer (NLB) and launch a Spot Fleet with Amazon EC2 Auto Scaling behind the NLB.
+D. Configure an Application Load Balancer (ALB) and Amazon EC2 Auto Scaling behind the ALB with a target tracking scaling policy.
+ 
+Question #260Topic 1
+A gaming firm uses AWS to host a browser-based application. The application's users consume a high volume of movies and photographs stored on Amazon S3. This material is consistent across all users.
+The program has grown in popularity, with millions of users accessing these media files on a daily basis. The firm want to provide files to consumers while minimizing strain on the origin.
+
+Which option best fits these criteria in terms of cost-effectiveness?
+
+A. Deploy an AWS Global Accelerator accelerator in front of the web servers.
+B. Deploy an Amazon CloudFront web distribution in front of the S3 bucket.
+C. Deploy an Amazon ElastiCache for Redis instance in front of the web servers.
+D. Deploy an Amazon ElastiCache for Memcached instance in front of the web servers.
+
+Question #261Topic 1
+Every day, a business processes data. The processes' output is kept in an Amazon S3 bucket, examined daily for one week, and then must remain readily available for ad hoc examination.
+
+Which storage option is the MOST cost-effective alternative to the existing configuration?
+
+A. Configure a lifecycle policy to delete the objects after 30 days.
+B. Configure a lifecycle policy to transition the objects to Amazon S3 Glacier after 30 days.
+C. Configure a lifecycle policy to transition the objects to Amazon S3 Standard-Infrequent Access (S3 Standard-IA) after 30 days.
+D. Configure a lifecycle policy to transition the objects to Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA) after 30 days.
+ 
+Question #262Topic 1
+A business is developing an application. The program receives data through Amazon API Gateway and stores it in an Amazon Aurora PostgreSQL database using an AWS Lambda function.
+During the proof-of-concept stage, the firm must drastically raise the Lambda quotas to manage the large amounts of data that must be loaded into the database. A solutions architect must provide a recommendation for a new design that maximizes scalability and reduces setup effort.
+
+Which solution will satisfy these criteria?
+
+A. Refactor the Lambda function code to Apache Tomcat code that runs on Amazon EC2 instances. Connect the database by using native Java Database Connectivity (JDBC) drivers.
+B. Change the platform from Aurora to Amazon DynamoDB. Provision a DynamoDB Accelerator (DAX) cluster. Use the DAX client SDK to point the existing DynamoDB API calls at the DAX cluster.
+C. Set up two Lambda functions. Configure one function to receive the information. Configure the other function to load the information into the database. Integrate the Lambda functions by using Amazon Simple Notification Service (Amazon SNS).
+D. Set up two Lambda functions. Configure one function to receive the information. Configure the other function to load the information into the database. Integrate the Lambda functions by using an Amazon Simple Queue Service (Amazon SQS) queue. 
+Question #263Topic 1
+A business wishes to migrate its on-premises MySQL database to Amazon Web Services (AWS). Regular imports from a client-facing application result in a huge amount of write operations in the database. The organization is worried that the volume of traffic may be affecting the application's performance.
+
+How should a solutions architect approach the design of an AWS architecture?
+
+A. Provision an Amazon RDS for MySQL DB instance with Provisioned IOPS SSD storage. Monitor write operation metrics by using Amazon CloudWatch. Adjust the provisioned IOPS if necessary.
+B. Provision an Amazon RDS for MySQL DB instance with General Purpose SSD storage. Place an Amazon ElastiCache cluster in front of the DB instance. Configure the application to query ElastiCache instead.
+C. Provision an Amazon DocumentDB (with MongoDB compatibility) instance with a memory optimized instance type. Monitor Amazon CloudWatch for performance-related issues. Change the instance class if necessary.
+D. Provision an Amazon Elastic File System (Amazon EFS) file system in General Purpose performance mode. Monitor Amazon CloudWatch for IOPS bottlenecks. Change to Provisioned Throughput performance mode if necessary.
