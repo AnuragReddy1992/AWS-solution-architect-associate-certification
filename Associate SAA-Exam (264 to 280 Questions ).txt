@@ -1,0 +1,175 @@
+Question #264Topic 1
+A firm is using AWS to create a multi-instance application that needs low latency between the instances.
+
+What recommendations should a solutions architect make?
+
+A. Use an Auto Scaling group with a cluster placement group.
+B. Use an Auto Scaling group with single Availability Zone in the same AWS Region.
+C. Use an Auto Scaling group with multiple Availability Zones in the same AWS Region.
+D. Use a Network Load Balancer with multiple Amazon EC2 Dedicated Hosts as the targets.
+ 
+Question #265Topic 1
+For the last 15 years, a corporation has been operating a web application using an Oracle relational database in an on-premises data center. The company's database must be migrated to AWS. The business wants to cut operating costs without modifying the application's code.
+
+Which solution satisfies these criteria?
+
+A. Use AWS Database Migration Service (AWS DMS) to migrate the database servers to Amazon RDS.
+B. Use Amazon EC2 instances to migrate and operate the database servers.
+C. Use AWS Database Migration Service (AWS DMS) to migrate the database servers to Amazon DynamoDB.
+D. Use an AWS Snowball Edge Storage Optimized device to migrate the data from Oracle to Amazon Aurora.
+ 
+Question #266Topic 1
+A development team keeps the user name and password for its Amazon RDS MySQL DB instance in a configuration file. The configuration file is saved in plaintext on the team's Amazon EC2 instance's root device disk. When the team's application needs to connect to the database, the file is read and the credentials are loaded into the code. The team adjusted the configuration file's permissions so that only the program may access its contents. A solution architect's primary responsibility is to build a better secure system.
+
+What actions should the solutions architect do in order to satisfy this requirement?
+
+A. Store the configuration file in Amazon S3. Grant the application access to read the configuration file.
+B. Create an IAM role with permission to access the database. Attach this IAM role to the EC2 instance.
+C. Enable SSL connections on the database instance. Alter the database user to require SSL when logging in.
+D. Move the configuration file to an EC2 instance store, and create an Amazon Machine Image (AMI) of the instance. Launch new instances from this AMI.
+ 
+Question #267Topic 1
+A business's application is operating on Amazon EC2 instances contained inside a VPC. One of the apps must make a request to the Amazon S3 API in order to store and retrieve items. The company's security regulations prohibit programs from sending any internet-bound traffic.
+
+Which course of action will satisfy these needs while still maintaining security?
+
+A. Configure an S3 interface endpoint.
+B. Configure an S3 gateway endpoint.
+C. Create an S3 bucket in a private subnet.
+D. Create an S3 bucket in the same Region as the EC2 instance.
+ 
+Question #268Topic 1
+A MySQL database is used by a business's order fulfillment service. The database must be able to handle a high volume of concurrent requests and transactions. The database is patched and tuned by developers. This results in delays in the introduction of new product features.
+The organization wishes to use cloud-based services in order to assist it in addressing this new difficulty. The solution must enable developers to move the database with little or no modifications to the code and must maximize performance.
+
+Which solution architect service should be used to achieve these requirements?
+
+A. Amazon Aurora
+B. Amazon DynamoDB
+C. Amazon ElastiCache
+D. MySQL on Amazon EC2
+ 
+Question #269Topic 1
+A corporation needs to create a relational database with a 1 second Recovery Point Objective (RPO) and a 1 minute Recovery Time Objective (RTO) for multi-region disaster recovery.
+
+Which AWS solution is capable of doing this?
+
+A. Amazon Aurora Global Database
+B. Amazon DynamoDB global tables
+C. Amazon RDS for MySQL with Multi-AZ enabled
+D. Amazon RDS for MySQL with a cross-Region snapshot copy
+ 
+Question #270Topic 1
+A solutions architect is tasked with the responsibility of designing the implementation of a new static website. The solution must be cost effective and maintain a minimum of 99 percent availability.
+
+Which solution satisfies these criteria?
+
+A. Deploy the application to an Amazon S3 bucket in one AWS Region that has versioning disabled.
+B. Deploy the application to Amazon EC2 instances that run in two AWS Regions and two Availability Zones.
+C. Deploy the application to an Amazon S3 bucket that has versioning and cross-Region replication enabled.
+D. Deploy the application to an Amazon EC2 instance that runs in one AWS Region and one Availability Zone.
+
+Question #271Topic 1
+A business operates a three-tier web application for the purpose of processing credit card payments. Static websites comprise the front-end user interface. The application layer may include lengthy procedures. MySQL is used in the database layer.
+Currently, the application is running on a single huge general-purpose Amazon EC2 machine. A solutions architect must decouple the services in order to maximize the availability of the web application.
+
+Which of the following solutions would give the HIGHEST level of availability?
+
+A. Move static assets to Amazon CloudFront. Leave the application in EC2 in an Auto Scaling group. Move the database to Amazon RDS to deploy Multi-AZ.
+B. Move static assets and the application into a medium EC2 instance. Leave the database on the large instance. Place both instances in an Auto Scaling group.
+C. Move static assets to Amazon S3. Move the application to AWS Lambda with the concurrency limit set. Move the database to Amazon DynamoDB with on- demand enabled.
+D. Move static assets to Amazon S3. Move the application to Amazon Elastic Container Service (Amazon ECS) containers with Auto Scaling enabled. Move the database to Amazon RDS to deploy Multi-AZ. 
+Question #272Topic 1
+The security team of a corporation wants that network traffic be logged in VPC Flow Logs. The logs will be viewed often for 90 days and then deleted.
+occasionally.
+
+What should a solutions architect do when customizing the logs to satisfy these requirements?
+
+A. Use Amazon CloudWatch as the target. Set the CloudWatch log group with an expiration of 90 days.
+B. Use Amazon Kinesis as the target. Configure the Kinesis stream to always retain the logs for 90 days.
+C. Use AWS CloudTrail as the target. Configure CloudTrail to save to an Amazon S3 bucket, and enable S3 Intelligent-Tiering.
+D. Use Amazon S3 as the target. Enable an S3 Lifecycle policy to transition the logs to S3 Standard-Infrequent Access (S3 Standard-IA) after 90 days.
+ 
+Question #273Topic 1
+Amazon S3 is being used by a solutions architect to develop the storage architecture for a new digital media application. The media files must be robust in the event of an Availability Zone failure. Certain files are routinely visited, while others are viewed infrequently and in an unexpected fashion. The architect of the solution must keep the expenses of storing and retrieving media files to a minimum.
+
+Which storage choice satisfies these criteria?
+
+A. S3 Standard
+B. S3 Intelligent-Tiering
+C. S3 Standard-Infrequent Access (S3 Standard-IA)
+D. S3 One Zone-Infrequent Access (S3 One Zone-IA)
+ 
+Question #274Topic 1
+Monthly reports are stored in an Amazon S3 bucket by a company's financial application. The vice president of finance has directed that all access to these reports be documented, as well as any adjustments to the log files.
+
+What activities can a solutions architect take to ensure compliance with these requirements?
+
+A. Use S3 server access logging on the bucket that houses the reports with the read and write data events and log file validation options enabled.
+B. Use S3 server access logging on the bucket that houses the reports with the read and write management events and log file validation options enabled.
+C. Use AWS CloudTrail to create a new trail. Configure the trail to log read and write data events on the S3 bucket that houses the reports. Log these events to a new bucket, and enable log file validation.
+D. Use AWS CloudTrail to create a new trail. Configure the trail to log read and write management events on the S3 bucket that houses the reports. Log these events to a new bucket, and enable log file validation.
+ 
+Question #275Topic 1
+A business that specializes in online gaming is developing a game that is predicted to be very popular around the globe. A solutions architect must create an AWS Cloud architecture capable of capturing and presenting near-real-time game data for each participant, as well as the names of the world's top 25 players at any one moment.
+
+Which AWS database solution and configuration should be used to satisfy these requirements?
+
+A. Use Amazon RDS for MySQL as the data store for player activity. Configure the RDS DB instance for Multi-AZ support.
+B. Use Amazon DynamoDB as the data store for player activity. Configure DynamoDB Accelerator (DAX) for the player data.
+C. Use Amazon DynamoDB as the data store for player activity. Configure global tables in each required AWS Region for the player data.
+D. Use Amazon RDS for MySQL as the data store for player activity. Configure cross-Region read replicas in each required AWS Region based on player proximity.
+ 
+Question #276Topic 1
+A business is building a serverless web application that will allow users to engage with real-time game stats. The data generated by the games must be transmitted live. The business need a robust, low-latency database solution for user data. The corporation is unsure about the application's anticipated user base. Any design considerations must ensure single-digit millisecond response rates as the application grows.
+
+Which AWS service combination will suit these requirements? (Select two.)
+
+A. Amazon CloudFront
+B. Amazon DynamoDB
+C. Amazon Kinesis
+D. Amazon RDS
+E. AWS Global Accelerator
+ 
+Question #277Topic 1
+A solutions architect is developing a solution that will allow users to browse a collection of photos and make requests for customized images. Parameters for image customisation will be included in each request made to an AWS API Gateway API. The personalized picture will be created on demand, and consumers will get a link to see or download it. The solution must be very user-friendly in terms of viewing and modifying photos.
+
+Which approach is the MOST cost-effective in meeting these requirements?
+
+A. Use Amazon EC2 instances to manipulate the original image into the requested customizations. Store the original and manipulated images in Amazon S3. Configure an Elastic Load Balancer in front of the EC2 instances.
+B. Use AWS Lambda to manipulate the original image to the requested customizations. Store the original and manipulated images in Amazon S3. Configure an Amazon CloudFront distribution with the S3 bucket as the origin.
+C. Use AWS Lambda to manipulate the original image to the requested customizations. Store the original images in Amazon S3 and the manipulated images in Amazon DynamoDB. Configure an Elastic Load Balancer in front of the Amazon EC2 instances.
+D. Use Amazon EC2 instances to manipulate the original image into the requested customizations. Store the original images in Amazon S3 and the manipulated images in Amazon DynamoDB. Configure an Amazon CloudFront distribution with the S3 bucket as the origin.
+ 
+Question #278Topic 1
+A business runs an Amazon EC2 instance on a private subnet and requires access to a public website in order to get patches and upgrades. The organization does not want other websites to be able to see or start connections to the EC2 instance's IP address.
+
+How can a solutions architect accomplish this goal?
+
+A. Create a site-to-site VPN connection between the private subnet and the network in which the public site is deployed.
+B. Create a NAT gateway in a public subnet. Route outbound traffic from the private subnet through the NAT gateway.
+C. Create a network ACL for the private subnet where the EC2 instance deployed only allows access from the IP address range of the public website.
+D. Create a security group that only allows connections from the IP address range of the public website. Attach the security group to the EC2 instance.
+ 
+Question #279Topic 1
+A business uses AWS to host its website. The website is protected by an Application Load Balancer (ALB) configured to manage HTTP and HTTPS traffic independently.
+The firm wishes to route all queries to the website through HTTPS.
+
+What solution should a solutions architect implement to satisfy this criterion?
+
+A. Update the ALB's network ACL to accept only HTTPS traffic.
+B. Create a rule that replaces the HTTP in the URL with HTTPS.
+C. Create a listener rule on the ALB to redirect HTTP traffic to HTTPS.
+D. Replace the ALB with a Network Load Balancer configured to use Server Name Indication (SNI).
+ 
+Question #280Topic 1
+A business hosts a multilingual website using a fleet of Amazon EC2 instances protected by an Application Load Balancer (ALB). While this design is presently operational in the us-west-1 Region, it exhibits significant request delay for customers in other regions of the globe.
+The website must respond fast and effectively to user queries regardless of their location. The organization, however, does not want to duplicate the present infrastructure across numerous Regions.
+
+How is this to be accomplished by a solutions architect?
+
+A. Replace the existing architecture with a website served from an Amazon S3 bucket. Configure an Amazon CloudFront distribution with the S3 bucket as the origin.
+B. Configure an Amazon CloudFront distribution with the ALB as the origin. Set the cache behavior settings to only cache based on the Accept-Language request header.
+C. Set up Amazon API Gateway with the ALB as an integration. Configure API Gateway to use an HTTP integration type. Set up an API Gateway stage to enable the API cache.
+D. Launch an EC2 instance in each additional Region and configure NGINX to act as a cache server for that Region. Put all the instances plus the ALB behind an Amazon Route 53 record set with a geolocation routing policy.
+
