@@ -1,0 +1,82 @@
+A Company is migrating an application to its AWS environment. The implementation requires the company to deploy up to 40 m4.4xlarge instances. What should a Cloud engineer do prior to launching the instances? 
+a. Increase service limit from AWS Trusted Advisor before launching new instances
+b. Submit a service limit increase to AWS Support specifying the instance type and region. 
+c. Reserve 40 Elastic IP addresses before initiating the request to launch the instances
+d. Update the instance count in the AWS Service catalog default service limit
+
+An organization recently expanded its AWS infrastructure for its public website into two regions. US East (Ohio) and ASIA Pacific (Mumbai), to better serve growing demand in Asia. What should the SysOps administrator implement to ensure that users are consistently directed to the best performing region?
+a. Configure AWS WAF to redirect users from Asia to the website using a third-party geolocation service
+b. Configure the existing webserver’s Application Load Balancer to redirect the distant user to the closer website
+c. Migrate to Route53 latency record for the website
+d. Use Amazon Route53 geo proximity routing to direct users in Asia to the website
+
+A SysOps administrator has an Amazon EC2 instance using IPv6. Which VPC feature allows the instance to communicate with the internet but prevents inbound traffic?
+a. NAT Gateway
+b. NAT Instances
+c. Egress-only internet gateway. 
+d. Internet Gateway
+
+An Organization has implemented a file gateway to keep copies of users’ home drives in Amazon S3. When conducting an analysis, an Administrator notice that most files are no longer accessed after 45 days. What is the BEST way for the Administrator to reduce storage costs while continuing to provide access to the files for the users?
+a. Create a lifecycle policy to move files older than 45 days to Amazon Glacier storage class
+b. Create a lifecycle policy to move files older than 45 days to the Infrequent Access storage class
+c. Enable versioning on the S3 bucket to ensure that all copies of the files are saved
+d. Create a bucket policy to limit user access to only newer files(those created in less than 45 days)
+
+After implementing a multi-region AWS Deployment for all 
+production infrastructure, what an Amazon Route 53 feature would minimize response time for users?
+a. Hosted zones for specific regions
+b. Health checks with DNS failover.
+c. Geolocation routing
+d. Latency–based routing 
+
+A Development team is moving a Ruby-based web application to AWS. Once operational, the application must be simple to scale, require no environment maintenance, and be easy to update with new versions of the application. Which AWS Service will meet these requirements?
+a. AWS Elastic Beanstalk 
+b. AWS Code Pipeline. 
+c. AWS EC2 
+d. AWS Lambda
+
+ A Company monitors its AWS environment with Amazon CloudWatch, and has configured several CloudWatch alarms are triggered, both the Developer and the Product Manager must be notified immediately.
+a. Amazon Simple Email Service
+b. Amazon Simple Queue Service
+c. Amazon Simple Notification Service.
+d. Amazon MQ
+
+An application running on Amazon EC2 processes files that are stored in an Amazon S3 bucket. What is the best way to provide the application with access to the S3 bucket?
+a. Create a new account with permissions to the S3 bucket. Provide the Application Developer with the access key ID and Secret access key to embedded into the application. 
+b. Create a new access key for the root user. Provide the Developer with the access key ID and secret access key embedded into the application.
+c. Set the bucket properties in “static web hosting” to “Use this bucket to host a website”. And give the Developer the website URL.
+d. Create an IAM role that has access to the S3 bucket. Attach the role to the EC2 instances running the application.
+
+A Company is migrating its applications and data from on-premises to the AWS Cloud, including 500TB of data that must move to Amazon S3. There are concerns about time, cost, and performance. What is the fastest and most cost-effective way to perform the migration?
+a. Perform a network-based copy of the data from the on–premises network to the destination S3 bucket
+b. Use multiple Instances of the AWS Snowball client on multiple workstations with multiple AWS Snowball Edge Applications
+c. Use multiple instances of the AWS Snowball client on multiple workstations with multiple Snowball Applications
+d. Use AWS Storage Gateway (file gateway type) and facilities an on-premises copy using the file gateway mount point.
+
+A system administrator is writing a configuration script that requires the public IP of an Amazon EC2 instance on which it is executed. How can the system administrator obtain an IP address?
+a. From the operating system of the EC2 instance
+b. From the instance metadata
+c. From the user data
+d. From the AMI that was used to launch the EC2 instance
+
+3. Correct answers with Explanation:
+b
+Explanation: You need to submit a service limit increase instance specifying the instance type and region.
+c
+Explanation: Migrate to Route53 latency record for the website
+c
+Explanation: Egress-only internet gateway
+b
+Explanation: Create a lifecycle policy to move files older than 45 days to the Infrequent Access storage class
+d
+Explanation: Latency-based routing
+a
+Explanation: AWS Elastic Beanstalk
+c
+Explanation: Amazon Simple Notification Service
+d
+Explanation: Create an IAM role that has access to the S3 bucket. Attach the role to the EC2 instances running the application.
+c
+Explanation: Use multiple instances of the AWS Snowball client on multiple workstations with multiple Snowball Applications.
+b
+Explanation: From the instance metadata
