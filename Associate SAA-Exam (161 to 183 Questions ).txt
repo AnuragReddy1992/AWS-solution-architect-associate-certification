@@ -1,0 +1,237 @@
+Question #161Topic 1
+A business uses two Amazon EC2 instances to run a dynamic web application. The organization has its own SSL certificate, which is used to complete SSL termination on each instance.
+Recently, there has been an increase in traffic, and the operations team concluded that SSL encryption and decryption is causing the web servers' compute capacity to surpass its limit.
+
+What should a solutions architect do to optimize the performance of an application?
+
+A. Create a new SSL certificate using AWS Certificate Manager (ACM). Install the ACM certificate on each instance.
+B. Create an Amazon S3 bucket. Migrate the SSL certificate to the S3 bucket. Configure the EC2 instances to reference the bucket for SSL termination.
+C. Create another EC2 instance as a proxy server. Migrate the SSL certificate to the new instance and configure it to direct connections to the existing EC2 instances.
+D. Import the SSL certificate into AWS Certificate Manager (ACM). Create an Application Load Balancer with an HTTPS listener that uses the SSL certificate from ACM.
+ 
+Question #162Topic 1
+A corporation is doing an evaluation of an existing workload placed on AWS using the AWS Well-Architected Framework. The evaluation discovered a public-facing website operating on the same Amazon EC2 instance as a freshly installed Microsoft Active Directory domain controller to support other AWS services. A solutions architect must offer a new design that increases the architecture's security and reduces the administrative burden on IT workers.
+
+What recommendations should the solutions architect make?
+
+A. Use AWS Directory Service to create a managed Active Directory. Uninstall Active Directory on the current EC2 instance.
+B. Create another EC2 instance in the same subnet and reinstall Active Directory on it. Uninstall Active Directory.
+C. Use AWS Directory Service to create an Active Directory connector. Proxy Active Directory requests to the Active domain controller running on the current EC2 instance.
+D. Enable AWS Single Sign-On (AWS SSO) with Security Assertion Markup Language (SAML) 2.0 federation with the current Active Directory controller. Modify the EC2 instance's security group to deny public access to Active Directory.
+ 
+Question #163Topic 1
+Amazon Aurora was recently selected as the data repository for a company's worldwide ecommerce platform. When developers run extensive reports, they discover that the ecommerce application is performing badly. When monthly reports are performed, a solutions architect notices that the ReadIOPS and CPUUtilization metrics spike.
+
+Which approach is the MOST cost-effective?
+
+A. Migrate the monthly reporting to Amazon Redshift.
+B. Migrate the monthly reporting to an Aurora Replica.
+C. Migrate the Aurora database to a larger instance class.
+D. Increase the Provisioned IOPS on the Aurora instance.
+ 
+Question #164Topic 1
+A business's backup data totals 700 terabytes (TB) and is kept in network attached storage (NAS) at its data center. This backup data must be available in the event of occasional regulatory inquiries and preserved for a period of seven years. The organization has chosen to relocate its backup data from its on-premises data center to Amazon Web Services (AWS). Within one month, the migration must be completed. The company's public internet connection provides 500 Mbps of dedicated capacity for data transport.
+
+What should a solutions architect do to ensure that data is migrated and stored at the LOWEST possible cost?
+
+A. Order AWS Snowball devices to transfer the data. Use a lifecycle policy to transition the files to Amazon S3 Glacier Deep Archive.
+B. Deploy a VPN connection between the data center and Amazon VPC. Use the AWS CLI to copy the data from on premises to Amazon S3 Glacier.
+C. Provision a 500 Mbps AWS Direct Connect connection and transfer the data to Amazon S3. Use a lifecycle policy to transition the files to Amazon S3 Glacier Deep Archive.
+D. Use AWS DataSync to transfer the data and deploy a DataSync agent on premises. Use the DataSync task to copy files from the on-premises NAS storage to Amazon S3 Glacier.
+ 
+Question #165Topic 1
+The main and secondary data centers of a business are located 500 miles (804.7 kilometers) apart and are linked through high-speed fiber-optic cable. For a mission-critical workload, the organization requires a highly available and secure network link between its data centers and an AWS VPC. A solutions architect must choose a connectivity solution that is as resilient as possible.
+
+Which solution satisfies these criteria?
+
+A. Two AWS Direct Connect connections from the primary data center terminating at two Direct Connect locations on two separate devices
+B. A single AWS Direct Connect connection from each of the primary and secondary data centers terminating at one Direct Connect location on the same device
+C. Two AWS Direct Connect connections from each of the primary and secondary data centers terminating at two Direct Connect locations on two separate devices
+D. A single AWS Direct Connect connection from each of the primary and secondary data centers terminating at one Direct Connect location on two separate devices
+ 
+Question #166Topic 1
+The dynamic website of a business is hosted on-premises in the United States. The firm is expanding throughout Europe and want to reduce site loading speeds for new European visitors. The backbone of the website must stay in the United States. A few days from now, the product will be introduced, and an instant answer is required.
+
+What recommendations should the solutions architect make?
+
+A. Launch an Amazon EC2 instance in us-east-1 and migrate the site to it.
+B. Move the website to Amazon S3. Use cross-Region replication between Regions.
+C. Use Amazon CloudFront with a custom origin pointing to the on-premises servers.
+D. Use an Amazon Route 53 geo-proximity routing policy pointing to on-premises servers.
+ 
+Question #167Topic 1
+A corporation used an AWS Direct Connect connection to copy 1 PB of data from a colocation facility to an Amazon S3 bucket in the us-east-1 Region. The business now wishes to replicate the data in another S3 bucket located in the us-west-2 Region. AWS Snowball is not permitted at the colocation facility.
+
+What should a solutions architect suggest as a means of achieving this?
+
+A. Order a Snowball Edge device to copy the data from one Region to another Region.
+B. Transfer contents from the source S3 bucket to a target S3 bucket using the S3 console.
+C. Use the aws S3 sync command to copy data from the source bucket to the destination bucket.
+D. Add a cross-Region replication configuration to copy objects across S3 buckets in different Regions.
+ 
+Question #168Topic 1
+A solutions architect must verify that API requests to Amazon DynamoDB are not routed across the internet from Amazon EC2 instances inside a VPC.
+
+What is the solution architect's role in achieving this? (Select two.)
+
+A. Create a route table entry for the endpoint.
+B. Create a gateway endpoint for DynamoDB.
+C. Create a new DynamoDB table that uses the endpoint.
+D. Create an ENI for the endpoint in each of the subnets of the VPC.
+E. Create a security group entry in the default security group to provide access.
+ 
+Question #169Topic 1
+The application of a business is hosted on Amazon EC2 instances that are part of an Auto Scaling group behind an Elastic Load Balancer. Each year, the firm predicts a rise in traffic over a holiday, based on the application's history. A solutions architect must develop a plan to guarantee that the Auto Scaling group raises capacity proactively in order to minimize any effect on application users' performance.
+
+Which solution will satisfy these criteria?
+
+A. Create an Amazon CloudWatch alarm to scale up the EC2 instances when CPU utilization exceeds 90%.
+B. Create a recurring scheduled action to scale up the Auto Scaling group before the expected period of peak demand.
+C. Increase the minimum and maximum number of EC2 instances in the Auto Scaling group during the peak demand period.
+D. Configure an Amazon Simple Notification Service (Amazon SNS) notification to send alerts when there are autoscaling EC2_INSTANCE_LAUNCH events.
+ 
+Question #170Topic 1
+A business wishes to migrate live datasets online from an on-premises NFS server to an Amazon S3 bucket called DOC-EXAMPLE-BUCKET. Verification of data integrity is essential both during and after the transmission. Additionally, the data must be encrypted.
+A solutions architect is migrating the data using an AWS solution.
+
+Which solution satisfies these criteria?
+
+A. AWS Storage Gateway file gateway
+B. S3 Transfer Acceleration
+C. AWS DataSync
+D. AWS Snowball Edge Storage Optimized
+
+Question #171Topic 1
+A business utilizes Application Load Balancers (ALBs) across many AWS Regions. The ALBs experience fluctuating traffic throughout the year.
+The company's networking personnel must enable connection by allowing the ALBs' IP addresses over the on-premises firewall.
+
+Which solution is the MOST scalable and requires the least amount of setup changes?
+
+A. Write an AWS Lambda script to get the IP addresses of the ALBs in different Regions. Update the on-premises firewall's rule to allow the IP addresses of the ALBs.
+B. Migrate all ALBs in different Regions to the Network Load Balancer (NLBs). Update the on-premises firewall's rule to allow the Elastic IP addresses of all the NLBs.
+C. Launch AWS Global Accelerator. Register the ALBs in different Regions to the accelerator. Update the on-premises firewall's rule to allow static IP addresses associated with the accelerator.
+D. Launch a Network Load Balancer (NLB) in one Region. Register the private IP addresses of the ALBs in different Regions with the NLB. Update the on- premises firewall's rule to allow the Elastic IP address attached to the NLB.
+ 
+Question #172Topic 1
+Each month, a business must create sales reports. On the first day of each month, the reporting procedure starts 20 Amazon EC2 instances. The procedure lasts seven days and cannot be paused. The corporation wishes to keep expenses low.
+
+Which pricing strategy should the business pursue?
+
+A. Reserved Instances
+B. Spot Block Instances
+C. On-Demand Instances
+D. Scheduled Reserved Instances
+ 
+Question #173Topic 1
+A business offers an online service for uploading and transcoding video material for usage on any mobile device. The application design makes use of Amazon Elastic File System (Amazon EFS) Standard to gather and store the films so that they may be processed by numerous Amazon EC2 Linux instances. As the service's popularity has increased, the storage charges have become prohibitively costly.
+
+Which storage option is the MOST CHEAPEST?
+
+A. Use AWS Storage Gateway for files to store and process the video content.
+B. Use AWS Storage Gateway for volumes to store and process the video content.
+C. Use Amazon Elastic File System (Amazon EFS) for storing the video content. Once processing is complete, transfer the files to Amazon Elastic Block Store (Amazon EBS).
+D. Use Amazon S3 for storing the video content. Move the files temporarily over to an Amazon ElasticBlock Store (Amazon EBS) volume attached to the server for processing.
+ 
+Question #174Topic 1
+Each day, a corporation gets ten terabytes of instrumentation data from many machines situated in a single plant. The data is saved in JSON files on a storage area network (SAN) inside the factory's on-premises data center. The organization want to upload this data to Amazon S3 so that it may be accessible by a number of other systems that do crucial near-real-time analytics. Because the data is deemed sensitive, a secure transmission is critical.
+
+Which option provides the MOST SECURE method of data transfer?
+
+A. AWS DataSync over public internet
+B. AWS DataSync over AWS Direct Connect
+C. AWS Database Migration Service (AWS DMS) over public internet
+D. AWS Database Migration Service (AWS DMS) over AWS Direct Connect
+ 
+Question #175Topic 1
+A data science team needs storage to analyze logs on a nightly basis. The amount and quantity of logs are unclear, however they will be retained for 24 hours.
+
+Which approach is the MOST cost-effective?
+
+A. Amazon S3 Glacier
+B. Amazon S3 Standard
+C. Amazon S3 Intelligent-Tiering
+D. Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA)
+ 
+Question #176Topic 1
+A development team is releasing a new product on AWS, and as part of the rollout, they are use AWS Lambda. For one of the Lambda functions, the team allocates 512 MB of RAM. The function is finished in two minutes with this memory allocation. Monthly, the function is executed millions of times, and the development team is worried about the cost. The team does experiments to determine the effect of various Lambda memory allocations on the function's cost.
+
+Which measures will result in a decrease in the product's Lambda costs? (Select two.)
+
+A. Increase the memory allocation for this Lambda function to 1,024 MB if this change causes the execution time of each function to be less than 1 minute.
+B. Increase the memory allocation for this Lambda function to 1,024 MB if this change causes the execution time of each function to be less than 90 seconds.
+C. Reduce the memory allocation for this Lambda function to 256 MB if this change causes the execution time of each function to be less than 4 minutes.
+D. Increase the memory allocation for this Lambda function to 2,048 MB if this change causes the execution time of each function to be less than 1 minute.
+E. Reduce the memory allocation for this Lambda function to 256 MB if this change causes the execution time of each function to be less than 5 minutes.
+ 
+Question #177Topic 1
+A business is using a centralized Amazon Web Services account to store log data in many Amazon S3 buckets. Prior to uploading data to S3 buckets, a solutions architect must guarantee that the data is encrypted at rest. Additionally, data must be encrypted during transit.
+
+Which solution satisfies these criteria?
+
+A. Use client-side encryption to encrypt the data that is being uploaded to the S3 buckets.
+B. Use server-side encryption to encrypt the data that is being uploaded to the S3 buckets.
+C. Create bucket policies that require the use of server-side encryption with S3 managed encryption keys (SSE-S3) for S3 uploads.
+D. Enable the security option to encrypt the S3 buckets through the use of a default AWS Key Management Service (AWS KMS) key.
+ 
+Question #178Topic 1
+A business requires the migration of a Microsoft Windows-based application to AWS. This program utilizes a shared Windows file system that is tied to numerous Amazon EC2 Windows machines.
+
+What actions should a solutions architect take to achieve this?
+
+A. Configure a volume using Amazon Elastic File System (Amazon EFS). Mount the EFS volume to each Windows instance.
+B. Configure AWS Storage Gateway in Volume Gateway mode. Mount the volume to each Windows instance.
+C. Configure Amazon FSx for Windows File Server. Mount the Amazon FSx volume to each Windows instance.
+D. Configure an Amazon Elastic Block Store (Amazon EBS) volume with the required size. Attach each EC2 instance to the volume. Mount the file system within the volume to each Windows instance.
+ 
+Question #179Topic 1
+An IAM group is associated with the following IAM policy. This is the group's sole policy.
+
+
+What are the policy's effective IAM permissions for group members?
+
+A. Group members are permitted any Amazon EC2 action within the us-east-1 Region. Statements after the Allow permission are not applied.
+B. Group members are denied any Amazon EC2 permissions in the us-east-1 Region unless they are logged in with multi-factor authentication (MFA).
+C. Group members are allowed the ec2:StopInstances and ec2:TerminateInstances permissions for all Regions when logged in with multi-factor authentication (MFA). Group members are permitted any other Amazon EC2 action.
+D. Group members are allowed the ec2:StopInstances and ec2:TerminateInstances permissions for the us-east-1 Region only when logged in with multi-factor authentication (MFA). Group members are permitted any other Amazon EC2 action within the us-east-1 Region.
+ 
+Question #180Topic 1
+A business is searching for a solution that would enable them to store video archives created from archived news footage on AWS. The business must keep expenses down and will seldom need to recover these data. When files are required, they must be provided within a five-minute window.
+
+Which approach is the MOST cost-effective?
+
+A. Store the video archives in Amazon S3 Glacier and use Expedited retrievals.
+B. Store the video archives in Amazon S3 Glacier and use Standard retrievals.
+C. Store the video archives in Amazon S3 Standard-Infrequent Access (S3 Standard-IA).
+D. Store the video archives in Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA).
+
+Question #181Topic 1
+A firm that now hosts a web application on-premises is ready to migrate to AWS and launch a newer version of the program. The organization must route requests depending on the URL query string to either the AWS- or on-premises-hosted application. The on-premises application is inaccessible over the internet, and a VPN connection between Amazon VPC and the company's data center is formed. The firm intends to deploy this application using an Application Load Balancer (ALB).
+
+Which solution satisfies these criteria?
+
+A. Use two ALBs: one for on-premises and one for the AWS resource. Add hosts to each target group of each ALB. Route with Amazon Route 53 based on the URL query string.
+B. Use two ALBs: one for on-premises and one for the AWS resource. Add hosts to the target group of each ALB. Create a software router on an EC2 instance based on the URL query string.
+C. Use one ALB with two target groups: one for the AWS resource and one for on premises. Add hosts to each target group of the ALB. Configure listener rules based on the URL query string.
+D. Use one ALB with two AWS Auto Scaling groups: one for the AWS resource and one for on premises. Add hosts to each Auto Scaling group. Route with Amazon Route 53 based on the URL query string.
+ 
+Question #182Topic 1
+Under its registered parent domain, a firm hosts many websites for various lines of business. According to the subdomain, anyone visiting these websites will be directed to the proper backend Amazon EC2 instance. Static webpages, pictures, and server-side programming such as PHP and JavaScript are all hosted on the websites.
+Certain websites see a spike in traffic during the first two hours of business, followed by consistent use throughout the remainder of the day. A solutions architect must build a system that adapts capacity automatically to certain traffic patterns while being cost effective.
+
+Which AWS service or feature combination will suit these requirements? (Select two.)
+
+A. AWS Batch
+B. Network Load Balancer
+C. Application Load Balancer
+D. Amazon EC2 Auto Scaling
+E. Amazon S3 website hosting
+ 
+Question #183Topic 1
+As a web application, a corporation has built a new video game. The application is deployed in a three-tier design using Amazon RDS for MySQL in a VPC. Multiple players will compete simultaneously online through the database layer. The makers of the game want to show a top-10 scoreboard in near-real time and to enable players to pause and resume the game while retaining their existing scores.
+
+What actions should a solutions architect take to ensure that these criteria are met?
+
+A. Set up an Amazon ElastiCache for Memcached cluster to cache the scores for the web application to display.
+B. Set up an Amazon ElastiCache for Redis cluster to compute and cache the scores for the web application to display.
+C. Place an Amazon CloudFront distribution in front of the web application to cache the scoreboard in a section of the application.
+D. Create a read replica on Amazon RDS for MySQL to run queries to compute the scoreboard and serve the read traffic to the web application.
