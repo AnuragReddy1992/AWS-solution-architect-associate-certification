@@ -1,0 +1,237 @@
+Question #220Topic 1
+A business stores static photos for its website in an Amazon S3 bucket. Permissions were specified to restrict access to Amazon S3 items to privileged users only.
+
+What steps should a solutions architect take to prevent data loss? (Select two.)
+
+A. Enable versioning on the S3 bucket.
+B. Enable access logging on the S3 bucket.
+C. Enable server-side encryption on the S3 bucket.
+D. Configure an S3 lifecycle rule to transition objects to Amazon S3 Glacier.
+E. Use MFA Delete to require multi-factor authentication to delete an object.
+
+Question #221Topic 1
+A solutions architect is developing a document review application that will be stored in an Amazon S3 bucket. The solution must prevent unintentional document deletion and guarantee that all document versions are accessible. The ability for users to download, change, and upload documents is required.
+
+Which measures should be conducted in combination to achieve these requirements? (Select two.)
+
+A. Enable a read-only bucket ACL.
+B. Enable versioning on the bucket.
+C. Attach an IAM policy to the bucket.
+D. Enable MFA Delete on the bucket.
+E. Encrypt the bucket using AWS KMS.
+ 
+Question #222Topic 1
+A corporation hosts more than 300 websites and apps on a worldwide scale. Each day, the organization wants a platform capable of analyzing more than 30 TB of clickstream data.
+
+What should a solutions architect do with the clickstream data during transmission and processing?
+
+A. Design an AWS Data Pipeline to archive the data to an Amazon S3 bucket and run an Amazon EMR cluster with the data to generate analytics.
+B. Create an Auto Scaling group of Amazon EC2 instances to process the data and send it to an Amazon S3 data lake for Amazon Redshift to use for analysis.
+C. Cache the data to Amazon CloudFront. Store the data in an Amazon S3 bucket. When an object is added to the S3 bucket, run an AWS Lambda function to process the data for analysis.
+D. Collect the data from Amazon Kinesis Data Streams. Use Amazon Kinesis Data Firehose to transmit the data to an Amazon S3 data lake. Load the data in Amazon Redshift for analysis.
+ 
+Question #223Topic 1
+A business is developing a three-tier online application that will include a web server, an application server, and a database server. While packages are being delivered, the program will monitor their GPS locations. The database will be updated every 0-5 seconds by the program.
+Tracking information must be read as quickly as possible to allow users to verify the status of their deliveries. On certain days, just a few parcels may be monitored, while on others, millions of packages may be tracked. The tracking system must be searchable using the tracking ID, the customer ID, and the order ID. Orders placed after one month will no longer be monitored.
+
+What should a solution architect propose in order to do this with the lowest possible total cost of ownership?
+
+A. Use Amazon DynamoDB Enable Auto Scaling on the DynamoDB table. Schedule an automatic deletion script for items older than 1 month.
+B. Use Amazon DynamoDB with global secondary indexes. Enable Auto Scaling on the DynamoDB table and the global secondary indexes. Enable TTL on the DynamoDB table.
+C. Use an Amazon RDS On-Demand instance with Provisioned IOPS (PIOPS). Enable Amazon CloudWatch alarms to send notifications when PIOPS are exceeded. Increase and decrease PIOPS as needed.
+D. Use an Amazon RDS Reserved Instance with Provisioned IOPS (PIOPS). Enable Amazon CloudWatch alarms to send notification when PIOPS are exceeded. Increase and decrease PIOPS as needed.
+ 
+Question #224Topic 1
+A news organization with correspondents located around the globe uses AWS to host its broadcast system. The reporters provide the broadcast system with live feeds. The reporters transmit live broadcasts through the Real Time Messaging Protocol using software installed on their phones (RTMP).
+A solutions architect must provide a system that enables reporters to deliver the highest-quality streams possible. The solution must ensure that TCP connections to the broadcast system are expedited.
+
+What approach should the solutions architect use in order to satisfy these requirements?
+
+A. Amazon CloudFront
+B. AWS Global Accelerator
+C. AWS Client VPN
+D. Amazon EC2 instances and AWS Elastic IP addresses
+ 
+Question #225Topic 1
+A business is transferring a set of Linux-based web servers to AWS. For certain content, the web servers must access files stored in a shared file storage. To fulfill the migration deadline, only minor adjustments are necessary.
+
+What actions should a solutions architect take to ensure that these criteria are met?
+
+A. Create an Amazon S3 Standard bucket with access to the web server.
+B. Configure an Amazon CloudFront distribution with an Amazon S3 bucket as the origin.
+C. Create an Amazon Elastic File System (Amazon EFS) volume and mount it on all web servers.
+D. Configure Amazon Elastic Block Store (Amazon EBS) Provisioned IOPS SSD (io1) volumes and mount them on all web servers.
+ 
+Question #226Topic 1
+Every day, a business gets structured and semi-structured data from a variety of sources. A solutions architect must create a solution that makes use of frameworks for big data processing. SQL queries and business intelligence tools should be able to access the data.
+
+What should the solutions architect advocate in order to provide the MOST performant solution possible?
+
+A. Use AWS Glue to process data and Amazon S3 to store data.
+B. Use Amazon EMR to process data and Amazon Redshift to store data.
+C. Use Amazon EC2 to process data and Amazon Elastic Block Store (Amazon EBS) to store data.
+D. Use Amazon Kinesis Data Analytics to process data and Amazon Elastic File System (Amazon EFS) to store data.
+ 
+Question #227Topic 1
+A MySQL database instance on Amazon RDS is used by an application. The RDS database is rapidly depleting its storage capacity. A solutions architect wants to expand disk capacity without causing downtime.
+
+Which method satisfies these criteria with the MINIMUM amount of effort?
+
+A. Enable storage auto scaling in RDS.
+B. Increase the RDS database instance size.
+C. Change the RDS database instance storage type to Provisioned IOPS.
+D. Back up the RDS database, increase the storage capacity, restore the database and stop the previous instance.
+ 
+Question #228Topic 1
+A business runs an ecommerce application in a single VPC. A single web server and an Amazon RDS Multi-AZ database instance comprise the application stack.
+Twice a month, the firm introduces new items. This results in a 400% increase in website traffic for a minimum of 72 hours. Users' browsers encounter poor response times and numerous timeout issues during product launches.
+
+What should a solutions architect do to minimize response times and timeout failures while maintaining a minimal operational overhead?
+
+A. Increase the instance size of the web server.
+B. Add an Application Load Balancer and an additional web server.
+C. Add Amazon EC2 Auto Scaling and an Application Load Balancer.
+D. Deploy an Amazon ElastiCache cluster to store frequently accessed data.
+ 
+Question #229Topic 1
+A solutions architect is developing a two-step order process application. The first step is synchronous and must return with minimal delay to the user. Because the second stage is more time consuming, it will be done as a distinct component. Orders must be processed precisely once and in their original sequence of receipt.
+
+How are these components to be integrated by the solutions architect?
+
+A. Use Amazon SQS FIFO queues.
+B. Use an AWS Lambda function along with Amazon SQS standard queues.
+C. Create an SNS topic and subscribe an Amazon SQS FIFO queue to that topic.
+D. Create an SNS topic and subscribe an Amazon SQS Standard queue to that topic.
+ 
+Question #230Topic 1
+A business is using AWS to operate an application that processes weather sensor data stored in an Amazon S3 bucket. Three batch tasks are scheduled to run hourly to process data in the S3 bucket for various reasons. The organization wishes to minimize total processing time by employing an event-based strategy to run the three programs in parallel.
+
+What actions should a solutions architect take to ensure that these criteria are met?
+
+A. Enable S3 Event Notifications for new objects to an Amazon Simple Queue Service (Amazon SQS) FIFO queue. Subscribe all applications to the queue for processing.
+B. Enable S3 Event Notifications for new objects to an Amazon Simple Queue Service (Amazon SQS) standard queue. Create an additional SQS queue for all applications, and subscribe all applications to the initial queue for processing.
+C. Enable S3 Event Notifications for new objects to separate Amazon Simple Queue Service (Amazon SQS) FIFO queues. Create an additional SQS queue for each application, and subscribe each queue to the initial topic for processing.
+D. Enable S3 Event Notifications for new objects to an Amazon Simple Notification Service (Amazon SNS) topic. Create an Amazon Simple Queue Service (Amazon SQS) queue for each application, and subscribe each queue to the topic for processing.
+
+Question #231Topic 1
+Multiple Amazon EC2 instances in a single Availability Zone are used by a gaming firm to host a multiplayer game that connects with players using Layer 4 communication. The chief technology officer (CTO) desires a highly accessible and cost-effective architecture.
+
+What actions should a solutions architect take to ensure that these criteria are met? (Select two.)?
+
+A. Increase the number of EC2 instances.
+B. Decrease the number of EC2 instances.
+C. Configure a Network Load Balancer in front of the EC2 instances.
+D. Configure an Application Load Balancer in front of the EC2 instances.
+E. Configure an Auto Scaling group to add or remove instances in multiple Availability Zones automatically.
+ 
+Question #232Topic 1
+A business runs a static website on Amazon S3. A solutions architect must guarantee that data is recoverable in the event of an accidently deleted file.
+
+Which action is necessary to achieve this?
+
+A. Enable Amazon S3 versioning.
+B. Enable Amazon S3 Intelligent-Tiering.
+C. Enable an Amazon S3 lifecycle policy.
+D. Enable Amazon S3 cross-Region replication.
+ 
+Question #233Topic 1
+A solutions architect must develop a managed storage solution with high-performance machine learning capability for a company's application. This application is hosted on AWS Fargate, and the storage attached to it must support concurrent file access and give good performance.
+
+Which storage choice should the architect of solutions recommend?
+
+A. Create an Amazon S3 bucket for the application and establish an IAM role for Fargate to communicate with Amazon S3.
+B. Create an Amazon FSx for Lustre file share and establish an IAM role that allows Fargate to communicate with FSx for Lustre.
+C. Create an Amazon Elastic File System (Amazon EFS) file share and establish an IAM role that allows Fargate to communicate with Amazon Elastic File System (Amazon EFS).
+D. Create an Amazon Elastic Block Store (Amazon EBS) volume for the application and establish an IAM role that allows Fargate to communicate with Amazon Elastic Block Store (Amazon EBS).
+ 
+Question #234Topic 1
+A firm gathers data on temperature, humidity, and air pressure in cities across the world. Each day, an average of 500 GB of data is gathered each station. Each location is equipped with a high-speed internet connection. The company's weather forecasting tools are regionally focused and do daily data analysis.
+
+What is the SPEEDIEST method for collecting data from all of these worldwide sites?
+
+A. Enable Amazon S3 Transfer Acceleration on the destination bucket. Use multipart uploads to directly upload site data to the destination bucket.
+B. Upload site data to an Amazon S3 bucket in the closest AWS Region. Use S3 cross-Region replication to copy objects to the destination bucket.
+C. Schedule AWS Snowball jobs daily to transfer data to the closest AWS Region. Use S3 cross-Region replication to copy objects to the destination bucket.
+D. Upload the data to an Amazon EC2 instance in the closest Region. Store the data in an Amazon Elastic Block Store (Amazon EBS) volume. Once a day take an EBS snapshot and copy it to the centralized Region. Restore the EBS volume in the centralized Region and run an analysis on the data daily.
+ 
+Question #235Topic 1
+A business uses an Amazon EC2 instance to host a web server on a public subnet with an Elastic IP address. The EC2 instance is assigned to the default security group. The default network access control list (ACL) has been updated to deny all traffic. A solutions architect must ensure that the web server is accessible from any location through port 443.
+
+Which sequence of procedures will achieve this objective? (Select two.)
+
+A. Create a security group with a rule to allow TCP port 443 from source 0.0.0.0/0.
+B. Create a security group with a rule to allow TCP port 443 to destination 0.0.0.0/0.
+C. Update the network ACL to allow TCP port 443 from source 0.0.0.0/0.
+D. Update the network ACL to allow inbound/outbound TCP port 443 from source 0.0.0.0/0 and to destination 0.0.0.0/0.
+E. Update the network ACL to allow inbound TCP port 443 from source 0.0.0.0/0 and outbound TCP port 32768-65535 to destination 0.0.0.0/0.
+ 
+Question #236Topic 1
+A business has developed a three-tiered picture sharing platform. It runs the front-end layer on one Amazon EC2 instance, the backend layer on another, and the MySQL database on a third. A solutions architect has been entrusted with the responsibility of developing a solution that is highly available and needs the fewest modifications to the application as possible.
+
+Which solution satisfies these criteria?
+
+A. Use Amazon S3 to host the front-end layer and AWS Lambda functions for the backend layer. Move the database to an Amazon DynamoDB table and use Amazon S3 to store and serve users' images.
+B. Use load-balanced Multi-AZ AWS Elastic Beanstalk environments for the front-end and backend layers. Move the database to an Amazon RDS instance with multiple read replicas to store and serve users' images.
+C. Use Amazon S3 to host the front-end layer and a fleet of Amazon EC2 instances in an Auto Scaling group for the backend layer. Move the database to a memory optimized instance type to store and serve users' images.
+D. Use load-balanced Multi-AZ AWS Elastic Beanstalk environments for the front-end and backend layers. Move the database to an Amazon RDS instance with a Multi-AZ deployment. Use Amazon S3 to store and serve users' images.
+ 
+Question #237Topic 1
+A business has developed a virtual private cloud (VPC) with various private subnets distributed across different Availability Zones (AZs) and one public subnet located in one of the AZs. A NAT gateway is launched on the public subnet. Within private subnets, there are circumstances when a NAT gateway is used to connect to the internet. In the event of an AZ failure, the organization wants to verify that not all instances have internet connection difficulties and that a backup plan is prepared.
+
+Which solution, according to a solutions architect, is the MOST highly available?
+
+A. Create a new public subnet with a NAT gateway in the same AZ. Distribute the traffic between the two NAT gateways.
+B. Create an Amazon EC2 NAT instance in a new public subnet. Distribute the traffic between the NAT gateway and the NAT instance.
+C. Create public subnets in each AZ and launch a NAT gateway in each subnet. Configure the traffic from the private subnets in each AZ to the respective NAT gateway.
+D. Create an Amazon EC2 NAT instance in the same public subnet. Replace the NAT gateway with the NAT instance and associate the instance with an Auto Scaling group with an appropriate scaling policy.
+ 
+Question #238Topic 1
+A business maintains numerous AWS accounts and deploys apps in the us-west-2 Region. Each account's application logs are kept in Amazon S3 buckets. The organization wishes to create a centralized log analysis system based on a single Amazon S3 bucket. Logs cannot depart us-west-2, and the corporation want to incur the fewest possible operating costs.
+
+Which option satisfies these criteria and is the MOST cost-effective?
+
+A. Create an S3 Lifecycle policy that copies the objects from one of the application S3 buckets to the centralized S3 bucket.
+B. Use S3 Same-Region Replication to replicate logs from the S3 buckets to another S3 bucket in us-west-2. Use this S3 bucket for log analysis.
+C. Write a script that uses the PutObject API operation every day to copy the entire contents of the buckets to another S3 bucket in us-west-2. Use this S3 bucket for log analysis.
+D. Write AWS Lambda functions in these accounts that are triggered every time logs are delivered to the S3 buckets (s3:ObjectCreated:* event). Copy the logs to another S3 bucket in us-west-2. Use this S3 bucket for log analysis.
+ 
+Question #239Topic 1
+A business is migrating its on-premises apps to Amazon Elastic Compute Cloud instances. However, due to variable compute needs, EC2 instances must always be available for usage between the hours of 8 a.m. and 5 p.m. in designated Availability Zones.
+
+Which Amazon Elastic Compute Cloud instances should the business use to execute the applications?
+
+A. Scheduled Reserved Instances
+B. On-Demand Instances
+C. Spot Instances as part of a Spot Fleet
+D. EC2 instances in an Auto Scaling group
+ 
+Question #240Topic 1
+A solutions architect is developing a solution that entails coordinating a number of Amazon Elastic Container Service (Amazon ECS) task types that are operating on Amazon EC2 instances that are members of an ECS cluster. All tasks' output and status data must be saved. Each job outputs around 10 MB of data, and hundreds of tasks may be operating concurrently. The system should be tuned for reading and writing at a fast rate of speed. As ancient
+Because outputs are preserved and removed, the total storage space should not exceed 1 TB.
+
+Which storage option should be recommended by the solutions architect?
+
+A. An Amazon DynamoDB table accessible by all ECS cluster instances.
+B. An Amazon Elastic File System (Amazon EFS) with Provisioned Throughput mode.
+C. An Amazon Elastic File System (Amazon EFS) file system with Bursting Throughput mode.
+D. An Amazon Elastic Block Store (Amazon EBS) volume mounted to the ECS cluster instances.
+
+Question #241Topic 1
+A solutions architect must design a bastion host architecture that is highly available. The solution must be robust inside a single AWS Region and need little maintenance effort.
+
+What actions should the solutions architect take to ensure that these criteria are met?
+
+A. Create a Network Load Balancer backed by an Auto Scaling group with a UDP listener.
+B. Create a Network Load Balancer backed by a Spot Fleet with instances in a partition placement group.
+C. Create a Network Load Balancer backed by the existing servers in different Availability Zones as the target.
+D. Create a Network Load Balancer backed by an Auto Scaling group with instances in multiple Availability Zones as the target.
+ 
+Question #242Topic 1
+A business's customer relationship management (CRM) application stores data on an Amazon RDS database instance running Microsoft SQL Server. The database is administered by the company's information technology personnel. The database includes confidential information. The organization want to guarantee that data is inaccessible to IT professionals and is only seen by authorized people.
+
+What steps should a solutions architect take to safeguard data?
+
+A. Use client-side encryption with an Amazon RDS managed key.
+B. Use client-side encryption with an AWS Key Management Service (AWS KMS) customer managed key.
+C. Use Amazon RDS encryption with an AWS Key Management Service (AWS KMS) default encryption key.
+D. Use Amazon RDS encryption with an AWS Key Management Service (AWS KMS) customer managed key.
