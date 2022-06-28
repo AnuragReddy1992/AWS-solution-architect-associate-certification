@@ -1,0 +1,131 @@
+Question #184Topic 1
+A business wishes to migrate its on-premises network attached storage (NAS) to Amazon Web Services (AWS). The corporation wishes to make the data accessible to any Linux instance inside its VPC and to guarantee that changes to the data store are immediately synced across all instances that use it. The bulk of data is viewed infrequently, whereas certain files are read concurrently by numerous people.
+
+Which option satisfies these criteria and is the MOST cost-effective?
+
+A. Create an Amazon Elastic Block Store (Amazon EBS) snapshot containing the data. Share it with users within the VPC.
+B. Create an Amazon S3 bucket that has a lifecycle policy set to transition the data to S3 Standard-Infrequent Access (S3 Standard-IA) after the appropriate number of days.
+C. Create an Amazon Elastic File System (Amazon EFS) file system within the VPC. Set the throughput mode to Provisioned and to the required amount of IOPS to support concurrent usage.
+D. Create an Amazon Elastic File System (Amazon EFS) file system within the VPC. Set the lifecycle policy to transition the data to EFS Infrequent Access (EFS IA) after the appropriate number of days.
+ 
+Question #185Topic 1
+For many years, a business has stored analytics data on an Amazon RDS instance. The firm hired a solutions architect to develop an API that would enable consumers to access this data. The program is expected to have periods of idleness but may get surges of traffic within seconds.
+
+Which option should the architect recommend?
+
+A. Set up an Amazon API Gateway and use Amazon ECS.
+B. Set up an Amazon API Gateway and use AWS Elastic Beanstalk.
+C. Set up an Amazon API Gateway and use AWS Lambda functions.
+D. Set up an Amazon API Gateway and use Amazon EC2 with Auto Scaling.
+ 
+Question #186Topic 1
+A mobile gaming startup uses Amazon EC2 instances to host application servers. Every 15 minutes, the servers get updates from players. The mobile game generates a JSON object containing the game's progress since the last update and delivers it to an Application Load Balancer. As the mobile game is played, it loses game updates. The business intends to develop a long-lasting method for older devices to get updates.
+
+What should a solution architect propose for system decoupling?
+
+A. Use Amazon Kinesis Data Streams to capture the data and store the JSON object in Amazon S3.
+B. Use Amazon Kinesis Data Firehose to capture the data and store the JSON object in Amazon S3.
+C. Use Amazon Simple Queue Service (Amazon SQS) FIFO queues to capture the data and EC2 instances to process the messages in the queue.
+D. Use Amazon Simple Notification Service (Amazon SNS) to capture the data and EC2 instances to process the messages sent to the Application Load Balancer.
+ 
+Question #187Topic 1
+A recent review of a company's IT spending demonstrates the critical necessity of lowering backup costs. The chief information officer of the organization want to simplify the on-premises backup architecture and cut expenses by phasing out physical backup tapes. The company's current investment in on-premises backup systems and procedures must be protected.
+
+What recommendations should a solutions architect make?
+
+A. Set up AWS Storage Gateway to connect with the backup applications using the NFS interface.
+B. Set up an Amazon Elastic File System (Amazon EFS) file system that connects with the backup applications using the NFS interface.
+C. Set up an Amazon Elastic File System (Amazon EFS) file system that connects with the backup applications using the iSCSI interface.
+D. Set up AWS Storage Gateway to connect with the backup applications using the iSCSI-virtual tape library (VTL) interface. 
+Question #188Topic 1
+A business maintains an internal web-based application. The application is deployed on Amazon EC2 instances that are routed via an Application Load Balancer. The instances are distributed across several Availability Zones through an Amazon EC2 Auto Scaling group. During business hours, the Auto Scaling group grows up to 20 instances, then scales down to two instances overnight. Staff are saying that the program is very sluggish to start the day, but performs fine by mid-morning.
+
+How might the scale be altered to accommodate employee concerns while keeping expenses low?
+
+A. Implement a scheduled action that sets the desired capacity to 20 shortly before the office opens.
+B. Implement a step scaling action triggered at a lower CPU threshold, and decrease the cooldown period.
+C. Implement a target tracking action triggered at a lower CPU threshold, and decrease the cooldown period.
+D. Implement a scheduled action that sets the minimum and maximum capacity to 20 shortly before the office opens.
+ 
+Question #189Topic 1
+A business must adhere to a regulatory obligation that all emails be saved and preserved outside for a period of seven years. An administrator has prepared compressed email files on-premises and wishes to have the data transferred to AWS storage through a managed service.
+
+Which managed service should be recommended by a solutions architect?
+
+A. Amazon Elastic File System (Amazon EFS)
+B. Amazon S3 Glacier
+C. AWS Backup
+D. AWS Storage Gateway
+ 
+Question #190Topic 1
+A business hosts its website on Amazon EC2 instances that are distributed across several Availability Zones through an Elastic Load Balancer. The instances are managed as part of an EC2 Auto Scaling group. The website stores product manuals for download through Amazon Elastic Block Store (Amazon EBS) volumes. The organization often changes the product information, which means that new instances created by the Auto Scaling group frequently have out-of-date data. It may take up to 30 minutes for all changes to be received by fresh instances. Additionally, the changes involve resizing the EBS volumes during business hours.
+The corporation want to guarantee that product manuals are constantly current and that the architecture adapts fast to rising customer demand.
+A solutions architect must satisfy these objectives without requiring the business to upgrade its application code or website.
+
+What actions should the solutions architect take to achieve this objective?
+
+A. Store the product manuals in an EBS volume. Mount that volume to the EC2 instances.
+B. Store the product manuals in an Amazon S3 bucket. Redirect the downloads to this bucket.
+C. Store the product manuals in an Amazon Elastic File System (Amazon EFS) volume. Mount that volume to the EC2 instances.
+D. Store the product manuals in an Amazon S3 Standard-Infrequent Access (S3 Standard-IA) bucket. Redirect the downloads to this bucket.
+
+Question #191Topic 1
+On Amazon EC2, a business hosts an ecommerce application. The application is composed of a stateless web layer that needs a minimum of 10 instances and a maximum of 250 instances to run. 80% of the time, the program needs 50 instances.
+
+Which solution should be adopted in order to keep expenses down?
+
+A. Purchase Reserved Instances to cover 250 instances.
+B. Purchase Reserved Instances to cover 80 instances. Use Spot Instances to cover the remaining instances.
+C. Purchase On-Demand Instances to cover 40 instances. Use Spot Instances to cover the remaining instances.
+D. Purchase Reserved Instances to cover 50 instances. Use On-Demand and Spot Instances to cover the remaining instances.
+ 
+Question #192Topic 1
+A business intends to install an Amazon RDS database instance powered by Amazon Aurora. The organization has a 90-day backup retention policy.
+
+Which solution, if any, should a solutions architect suggest?
+
+A. Set the backup retention period to 90 days when creating the RDS DB instance.
+B. Configure RDS to copy automated snapshots to a user-managed Amazon S3 bucket with a lifecycle policy set to delete after 90 days.
+C. Create an AWS Backup plan to perform a daily snapshot of the RDS database with the retention set to 90 days. Create an AWS Backup job to schedule the execution of the backup plan daily.
+D. Use a daily scheduled event with Amazon CloudWatch Events to execute a custom AWS Lambda function that makes a copy of the RDS automated snapshot. Purge snapshots older than 90 days.
+ 
+Question #193Topic 1
+A solutions architect is configuring a virtual private cloud (VPC) with public and private subnets. The VPC and subnets are configured using IPv4 CIDR blocks. Each of the three Availability Zones (AZs) has one public and one private subnet. An internet gateway is used to connect public subnets to the internet. Private subnets must have internet connectivity in order for Amazon EC2 instances to obtain software upgrades.
+
+What should the solutions architect do to allow private subnets to connect to the internet?
+
+A. Create three NAT gateways, one for each public subnet in each AZ. Create a private route table for each AZ that forwards non-VPC traffic to the NAT gateway in its AZ.
+B. Create three NAT instances, one for each private subnet in each AZ. Create a private route table for each AZ that forwards non-VPC traffic to the NAT instance in its AZ.
+C. Create a second internet gateway on one of the private subnets. Update the route table for the private subnets that forward non-VPC traffic to the private internet gateway.
+D. Create an egress-only internet gateway on one of the public subnets. Update the route table for the private subnets that forward non-VPC traffic to the egress- only internet gateway.
+ 
+Question #194Topic 1
+Currently, a corporation has 250 TB of backup data saved in Amazon S3 using a vendor-specific format. The firm wishes to extract files from Amazon S3, convert them to an industry-standard format, and then re-upload them to Amazon S3. The firm want to reduce the costs connected with data transmission for this session.
+
+What actions should a solutions architect take to achieve this?
+
+A. Install the conversion software as an Amazon S3 batch operation so the data is transformed without leaving Amazon S3.
+B. Install the conversion software onto an on-premises virtual machine. Perform the transformation and re-upload the files to Amazon S3 from the virtual machine.
+C. Use AWS Snowball Edge devices to export the data and install the conversion software onto the devices. Perform the data transformation and re-upload the files to Amazon S3 from the Snowball Edge devices.
+D. Launch an Amazon EC2 instance in the same Region as Amazon S3 and install the conversion software onto the instance. Perform the transformation and re- upload the files to Amazon S3 from the EC2 instance.
+ 
+Question #195Topic 1
+A business's applications are hosted on on-premises servers. The corporation is rapidly depleting its storage capacity. The programs make use of both block and network file storage. The business need a high-performance solution that enables local caching without requiring it to re-architect its current applications.
+
+Which steps should a solutions architect perform in combination to satisfy these requirements? (Select two.)
+
+A. Mount Amazon S3 as a file system to the on-premises servers.
+B. Deploy an AWS Storage Gateway file gateway to replace NFS storage.
+C. Deploy AWS Snowball Edge to provision NFS mounts to on-premises servers.
+D. Deploy an AWS Storage Gateway volume gateway to replace the block storage.
+E. Deploy Amazon Elastic Fife System (Amazon EFS) volumes and mount them to on-premises servers.
+ 
+Question #196Topic 1
+A business hosts a web service on Amazon EC2 instances that are routed via an Application Load Balancer. The instances are distributed across two Availability Zones through an Amazon EC2 Auto Scaling group. At all times, the corporation requires a minimum of four instances to achieve the needed service level agreement (SLA) requirements while keeping expenses low.
+
+How can the organization maintain compliance with the SLA if an Availability Zone fails?
+
+A. Add a target tracking scaling policy with a short cooldown period.
+B. Change the Auto Scaling group launch configuration to use a larger instance type.
+C. Change the Auto Scaling group to use six servers across three Availability Zones.
+D. Change the Auto Scaling group to use eight servers across two Availability Zones.
