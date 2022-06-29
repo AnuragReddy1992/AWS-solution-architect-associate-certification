@@ -1,0 +1,257 @@
+Exam Essentials
+Know how to use Amazon SQS. Amazon SQS is a unique service designed by Amazon to
+help you to decouple your infrastructure. Using Amazon SQS, you can store messages on
+reliable and scalable infrastructure as they travel between your servers. This allows you to
+move data between distributed components of your applications that perform different tasks
+without losing messages or requiring each component always to be available.
+Understand Amazon SQS visibility timeouts. Visibility timeout is a period of time
+during which Amazon SQS prevents other components from receiving and processing a
+message because another component is already processing it. By default, the message
+visibility timeout is set to 30 seconds, and the maximum that it can be is 12 hours.
+Know how to use Amazon SQS long polling. Long polling allows your Amazon SQS
+client to poll an Amazon SQS queue. If nothing is there, ReceiveMessage waits between 1 and
+20 seconds. If a message arrives in that time, it is returned to the caller as soon as possible. If
+a message does not arrive in that time, you need to execute the ReceiveMessage function
+again. This helps you avoid polling in tight loops and prevents you from burning through CPU
+cycles, keeping costs low.
+Know how to use Amazon SWF. Amazon SWF allows you to make applications that
+coordinate work across distributed components. Amazon SWF is driven by tasks, which are
+logical units of work that part of your application performs. To manage tasks across your
+application, you need to be aware of inter-task dependencies, scheduling of tasks, and using
+tasks concurrently. This is where Amazon SWF can help you. It gives you full control over
+implementing tasks and coordinating them without worrying about underlying complexities
+such as tracking their progress and maintaining their state.
+Know the basics of an Amazon SWF workflow. A workflow is a collection of activities
+(coordinated by logic) that carry out a specific goal. For example, a workflow receives a
+customer order and takes whatever actions are necessary to fulfill it. Each workflow runs in
+an AWS resource called a domain, which controls the scope of the workflow. An AWS account
+can have multiple domains, each of which can contain multiple workflows, but workflows in
+different domains cannot interact.
+Understand the different Amazon SWF actors. Amazon SWF interacts with a number
+of different types of programmatic actors. Actors can be activity workers, workflow starters,
+or deciders.
+Understand Amazon SNS basics. Amazon SNS is a push notification service that lets you
+send individual or multiple messages to large numbers of recipients. Amazon SNS consists of
+two types of clients: publishers and subscribers (sometimes known as producers and
+consumers). Publishers communicate to subscribers asynchronously by sending a message to
+a topic.
+Know the different protocols used with Amazon SNS. You can use the following
+protocols with Amazon SNS: HTTP, HTTPS, SMS, email, email-JSON, Amazon SQS, and AWS
+Lambda.
+Exercises
+In this section, you create a topic and subscription in Amazon SNS and then publish a
+message to your topic.
+EXERCISE 8.1
+Create an Amazon SNS Topic
+In this exercise, you will create an Amazon SNS message.
+1. Open a browser, and navigate to the AWS Management Console. Sign in to your
+AWS account.
+2. Navigate to Mobile Services and then Amazon SNS to load the Amazon SNS
+dashboard.
+3. Create a new topic, and use MyTopic for both the topic name and the display name.
+4. Note that an Amazon Resource Name (ARN) is specified immediately.
+Congratulations! You have created your first topic.
+EXERCISE 8.2
+Create a Subscription to Your Topic
+In this exercise, you will create a subscription to the newly created topic using your
+email address. Then you confirm your email address.
+1. In the Amazon SNS dashboard of the AWS Management Console, navigate to Topics.
+2. Select the ARN that you just created. Create a Subscription with the protocol of
+Email, and enter your email address.
+3. Create the Subscription.
+4. The service sends a confirmation email to your email address. Before this
+subscription can go live, you need to click on the link in the email that AWS sent
+you to confirm your email address. Check your email, and confirm your address.
+Congratulations! You have now confirmed your email address and created a subscription
+to a topic.
+EXERCISE 8.3
+Publish to a Topic
+In this exercise, you will publish a message to your newly created topic.
+1. In the Amazon SNS dashboard of the AWS Management Console, navigate to Topics.
+2. Navigate to the ARN link for your newly created topic.
+3. Update the subject with My Test Message, leave the message format to set to Raw,
+and use a Time to Live (TTL) field to 300.
+4. Publish the message.
+5. You should receive an email from your topic name with the subject that you
+specified. If you do not receive this email, check your junk folder.
+Congratulations! In this exercise, you created a new topic, added a new subscription, and
+then published a message to your new topic. Note the different formats in which you can
+publish messages, including HTTP and AWS Lambda. Delete your newly created topic
+and subscriptions after you are finished.
+EXERCISE 8.4
+Create Queue
+1. In the AWS Management Console, navigate to Application Services and then to
+Amazon SQS to load the Amazon SQS dashboard.
+2. Create a new queue with input as the queue name, 60 seconds for the default
+visibility, and 5 minutes for the message retention period. Leave the remaining
+default values for this exercise.
+3. Create the queue.
+Congratulations! In this exercise, you created a new queue. You will publish to this
+queue in the following exercise.
+EXERCISE 8.5
+Subscribe Queue to SNS Topic
+1. In the AWS Management Console, navigate to Application Services and then to
+Amazon SQS to load the Amazon SQS dashboard.
+2. Subscribe your queue to your Amazon SNS topic.
+3. Now return to the Amazon SNS dashboard (in the AWS Management Console under
+Mobile Services).
+4. Publish to your new topic, and use the defaults.
+5. Return to the Amazon SQS dashboard (in the AWS Management Console under
+Application Services).
+6. You will notice there is “1 Message Available” in the input queue. Check the input
+box to the left of the input queue name.
+7. Start polling for messages. You should see the Amazon SNS message in your queue.
+8. Click the More Details link to see the details of the message.
+9. Review your message, and click Close.
+10. Delete your message.
+Congratulations! In this exercise, you subscribed your input queue to an Amazon SNS
+topic and viewed your message in your Amazon SQS queue in addition to receiving the
+message in subscribed email.
+Review Questions
+1. Which of the following is not a supported Amazon Simple Notification Service (Amazon
+SNS) protocol?
+A. HTTPS
+B. AWS Lambda
+C. Email-JSON
+D. Amazon DynamoDB
+2. When you create a new Amazon Simple Notification Service (Amazon SNS) topic, which
+of the following is created automatically?
+A. An Amazon Resource Name (ARN)
+B. A subscriber
+C. An Amazon Simple Queue Service (Amazon SQS) queue to deliver your Amazon SNS
+topic
+D. A message
+3. Which of the following are features of Amazon Simple Notification Service (Amazon
+SNS)? (Choose 3 answers)
+A. Publishers
+B. Readers
+C. Subscribers
+D. Topic
+4. What is the default time for an Amazon Simple Queue Service (Amazon SQS) visibility
+timeout?
+A. 30 seconds
+B. 60 seconds
+C. 1 hour
+D. 12 hours
+5. What is the longest time available for an Amazon Simple Queue Service (Amazon SQS)
+visibility timeout?
+A. 30 seconds
+B. 60 seconds
+C. 1 hour
+D. 12 hours
+6. Which of the following options are valid properties of an Amazon Simple Queue Service
+(Amazon SQS) message? (Choose 2 answers)
+A. Destination
+B. Message ID
+C. Type
+D. Body
+7. You are a solutions architect who is working for a mobile application company that
+wants to use Amazon Simple Workflow Service (Amazon SWF) for their new takeout
+ordering application. They will have multiple workflows that will need to interact. What
+should you advise them to do in structuring the design of their Amazon SWF
+environment?
+A. Use multiple domains, each containing a single workflow, and design the workflows
+to interact across the different domains.
+B. Use a single domain containing multiple workflows. In this manner, the workflows
+will be able to interact.
+C. Use a single domain with a single workflow and collapse all activities to within this
+single workflow.
+D. Workflows cannot interact with each other; they would be better off using Amazon
+Simple Queue Service (Amazon SQS) and Amazon Simple Notification Service
+(Amazon SNS) for their application.
+8. In Amazon Simple Workflow Service (Amazon SWF), which of the following are actors?
+(Choose 3 answers)
+A. Activity workers
+B. Workflow starters
+C. Deciders
+D. Activity tasks
+9. You are designing a new application, and you need to ensure that the components of
+your application are not tightly coupled. You are trying to decide between the different
+AWS Cloud services to use to achieve this goal. Your requirements are that messages
+between your application components may not be delivered more than once, tasks must
+be completed in either a synchronous or asynchronous fashion, and there must be some
+form of application logic that decides what do when tasks have been completed. What
+application service should you use?
+A. Amazon Simple Queue Service (Amazon SQS)
+B. Amazon Simple Workflow Service (Amazon SWF)
+C. Amazon Simple Storage Service (Amazon S3)
+D. Amazon Simple Email Service (Amazon SES)
+10. How does Amazon Simple Queue Service (Amazon SQS) deliver messages?
+A. Last In, First Out (LIFO)
+B. First In, First Out (FIFO)
+C. Sequentially
+D. Amazon SQS doesn’t guarantee delivery of your messages in any particular order.
+11. Of the following options, what is an efficient way to fanout a single Amazon Simple
+Notification Service (Amazon SNS) message to multiple Amazon Simple Queue Service
+(Amazon SQS) queues?
+A. Create an Amazon SNS topic using Amazon SNS. Then create and subscribe multiple
+Amazon SQS queues sent to the Amazon SNS topic.
+B. Create one Amazon SQS queue that subscribes to multiple Amazon SNS topics.
+C. Amazon SNS allows exactly one subscriber to each topic, so fanout is not possible.
+D. Create an Amazon SNS topic using Amazon SNS. Create an application that
+subscribes to that topic and duplicates the message. Send copies to multiple Amazon
+SQS queues.
+12. Your application polls an Amazon Simple Queue Service (Amazon SQS) queue frequently
+and returns immediately, often with empty ReceiveMessageResponses. What is one
+thing that can be done to reduce Amazon SQS costs?
+A. Pricing on Amazon SQS does not include a cost for service requests; therefore, there
+is no concern.
+B. Increase the timeout value for short polling to wait for messages longer before
+returning a response.
+C. Change the message visibility value to a higher number.
+D. Use long polling by supplying a WaitTimeSeconds of greater than 0 seconds when
+calling ReceiveMessage.
+13. What is the longest time available for an Amazon Simple Queue Service (Amazon SQS)
+long polling timeout?
+A. 10 seconds
+B. 20 seconds
+C. 30 seconds
+D. 1 hour
+14. What is the longest configurable message retention period for Amazon Simple Queue
+Service (Amazon SQS)?
+A. 30 minutes
+B. 4 days
+C. 30 seconds
+D. 14 days
+15. What is the default message retention period for Amazon Simple Queue Service
+(Amazon SQS)?
+A. 30 minutes
+B. 4 days
+C. 30 seconds
+D. 14 days
+16. Amazon Simple Notification Service (Amazon SNS) is a push notification service that lets
+you send individual or multiple messages to large numbers of recipients. What types of
+clients are supported?
+A. Java and JavaScript clients that support publisher and subscriber types
+B. Producers and consumers supported by C and C++ clients
+C. Mobile and AMQP support for publisher and subscriber client types
+D. Publisher and subscriber client types
+17. In Amazon Simple Workflow Service (Amazon SWF), a decider is responsible for what?
+A. Executing each step of the work
+B. Defining work coordination logic by specifying work sequencing, timing, and failure
+conditions
+C. Executing your workflow
+D. Registering activities and workflow with Amazon SWF
+18. Can an Amazon Simple Notification Service (Amazon SNS) topic be recreated with a
+previously used topic name?
+A. Yes. The topic name should typically be available after 24 hours after the previous
+topic with the same name has been deleted.
+B. Yes. The topic name should typically be available after 1–3 hours after the previous
+topic with the same name has been deleted.
+C. Yes. The topic name should typically be available after 30–60 seconds after the
+previous topic with the same name has been deleted.
+D. At this time, this feature is not supported.
+19. What should you do in order to grant a different AWS account permission to your
+Amazon Simple Queue Service (Amazon SQS) queue?
+A. Share credentials to your AWS account and have the other account’s applications
+use your account’s credentials to access the Amazon SQS queue.
+B. Create a user for that account in AWS Identity and Access Management (IAM) and
+establish an IAM policy that grants access to the queue.
+C. Create an Amazon SQS policy that grants the other account access.
+D. Amazon Virtual Private Cloud (Amazon VPC) peering must be used to achieve this.
+20. Can an Amazon Simple Notification Service (Amazon SNS) message be deleted after
+being published to a topic?
+A. Only if a subscriber(s) has/have not read the message yet
+B. Only if the Amazon SNS recall message parameter has been set
+C. No. After a message has been successfully published to a topic, it cannot be recalled.
+D. Yes. However it can be deleted only if the subscribers are Amazon SQS queues
