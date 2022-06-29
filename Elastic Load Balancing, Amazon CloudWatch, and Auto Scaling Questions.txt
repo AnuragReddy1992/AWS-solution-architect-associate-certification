@@ -1,0 +1,211 @@
+Exam Essentials
+
+Know the different principals in IAM. The three principals that can authenticate and
+interact with AWS resources are the root user, IAM users, and roles. The root user is
+associated with the actual AWS account and cannot be restricted in any way. IAM users are
+persistent identities that can be controlled through IAM. Roles allow people or processes the
+ability to operate temporarily with a different identity. People or processes assume a role by
+being granted a temporary security token that will expire after a specified period of time.
+Know how principals are authenticated in IAM. When you log in to the AWS
+Management Console as an IAM user or root user, you use a user name/password
+combination. A program that accesses the API with an IAM user or root user uses a two-part
+access key. A temporary security token authenticates with an access key plus an additional
+session token unique to that temporary security token.
+Know the parts of a policy. A policy is a JSON document that defines one or more
+permissions to interact with AWS resources. Each permission includes the effect, service,
+action, and resource. It may also include one or more conditions. AWS makes many
+predefined policies available as managed policies.
+Know how a policy is associated with a principal. An authenticated principal is
+associated with zero to many policies. For an IAM user, these policies may be attached
+directly to the user account or attached to an IAM group of which the user account is a
+member. A temporary security token is associated with policies by assuming an IAM role.
+Understand MFA. MFA increases the security of an AWS account by augmenting the
+password (something you know) with a rotating OTP from a small device (something you
+have), ensuring that anyone authenticating the account has both knowledge of the password
+and possession of the device. AWS supports both Gemalto hardware MFA devices and a
+number of virtual MFA apps.
+Understand key rotation. To protect your AWS infrastructure, access keys should be
+rotated regularly. AWS allows two access keys to be valid simultaneously to make the
+rotation process straightforward: Generate a new access key, configure your application to
+use the new access key, test, disable the original access key, test, delete the original access
+key, and test again.
+Understand IAM roles and federation. IAM roles are prepackaged sets of permissions
+that have no credentials. Principals can assume a role and then use the associated
+permissions. When a temporary security token is created, it assumes a role that defines the
+permissions assigned to the token. When an Amazon EC2 instance is associated with an IAM
+role, SDK calls acquire a temporary security token based on the role associated with the
+instance and use that token to access AWS resources.
+Roles are the basis for federating external IdPs with AWS. You configure an IAM IdP to
+interact with the external IdP, the authenticated identity from the IdP is mapped to a role,
+and a temporary security token is returned that has assumed that role. AWS supports both
+SAML and OIDC IdPs.
+Know how to resolve conflicting permissions. Resolving multiple permissions is
+relatively straightforward. If an action on a resource has not been explicitly allowed by a
+policy, it is denied. If two policies contradict each other; that is, if one policy allows an action
+on a resource and another policy denies that action, the action is denied. While this sounds
+improbable, it may occur due to scope differences in a policy. One policy may expose an
+entire fleet of Amazon EC2 instances, and a second policy may explicitly lock down one
+particular instance.
+Exercises
+For assistance in completing the following exercises, refer to the IAM User Guide at
+http://docs.aws.amazon.com/IAM/latest/UserGuide/.
+
+EXERCISE 6.1
+Create an IAM Group
+In this exercise, you will create a group for all IAM administrator users and assign the
+proper permissions to the new group. This will allow you to avoid assigning policies
+directly to a user later in these exercises.
+1. Log in as the root user.
+2. Create an IAM group called Administrators.
+3. Attach the managed policy, IAMFullAccess, to the Administrators group.
+
+EXERCISE 6.2
+Create a Customized Sign-In Link and Password Policy
+In this exercise, you will set up your account with some basic IAM safeguards. The
+password policy is a recommended security practice, and the sign-in link makes it easier
+for your users to log in to the AWS Management Console.
+1. Customize a sign-in link, and write down the new link name in full.
+2. Create a password policy for your account.
+
+EXERCISE 6.3
+Create an IAM User
+In this exercise, you will create an IAM user who can perform all administrative IAM
+functions. Then you will log in as that user so that you no longer need to use the root
+user login. Using the root user login only when explicitly required is a recommended
+security practice (along with adding MFA to your root user).
+1. While logged in as the root user, create a new IAM user called Administrator.
+2. Add your new user to the Administrators group.
+3. On the Details page for the administrator user, create a password.
+4. Log out as the root user.
+5. Use the customized sign-in link to sign in as Administrator.
+
+EXERCISE 6.4
+Create and Use an IAM Role
+In this exercise, you will create an IAM role, associate it with a new instance, and verify
+that applications running on the instance assume the permissions of the role. IAM roles
+allow you to avoid storing access keys on your Amazon EC2 instances.
+1. While signed in as administrator, create an Amazon EC2-type role named S3Client.
+2. Attach the managed policy, AmazonS3ReadOnlyAccess, to S3Client.
+3. Launch an Amazon Linux EC2 instance with the new role attached (Amazon Linux
+AMIs come with CLI installed).
+4. SSH into the new instance, and use the CLI to list the contents of an Amazon S3
+bucket.
+
+EXERCISE 6.5
+Rotate Keys
+In this exercise, you will go through the process of rotating access keys, a recommended
+security practice.
+1. Select the administrator, and create a two-part access key.
+2. Download the access key.
+3. Download and install the CLI to your desktop.
+4. Configure the CLI to use the access key with the AWS Configure command.
+5. Use the CLI to list the contents of an Amazon S3 bucket.
+6. Return to the console, and create a new access key for the administrator account.
+7. Download the access key, and reconfigure the CLI to use the new access key.
+8. In the console, make the original access key inactive.
+9. Confirm that you are using the new access key by once again listing the contents of
+the Amazon S3 bucket.
+10. Delete the original access key.
+
+EXERCISE 6.6
+Set Up MFA
+In this exercise, you will add MFA to your IAM administrator. You will use a virtual MFA
+application for your phone. MFA is a security recommendation on powerful accounts
+such as IAM administrators.
+1. Download the AWS Virtual MFA app to your phone.
+2. Select the administrator user, and manage the MFA device.
+3. Go through the steps to activate a Virtual MFA device.
+4. Log off as administrator.
+5. Log in as administrator, and enter the MFA value to complete the authentication
+process.
+
+EXERCISE 6.7
+Resolve Conflicting Permissions
+In this exercise, you will add a policy to your IAM administrator user with a conflicting
+permission. You will then attempt actions that verify how IAM resolves conflicting
+permissions.
+1. Use the policy generator to create a new policy.
+2. Create the policy with Effect: Deny; AWS Service: Amazon S3; Actions: *; and ARN:
+*.
+3. Attach the new policy to the Administrators group.
+4. Use the CLI to attempt to list the contents of an Amazon S3 bucket. The policy that
+allows access and the policy that denies access should resolve to deny access.
+
+Review Questions
+
+1. Which of the following methods will allow an application using an AWS SDK to be
+authenticated as a principal to access AWS Cloud services? (Choose 2 answers)
+A. Create an IAM user and store the user name and password for the user in the
+application’s configuration.
+B. Create an IAM user and store both parts of the access key for the user in the
+application’s configuration.
+C. Run the application on an Amazon EC2 instance with an assigned IAM role.
+D. Make all the API calls over an SSL connection.
+
+2. Which of the following are found in an IAM policy? (Choose 2 answers)
+A. Service Name
+B. Region
+C. Action
+D. Password
+
+3. Your AWS account administrator left your company today. The administrator had access
+to the root user and a personal IAM administrator account. With these accounts, he
+generated other IAM accounts and keys. Which of the following should you do today to
+protect your AWS infrastructure? (Choose 4 answers)
+A. Change the password and add MFA to the root user.
+B. Put an IP restriction on the root user.
+C. Rotate keys and change passwords for IAM accounts.
+D. Delete all IAM accounts.
+E. Delete the administrator’s personal IAM account.
+F. Relaunch all Amazon EC2 instances with new roles.
+
+4. Which of the following actions can be authorized by IAM? (Choose 2 answers)
+A. Installing ASP.NET on a Windows Server
+B. Launching an Amazon Linux EC2 instance
+C. Querying an Oracle database
+D. Adding a message to an Amazon Simple Queue Service (Amazon SQS) queue
+
+5. Which of the following are IAM security features? (Choose 2 answers)
+A. Password policies
+B. Amazon DynamoDB global secondary indexes
+C. MFA
+D. Consolidated Billing
+
+6. Which of the following are benefits of using Amazon EC2 roles? (Choose 2 answers)
+A. No policies are required.
+B. Credentials do not need to be stored on the Amazon EC2 instance.
+C. Key rotation is not necessary.
+D. Integration with Active Directory is automatic.
+
+7. Which of the following are based on temporary security tokens? (Choose 2 answers)
+A. Amazon EC2 roles
+B. MFA
+C. Root user
+D. Federation
+
+8. Your security team is very concerned about the vulnerability of the IAM administrator
+user accounts (the accounts used to configure all IAM features and accounts). What
+steps can be taken to lock down these accounts? (Choose 3 answers)
+A. Add multi-factor authentication (MFA) to the accounts.
+B. Limit logins to a particular U.S. state.
+C. Implement a password policy on the AWS account.
+D. Apply a source IP address condition to the policy that only grants permissions when
+the user is on the corporate network.
+E. Add a CAPTCHA test to the accounts.
+
+9. You want to grant the individuals on your network team the ability to fully manipulate
+Amazon EC2 instances. Which of the following accomplish this goal? (Choose 2
+answers)
+A. Create a new policy allowing EC2:* actions, and name the policy NetworkTeam.
+B. Assign the managed policy, EC2FullAccess, to a group named NetworkTeam, and
+assign all the team members’ IAM user accounts to that group.
+C. Create a new policy that grants EC2:* actions on all resources, and assign that policy
+to each individual’s IAM user account on the network team.
+D. Create a NetworkTeam IAM group, and have each team member log in to the AWS
+Management Console using the user name/password for the group.
+
+10. What is the format of an IAM policy?
+A. XML
+B. Key/value pairs
+C. JSON
+D. Tab-delimited text
