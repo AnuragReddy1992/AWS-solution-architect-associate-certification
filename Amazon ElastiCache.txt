@@ -1,0 +1,140 @@
+Amazon ElastiCache
+
+Exam Essentials
+Know how to use Amazon ElastiCache. Improve the performance of your application by
+deploying Amazon ElastiCache clusters as part of your application and offloading read
+requests for frequently accessed data. Use the cache-aside pattern in your application first to
+check the cache for your query results before checking the database.
+Understand when to use a specific cache engine. Amazon ElastiCache gives you the
+choice of cache engine to suit your requirements. Use Memcached when you need a simple,
+in-memory object store that can be easily partitioned and scaled horizontally. Use Redis when
+you need to back up and restore your data, need many clones or read replicas, or are looking
+for advanced functionality like sort and rank or leaderboards that Redis natively supports.
+Understand how to scale a Redis cluster horizontally. An Amazon ElastiCache cluster
+running Redis can be scaled horizontally first by creating a replication group, then by creating
+additional clusters and adding them to the replication group.
+Understand how to scale a Memcached cluster horizontally. An Amazon ElastiCache
+cluster running Memcached can be scaled horizontally by adding or removing additional
+cache nodes to the cluster. The Amazon ElastiCache client library supports Auto Discovery
+and can discover new nodes added or removed from the cluster without having to hardcode
+the list of nodes.
+Know how to back up your Amazon ElastiCache cluster. You can create a snapshot to
+back up your Amazon ElastiCache clusters running the Redis engine. Snapshots can be
+created automatically on a daily basis or manually on demand. Amazon ElastiCache clusters
+running Memcached do not support backup and restore natively.
+Exercises
+In this section, you will create a cache cluster using Amazon ElastiCache, expand the cluster
+with additional nodes, and finally create a replication group with an Amazon ElastiCache
+Redis cluster.
+EXERCISE 10.1
+Create an Amazon ElastiCache Cluster Running Memcached
+In this exercise, you will create an Amazon ElastiCache cluster using the Memcached
+engine.
+1. While signed into the AWS Management Console, open the Amazon ElastiCache
+service dashboard.
+2. Begin the launch and configuration process to create a new Amazon ElastiCache
+cluster.
+3. Select the Memcached cache engine, and configure the cluster name, number of
+nodes, and node type.
+4. Optionally configure the security group and maintenance window as needed.
+5. Review the cluster configuration, and begin provisioning the cluster.
+6. Connect to the cluster with any Memcached client using the DNS name of the
+cluster.
+You have now created your first Amazon ElastiCache cluster.
+EXERCISE 10.2
+Expand the Size of a Memcached Cluster
+In this exercise, you will expand the size of an existing Amazon ElastiCache Memcached
+cluster.
+1. Launch a Memcached cluster using the steps defined in Exercise 10.1.
+2. Go to the Amazon ElastiCache dashboard, and view the details of your existing
+cluster.
+3. View the list of nodes currently provisioned, and then add one additional node by
+increasing the number of nodes.
+4. Apply the configuration change, and wait for the new node to finish the provisioning
+process.
+5. Verify that the new node has been created, and connect to the node using a
+Memcached client.
+In this exercise, you have horizontally scaled an existing Amazon ElastiCache cluster by
+adding a cache node.
+EXERCISE 10.3
+Create an Amazon ElastiCache Cluster and Redis Replication Group
+In this exercise, you will create an Amazon ElastiCache cluster using Redis nodes, create
+a replication group, and set up a read replica.
+1. Sign in to the AWS Management Console, and navigate to the Amazon ElastiCache
+service dashboard.
+2. Begin the configuration and launch process for a new Amazon ElastiCache cluster.
+3. Select the Redis cache engine, and then configure a replication group and the node
+type.
+4. Configure a read replica by setting the number of read replicas to 1, and verify that
+Enable Replication and Multi-AZ are selected.
+5. Adjust the Availability Zones for the primary and read replica clusters, security
+groups, and maintenance window, as needed.
+6. Review the cluster configuration, and begin provisioning the cluster.
+7. Connect to the primary node and the read replica node with a Redis client library.
+Perform a simple set operation on the primary node, and then perform a get
+operation with the same key on the replica.
+You have now created an Amazon ElastiCache cluster using the Redis engine and
+configured a read replica.
+Review Questions
+1. Which of the following objects are good candidates to store in a cache? (Choose 3
+answers)
+A. Session state
+B. Shopping cart
+C. Product catalog
+D. Bank account balance
+2. Which of the following cache engines are supported by Amazon ElastiCache? (Choose 2
+answers)
+A. MySQL
+B. Memcached
+C. Redis
+D. Couchbase
+3. How many nodes can you add to an Amazon ElastiCache cluster running Memcached?
+A. 1
+B. 5
+C. 20
+D. 100
+4. How many nodes can you add to an Amazon ElastiCache cluster running Redis?
+A. 1
+B. 5
+C. 20
+D. 100
+5. An application currently uses Memcached to cache frequently used database queries.
+Which steps are required to migrate the application to use Amazon ElastiCache with
+minimal changes? (Choose 2 answers)
+A. Recompile the application to use the Amazon ElastiCache libraries.
+B. Update the configuration file with the endpoint for the Amazon ElastiCache cluster.
+C. Configure a security group to allow access from the application servers.
+D. Connect to the Amazon ElastiCache nodes using Secure Shell (SSH) and install the
+latest version of Memcached.
+6. How can you back up data stored in Amazon ElastiCache running Redis? (Choose 2
+answers)
+A. Create an image of the Amazon Elastic Compute Cloud (Amazon EC2) instance.
+B. Configure automatic snapshots to back up the cache environment every night.
+C. Create a snapshot manually.
+D. Redis clusters cannot be backed up.
+7. How can you secure an Amazon ElastiCache cluster? (Choose 3 answers)
+A. Change the Memcached root password.
+B. Restrict Application Programming Interface (API) actions using AWS Identity and
+Access Management (IAM) policies.
+C. Restrict network access using security groups.
+D. Restrict network access using a network Access Control List (ACL).
+8. You are working on a mobile gaming application and are building the leaderboard feature
+to track the top scores across millions of users. Which AWS services are best suited for
+this use case?
+A. Amazon Redshift
+B. Amazon ElastiCache using Memcached
+C. Amazon ElastiCache using Redis
+D. Amazon Simple Storage Service (S3)
+9. You have built a large web application that uses Amazon ElastiCache using Memcached
+to store frequent query results. You plan to expand both the web fleet and the cache fleet
+multiple times over the next year to accommodate increased user traffic. How do you
+minimize the amount of changes required when a scaling event occurs?
+A. Configure AutoDiscovery on the client side
+B. Configure AutoDiscovery on the server side
+C. Update the configuration file each time a new cluster
+D. Use an Elastic Load Balancer to proxy the requests
+10. Which cache engines does Amazon ElastiCache support? (Choose 2 answers)
+A. Memcached
+B. Redis
+C. Membase
+D. Couchbase
