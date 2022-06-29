@@ -1,0 +1,309 @@
+Exam Essentials
+Know what a relational database is. A relational database consists of one or more tables.
+Communication to and from relational databases usually involves simple SQL queries, such
+as “Add a new record,” or “What is the cost of product x?” These simple queries are often
+referred to as OLTP.
+Understand which databases are supported by Amazon RDS. Amazon RDS currently
+supports six relational database engines:
+Microsoft SQL Server
+MySQL Server
+Oracle
+PostgreSQL
+MariaDB
+Amazon Aurora
+Understand the operational benefits of using Amazon RDS. Amazon RDS is a
+managed service provided by AWS. AWS is responsible for patching, antivirus, and
+management of the underlying guest OS for Amazon RDS. Amazon RDS greatly simplifies the
+process of setting a secondary slave with replication for failover and setting up read replicas
+to offload queries.
+Remember that you cannot access the underlying OS for Amazon RDS DB
+instances. You cannot use Remote Desktop Protocol (RDP) or SSH to connect to the
+underlying OS. If you need to access the OS, install custom software or agents, or want to use
+a database engine not supported by Amazon RDS, consider running your database on Amazon
+EC2 instead.
+Know that you can increase availability using Amazon RDS Multi-AZ deployment.
+Add fault tolerance to your Amazon RDS database using Multi-AZ deployment. You can
+quickly set up a secondary DB Instance in another Availability Zone with Multi-AZ for rapid
+failover.
+Understand the importance of RPO and RTO. Each application should set RPO and
+RTO targets to define the amount of acceptable data loss and also the amount of time
+required to recover from an incident. Amazon RDS can be used to meet a wide range of RPO
+and RTO requirements.
+Understand that Amazon RDS handles Multi-AZ failover for you. If your primary
+Amazon RDS Instance becomes unavailable, AWS fails over to your secondary instance in
+another Availability Zone automatically. This failover is done by pointing your existing
+database endpoint to a new IP address. You do not have to change the connection string
+manually; AWS handles the DNS change automatically.
+Remember that Amazon RDS read replicas are used for scaling out and increased
+performance. This replication feature makes it easy to scale out your read-intensive
+databases. Read replicas are currently supported in Amazon RDS for MySQL, PostgreSQL,
+and Amazon Aurora. You can create one or more replicas of a database within a single AWS
+Region or across multiple AWS Regions. Amazon RDS uses native replication to propagate
+changes made to a source DB Instance to any associated read replicas. Amazon RDS also
+supports cross-region read replicas to replicate changes asynchronously to another geography
+or AWS Region.
+Know what a NoSQL database is. NoSQL databases are non-relational databases,
+meaning that you do not have to have an existing table created in which to store your data.
+NoSQL databases come in the following formats:
+Document databases
+Graph stores
+Key/value stores
+Wide-column stores
+Remember that Amazon DynamoDB is AWS NoSQL service. You should remember
+that for NoSQL databases, AWS provides a fully managed service called Amazon DynamoDB.
+Amazon DynamoDB is an extremely fast NoSQL database with predictable performance and
+high scalability. You can use Amazon DynamoDB to create a table that can store and retrieve
+any amount of data and serve any level of request traffic. Amazon DynamoDB automatically
+spreads the data and traffic for the table over a sufficient number of partitions to handle the
+request capacity specified by the customer and the amount of data stored, while maintaining
+consistent and fast performance.
+Know what a data warehouse is. A data warehouse is a central repository for data that
+can come from one or more sources. This data repository would be used for query and
+analysis using OLAP. An organization’s management typically uses a data warehouse to
+compile reports on specific data. Data warehouses are usually queried with highly complex
+queries.
+Remember that Amazon Redshift is AWS data warehouse service. You should
+remember that Amazon Redshift is Amazon’s data warehouse service. Amazon Redshift
+organizes the data by column instead of storing data as a series of rows. Because only the
+columns involved in the queries are processed and columnar data is stored sequentially on
+the storage media, column-based systems require far fewer I/Os, which greatly improves
+query performance. Another advantage of columnar data storage is the increased
+compression, which can further reduce overall I/O.
+Exercises
+In order to pass the exam, you should practice deploying databases and creating tables using
+Amazon RDS, Amazon DynamoDB, and Amazon Redshift. Remember to delete any resources
+you provision to minimize any charges.
+EXERCISE 7.1
+Create a MySQL Amazon RDS Instance
+1. Log in to the AWS Management Console, and navigate to the Amazon RDS Console.
+2. Launch a new Amazon RDS DB Instance, and select MySQL Community Edition
+instance as the database engine.
+3. Configure the DB Instance to use Multi-AZ and General Purpose (SSD) storage.
+Warning: This is not eligible for AWS Free Tier; you will incur a small charge by
+provisioning this instance.
+4. Set the DB Instance identifier and database name to MySQL123, and configure the
+master username and password.
+5. Validate the configuration settings, and launch the DB Instance.
+6. Return to the list of the Amazon RDS instances. You will see the status of your
+Amazon RDS database as Creating. It may take up to 20 minutes to create your new
+Amazon RDS instance.
+You have provisioned your first Amazon RDS instance using Multi-AZ.
+EXERCISE 7.2
+Simulate a Failover from One AZ to Another
+In this exercise, you will use Multi-AZ failover to simulate a failover from one
+Availability Zone to another.
+1. In the Amazon RDS Console, view the list of DB Instances.
+2. Find your DB Instance called MySQL123, and check its status. When its status is
+Available, proceed to the next step.
+3. Select the instance, and issue a Reboot command from the actions menu.
+4. Confirm the reboot.
+You have now simulated a failover from one Availability Zone to another using Multi-AZ
+failover. The failover should take approximately two or three minutes.
+EXERCISE 7.3
+Create a Read Replica
+In this exercise, you will create a read replica of your existing MySQL123 DB server.
+1. In the Amazon RDS Console, view the list of DB Instances.
+2. Find your DB Instance called MySQL123, and check its status. When its status is
+Available, proceed to the next step.
+3. Select the instance, and issue a Create Read Replica command from the list of
+actions.
+4. Configure the name of the read replica and any other settings. Create the replica.
+5. Wait for the replica to be created, which can typically take several minutes. When it
+is complete, delete both the MySQL123 and MySQLReadReplica databases by
+clicking the checkboxes next to them, clicking the Instance Actions drop-down box,
+and then clicking Delete.
+In the preceding exercises, you created a new Amazon RDS MySQL instance with Multi-
+AZ enabled. You then simulated a failover from one Availability Zone to another by
+rebooting the primary instance. After that, you scaled your Amazon RDS instance out by
+creating a read replica of the primary database. Delete the DB Instance.
+EXERCISE 7.4
+Read and Write from a DynamoDB Table
+In this exercise, you will create an Amazon DynamoDB table and then read and write to
+it using the AWS Management Console.
+1. Log in to the AWS Management Console, and view the Amazon DynamoDB console.
+2. Create a new table named UserProfile with a partition key of userID of type String.
+3. After the table has been created, view the list of items in the table.
+4. Using the Amazon DynamoDB console, create and save a new item in the table. Set
+the userID to U01, and append another String attribute called name with a value of
+Joe.
+5. Perform a scan on the table to retrieve the new item.
+You have now created a simple Amazon DynamoDB table, put a new item, and retrieved
+it using Scan. Delete the DynamoDB table.
+EXERCISE 7.5
+Launch a Redshift Cluster
+In this exercise, you will create a data warehouse using Amazon Redshift and then read
+and write to it using the AWS Management Console.
+1. Log in to the AWS Management Console, and view the Amazon Redshift Console.
+2. Create a new cluster, configuring the database name, username, and password.
+3. Configure the cluster to be single node using one SSD-backed storage node.
+4. Launch the cluster into an Amazon VPC using the appropriate security group.
+5. Install and configure SQL Workbench on your local computer, and connect to the
+new cluster.
+6. Create a new table and load data using the COPY command.
+You have now created an Amazon Redshift cluster and connected to it using a standard
+SQL client. Delete the cluster when you have completed the exercise.
+Review Questions
+1. Which AWS database service is best suited for traditional Online Transaction Processing
+(OLTP)?
+A. Amazon Redshift
+B. Amazon Relational Database Service (Amazon RDS)
+C. Amazon Glacier
+D. Elastic Database
+2. Which AWS database service is best suited for non-relational databases?
+A. Amazon Redshift
+B. Amazon Relational Database Service (Amazon RDS)
+C. Amazon Glacier
+D. Amazon DynamoDB
+3. You are a solutions architect working for a media company that hosts its website on
+AWS. Currently, there is a single Amazon Elastic Compute Cloud (Amazon EC2) Instance
+on AWS with MySQL installed locally to that Amazon EC2 Instance. You have been asked
+to make the company’s production environment more resilient and to increase
+performance. You suggest that the company split out the MySQL database onto an
+Amazon RDS Instance with Multi-AZ enabled. This addresses the company’s increased
+resiliency requirements. Now you need to suggest how you can increase performance.
+Ninety-nine percent of the company’s end users are magazine subscribers who will be
+reading additional articles on the website, so only one percent of end users will need to
+write data to the site. What should you suggest to increase performance?
+A. Alter the connection string so that if a user is going to write data, it is written to the
+secondary copy of the Multi-AZ database.
+B. Alter the connection string so that if a user is going to write data, it is written to the
+primary copy of the Multi-AZ database.
+C. Recommend that the company use read replicas, and distribute the traffic across
+multiple read replicas.
+D. Migrate the MySQL database to Amazon Redshift to take advantage of columnar
+storage and maximize performance.
+4. Which AWS Cloud service is best suited for Online Analytics Processing (OLAP)?
+A. Amazon Redshift
+B. Amazon Relational Database Service (Amazon RDS)
+C. Amazon Glacier
+D. Amazon DynamoDB
+5. You have been using Amazon Relational Database Service (Amazon RDS) for the last
+year to run an important application with automated backups enabled. One of your team
+members is performing routine maintenance and accidentally drops an important table,
+causing an outage. How can you recover the missing data while minimizing the duration
+of the outage?
+A. Perform an undo operation and recover the table.
+B. Restore the database from a recent automated DB snapshot.
+C. Restore only the dropped table from the DB snapshot.
+D. The data cannot be recovered.
+6. Which Amazon Relational Database Service (Amazon RDS) database engines support
+Multi-AZ?
+A. All of them
+B. Microsoft SQL Server, MySQL, and Oracle
+C. Oracle, Amazon Aurora, and PostgreSQL
+D. MySQL
+7. Which Amazon Relational Database Service (Amazon RDS) database engines support
+read replicas?
+A. Microsoft SQL Server and Oracle
+B. MySQL, MariaDB, PostgreSQL, and Aurora
+C. Aurora, Microsoft SQL Server, and Oracle
+D. MySQL and PostgreSQL
+8. Your team is building an order processing system that will span multiple Availability
+Zones. During testing, the team wanted to test how the application will react to a
+database failover. How can you enable this type of test?
+A. Force a Multi-AZ failover from one Availability Zone to another by rebooting the
+primary instance using the Amazon RDS console.
+B. Terminate the DB instance, and create a new one. Update the connection string.
+C. Create a support case asking for a failover.
+D. It is not possible to test a failover.
+9. You are a system administrator whose company has moved its production database to
+AWS. Your company monitors its estate using Amazon CloudWatch, which sends alarms
+using Amazon Simple Notification Service (Amazon SNS) to your mobile phone. One
+night, you get an alert that your primary Amazon Relational Database Service (Amazon
+RDS) Instance has gone down. You have Multi-AZ enabled on this instance. What should
+you do to ensure the failover happens quickly?
+A. Update your Domain Name System (DNS) to point to the secondary instance’s new
+IP address, forcing your application to fail over to the secondary instance.
+B. Connect to your server using Secure Shell (SSH) and update your connection strings
+so that your application can communicate to the secondary instance instead of the
+failed primary instance.
+C. Take a snapshot of the secondary instance and create a new instance using this
+snapshot, then update your connection string to point to the new instance.
+D. No action is necessary. Your connection string points to the database endpoint, and
+AWS automatically updates this endpoint to point to your secondary instance.
+10. You are working for a small organization without a dedicated database administrator on
+staff. You need to install Microsoft SQL Server Enterprise edition quickly to support an
+accounting back office application on Amazon Relational Database Service (Amazon
+RDS). What should you do?
+A. Launch an Amazon RDS DB Instance, and select Microsoft SQL Server Enterprise
+Edition under the Bring Your Own License (BYOL) model.
+B. Provision SQL Server Enterprise Edition using the License Included option from the
+Amazon RDS Console.
+C. SQL Server Enterprise edition is only available via the Command Line Interface
+(CLI). Install the command-line tools on your laptop, and then provision your new
+Amazon RDS Instance using the CLI.
+D. You cannot use SQL Server Enterprise edition on Amazon RDS. You should install
+this on to a dedicated Amazon Elastic Compute Cloud (Amazon EC2) Instance.
+11. You are building the database tier for an enterprise application that gets occasional
+activity throughout the day. Which storage type should you select as your default option?
+A. Magnetic storage
+B. General Purpose Solid State Drive (SSD)
+C. Provisioned IOPS (SSD)
+D. Storage Area Network (SAN)-attached
+12. You are designing an e-commerce web application that will scale to potentially hundreds
+of thousands of concurrent users. Which database technology is best suited to hold the
+session state for large numbers of concurrent users?
+A. Relational database using Amazon Relational Database Service (Amazon RDS)
+B. NoSQL database table using Amazon DynamoDB
+C. Data warehouse using Amazon Redshift
+D. Amazon Simple Storage Service (Amazon S3)
+13. Which of the following techniques can you use to help you meet Recovery Point
+Objective (RPO) and Recovery Time Objective (RTO) requirements? (Choose 3 answers)
+A. DB snapshots
+B. DB option groups
+C. Read replica
+D. Multi-AZ deployment
+14. When using Amazon Relational Database Service (Amazon RDS) Multi-AZ, how can you
+offload read requests from the primary? (Choose 2 answers)
+A. Configure the connection string of the clients to connect to the secondary node and
+perform reads while the primary is used for writes.
+B. Amazon RDS automatically sends writes to the primary and sends reads to the
+secondary.
+C. Add a read replica DB instance, and configure the client’s application logic to use a
+read-replica.
+D. Create a caching environment using ElastiCache to cache frequently used data.
+Update the application logic to read/write from the cache.
+15. You are building a large order processing system and are responsible for securing the
+database. Which actions will you take to protect the data? (Choose 3 answers)
+A. Adjust AWS Identity and Access Management (IAM) permissions for administrators.
+B. Configure security groups and network Access Control Lists (ACLs) to limit network
+access.
+C. Configure database users, and grant permissions to database objects.
+D. Install anti-virus software on the Amazon RDS DB Instance.
+16. Your team manages a popular website running Amazon Relational Database Service
+(Amazon RDS) MySQL back end. The Marketing department has just informed you
+about an upcoming television commercial that will drive thousands of new visitors to the
+website. How can you prepare your database to handle the load? (Choose 3 answers)
+A. Vertically scale the DB Instance by selecting a more powerful instance class.
+B. Create read replicas to offload read requests and update your application.
+C. Upgrade the storage from Magnetic volumes to General Purpose Solid State Drive
+(SSD) volumes.
+D. Upgrade to Amazon Redshift for faster columnar storage.
+17. You are building a photo management application that maintains metadata on millions
+of images in an Amazon DynamoDB table. When a photo is retrieved, you want to display
+the metadata next to the image. Which Amazon DynamoDB operation will you use to
+retrieve the metadata attributes from the table?
+A. Scan operation
+B. Search operation
+C. Query operation
+D. Find operation
+18. You are creating an Amazon DynamoDB table that will contain messages for a social chat
+application. This table will have the following attributes: Username (String), Timestamp
+(Number), Message (String). Which attribute should you use as the partition key? The
+sort key?
+A. Username, Timestamp
+B. Username, Message
+C. Timestamp, Message
+D. Message, Timestamp
+19. Which of the following statements about Amazon DynamoDB tables are true? (Choose 2
+answers)
+A. Global secondary indexes can only be created when the table is being created.
+B. Local secondary indexes can only be created when the table is being created.
+C. You can only have one global secondary index.
+D. You can only have one local secondary index.
+20. Which of the following workloads are a good fit for running on Amazon Redshift?
+(Choose 2 answers)
+A. Transactional database supporting a busy e-commerce order processing website
+B. Reporting database supporting back-office analytics
+C. Data warehouse used to aggregate multiple disparate data sources
+D. Manage session state and user profile data for thousands of concurrent users
