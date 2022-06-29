@@ -1,0 +1,360 @@
+Summary
+In this chapter, you learned the fundamentals of DNS, which is the methodology that
+computers use to convert human-friendly domain names (for example, amazon.com) into IP
+addresses (such as 192.0.2.1).
+DNS starts with TLDs (for example, .com, .edu). The Internet Assigned Numbers Authority
+(IANA) controls the TLDs in a root zone database, which is essentially a database of all
+available TLDs.
+DNS names are registered with a domain registrar. A registrar is an authority that can assign
+domain names directly under one or more TLDs. These domains are registered with
+InterNIC, a service of ICANN, which enforces the uniqueness of domain names across the
+Internet. Each domain name becomes registered in a central database, known as the WhoIS
+database.
+DNS consists of a number of different record types, including but not limited to the
+following:
+A
+AAAA
+CNAME
+MX
+NS
+PTR
+SOA
+SPF
+TXT
+Amazon Route 53 is a highly available and highly scalable AWS-provided DNS service.
+Amazon Route 53 connects user requests to infrastructure running on AWS (for example,
+Amazon EC2 instances and Elastic Load Balancing load balancers). It can also be used to
+route users to infrastructure outside of AWS.
+With Amazon Route 53, your DNS records are organized into hosted zones that you configure
+with the Amazon Route 53 API. A hosted zone simply stores records for your domain. These
+records can consist of A, CNAME, MX, and other supported record types.
+Amazon Route 53 allows you to have several different routing policies, including the
+following:
+Simple—Most commonly used when you have a single resource that performs a given
+function for your domain
+Weighted—Used when you want to route a percentage of your traffic to one particular
+resource or resources
+Latency-Based—Used to route your traffic based on the lowest latency so that your
+users get the fastest response times
+Failover—Used for DR and to route your traffic from your resources in a primary
+location to a standby location
+Geolocation—Used to route your traffic based on your end user’s location
+Remember to pull these concepts together to build an application that is highly available and
+resilient to failures. Use Elastic Load Balancing load balancers across Availability Zones with
+connection draining enabled, use health checks defined to ensure that the application
+delegates requests only to healthy Amazon EC2 instances, and use a latency-based routing
+policy with Elastic Load Balancing health checks to ensure requests are routed with minimal
+latency to clients. Use Amazon CloudFront edge locations to spread content all over the world
+with minimal client latency. Deploy the application in multiple AWS regions, protecting it
+from a regional outage.
+Exam Essentials
+Understand what DNS is. DNS is the methodology that computers use to convert humanfriendly
+domain names (for example, amazon.com) into IP addresses (such as 192.0.2.1).
+Know how DNS registration works. Domains are registered with domain registrars that
+in turn register the domain name with InterNIC, a service of ICANN. ICANN enforces
+uniqueness of domain names across the Internet. Each domain name becomes registered in a
+central database known as the WhoIS database. Domains are defined by their TLDs. TLDs are
+controlled by IANA in a root zone database, which is essentially a database of all available
+TLDs.
+Remember the steps involved in DNS resolution. Your browser asks the resolving DNS
+server what the IP address is for amazon.com. The resolving server does not know the address,
+so it asks a root server the same question. There are 13 root servers around the world, and
+these are managed by ICANN. The root server replies that it does not know the answer to
+this, but it can give an address to a TLD server that knows about .com domain names. The
+resolving server then contacts the TLD server. The TLD server does not know the address of
+the domain name either, but it does know the address of the resolving name server. The
+resolving server then queries the resolving name server. The resolving name server contains
+the authoritative records and sends these to the resolving server, which then saves these
+records locally so it does not have to perform these steps again in the near future. The
+resolving name server returns this information to the user’s web browser, which also caches
+the information.
+Remember the different record types. DNS consists of the following different record
+types: A (address record), AAAA (IPv6 address record), CNAME (canonical name record or
+alias), MX (mail exchange record), NS (name server record), PTR (pointer record), SOA (start
+of authority record), SPF (sender policy framework), SRV (service locator), and TXT (text
+record). You should know the differences among each record type.
+Remember the different routing policies. With Amazon Route 53, you can have
+different routing policies. The simple routing policy is most commonly used when you have a
+single resource that performs a given function for your domain. Weighted routing is used
+when you want to route a percentage of your traffic to a particular resource or resources.
+Latency-based routing is used to route your traffic based on the lowest latency so that your
+users get the fastest response times. Failover routing is used for DR and to route your traffic
+from a primary resource to a standby resource. Geolocation routing is used to route your
+traffic based on your end user’s location.
+Exercises
+In this section, you explore the different types of DNS routing policies that you can create
+using AWS. For specific step-by-step instructions, refer to the Amazon Route 53 information
+and documentation at http://aws.amazon.com/route53/. You will need your own domain
+name to complete this section, and you should be aware that Amazon Route 53 is not AWS
+Free Tier eligible. Hosting a zone on Amazon Route 53 should cost you a minimal amount per
+month per hosted zone, and additional charges will be levied depending on the routing policy
+you use. For current information on Amazon Route 53 pricing, refer to
+http://aws.amazon.com/route53/pricing/.
+EXERCISE 9.1
+Create a New Zone
+1. Log in to the AWS Management Console.
+2. Navigate to Amazon Route 53, and create a hosted zone.
+3. Enter your domain name, and create your new zone file.
+4. In the new zone file, you will see the SOA record and name servers. You will need to
+log in to your domain registrar’s website, and update the name servers with your
+AWS name servers.
+5. After you update your name servers with your domain registrars, Amazon Route 53
+will be configured to serve DNS requests for your domain.
+You have now created your first Amazon Route 53 zone.
+EXERCISE 9.2
+Create Two Web Servers in Two Different Regions
+In this exercise, you will create two new Amazon EC2 web servers in different AWS
+regions. You will use these in the following exercises when setting up Amazon Route 53
+to access the web servers.
+Create an Amazon EC2 Instance
+1. Log in to the AWS Management Console.
+2. Change your region to Asia Pacific (Sydney).
+3. In the Compute section, load the Amazon EC2 dashboard. Launch an instance, and
+select the first Amazon Linux Amazon Machine Image (AMI).
+4. Select the instance type, and configure your instance details. Take a close look at the
+different options available to you, and change your instance’s storage device settings
+as necessary.
+5. Name the instance Sydney, and add a security group that allows HTTP.
+6. Launch your new Amazon EC2 instance, and verify that it has launched properly.
+Connect to Your Amazon EC2 Instance
+7. Navigate to the Amazon EC2 instance in the AWS Management Console, and copy
+the public IP address to your clipboard.
+8. Using a Secure Shell (SSH) client of your choice, connect to your Amazon EC2
+instance using the public IP address, the user name ec2-user, and your private key.
+9. When prompted about the authenticity of the host, type Yes, and continue.
+10. You should now be connected to your Amazon EC2 instance. Elevate your privileges
+to root by typing #sudo su.
+11. While you’re logged in as the root user to your Amazon EC2 instance, run the
+following command to install Apache httpd:
+#yum install httpd -y
+12. After the installation has completed, run the command #service httpd start
+followed by #chkconfig httpd on.
+13. Navigate to the EC2 instance, and type: cd /var/www/html
+14. Type #nano index.html and press Enter.
+15. In Nano, type This is the Sydney Server and then press Ctrl+X.
+16. Type Y to confirm that you want to save the changes, and then press Enter.
+17. Type #ls. You should now see your newly created index.html file.
+18. In your browser, navigate to http://yourpublicipaddress/index.html.
+You should now see your “This is the Sydney Server” home page. If you do not see this,
+check your security group to make sure you allowed access for port 80.
+Create an Elastic Load Balancing Load Balancer
+19. Return to the AWS Management Console, and navigate to the Amazon EC2
+dashboard.
+20. Create a load balancer named Sydney, leaving the settings at their default values.
+21. Create your security group, and allow all traffic in on port 80.
+22. Configure health check, leaving the settings at their default values.
+23. Select your newly added instance. Add tags here if you want to tag your instances.
+24. Click Create to provision your load balancer.
+Create These Resources in a Second Region
+25. Return to the AWS Management Console, and change your region to South America
+(Sao Paulo).
+26. Repeat the three procedures in this section to add a second Amazon EC2 instance
+and a load balancer in this new region.
+You have now created two web servers in different regions of the world and placed these
+regions behind Elastic Load Balancing load balancers.
+EXERCISE 9.3
+Create an Alias A Record with a Simple Routing Policy
+1. Log in to the AWS Management Console, and navigate to the Amazon Route 53
+dashboard.
+2. Select your newly-created zone domain name, and create a record set with the name
+A − IPv4 Address
+3. Create an alias, leaving your routing policy set to Simple.
+4. In your web browser, navigate to your domain name. You should now see a welcome
+screen for the Sydney region. If you do not see this, check that your Amazon EC2
+instance is attached to your load balancer and that the instance is in service. If the
+instance is not in service, this means that it is failing its health check. Check that
+Apache HTTP Server (HTTPD) is running and that your index.html document is
+accessible.
+You have now created your first Alias A record for the zone apex using the simple routing
+policy.
+EXERCISE 9.4
+Create a Weighted Routing Policy
+1. Return to the AWS Management Console, and navigate to the Amazon Route 53
+dashboard.
+2. Navigate to hosted zones, and select your newly-created zone domain name.
+3. Create a record set with type set to developer. This will create a subdomain of
+developer.yourdomainname.com.
+4. Select your Sydney load balancer. Change the routing policy to Weighted with a
+value of 50 and a type of Sydney. Leave the other values at their defaults. Click
+Create. You will now see your newly-created DNS entry.
+5. Create another record set with type set to developer. This will add a new record with
+the same name you created earlier. Both records will work together.
+6. Select your Sao Paulo load balancer. Change the routing policy to Weighted with a
+value of 50 and type of Sao Paulo. Leave the other values at their defaults. Click
+Create. You will now see your newly-created DNS entry.
+7. Test your DNS by visiting http://developer.yourdomainname.com and refreshing the
+page. You should be accessing the Sydney server 50 percent of the time and the Sao
+Paulo server the other 50 percent of the time.
+You have now created a weighted DNS routing policy. You can continue to experiment
+with other routing policies by following the documentation at http://docs.aws.amazon
+.com/Route53/latest/DeveloperGuide/routing-policy.html.
+EXERCISE 9.5
+Create a Hosted Zone for Amazon Virtual Private Cloud (Amazon VPC)
+Amazon VPC details are covered in Chapter 4, “Amazon Virtual Private Cloud (Amazon
+VPC).”
+Create a Private Hosted Zone
+1. Return to the AWS Management Console, and navigate to the Amazon Route 53
+dashboard.
+2. Create a hosted zone, and enter your private domain name.
+3. Select the default Amazon VPC that you used in Exercise 9.2 to deploy the first
+server in the Asia Pacific (Sydney) region. Click Create. This will create a new zone
+file.
+Verify Amazon VPC Configuration
+4. Return to the AWS Management Console, and change your region to Asia Pacific
+(Sydney).
+5. In the Amazon VPC dashboard, choose your Amazon VPC.
+6. Click on the default Amazon VPC from the list. Ensure that both DNS resolution and
+DNS host names are enabled. These settings need to use private hosted zones.
+Create Resource Record Sets
+7. Return to the AWS Management Console, and navigate to the Amazon Route 53
+dashboard.
+8. Select your newly-created private zone domain name, and create a record set.
+9. Enter the name you want to give to your Amazon EC2 instance (for example,
+webserver1), and select IPv4 address with no alias.
+10. Enter the internal IP address of your Amazon EC2 instance that you noted in
+Exercise 9.2.
+11. Leave your routing policy set to Simple, and click Create.
+Connect to Your Amazon EC2 Instance
+12. On the Amazon EC2 instances screen, wait until you see your virtual machine’s
+instance state as running. Copy the public IP address to your clipboard.
+13. Using an SSH client of your choice, connect to your Amazon EC2 instance using the
+public IP address, the user name ec2-user, and your private key. For example, if
+you’re using Terminal in OSX, you would type the following command:
+ssh ec2-user@publicipaddresshere -i MyPrivateKey.pem
+14. When prompted about the authenticity of the host, type Yes and continue. You
+should now be connected to your Amazon EC2 instance.
+15. While you’re logged in to your Amazon EC2 instance, run the following command to
+check if the host names in Amazon Route 53 are resolving:
+nslookup webserver1.yourprivatehostedzone.com
+16. You should receive a non-authoritative answer with the host name and IP address
+for the record set that you created in Amazon Route 53.
+You have now created a private hosted zone in Amazon Route 53 and associated it with
+an Amazon VPC. You can continue to add instances in Amazon VPC and create resource
+record sets for them in Amazon Route 53. These new instances would be able to intercommunicate
+with the instances in the same Amazon VPC using the domain name that
+you created.
+Remember to delete your Amazon EC2 instances and Elastic Load Balancing load
+balancers after you’ve finished experimenting with your different routing policies. You
+may also want to delete the zone if you are no longer using it.
+Review Questions
+1. Which type of record is commonly used to route traffic to an IPv6 address?
+A. An A record
+B. A CNAME
+C. An AAAA record
+D. An MX record
+2. Where do you register a domain name?
+A. With your local government authority
+B. With a domain registrar
+C. With InterNIC directly
+D. With the Internet Assigned Numbers Authority (IANA)
+3. You have an application that for legal reasons must be hosted in the United States when
+U.S. citizens access it. The application must be hosted in the European Union when
+citizens of the EU access it. For all other citizens of the world, the application must be
+hosted in Sydney. Which routing policy should you choose in order to achieve this?
+A. Latency-based routing
+B. Simple routing
+C. Geolocation routing
+D. Failover routing
+4. Which type of DNS record should you use to resolve an IP address to a domain name?
+A. An A record
+B. A C Name
+C. An SPF record
+D. A PTR record
+5. You host a web application across multiple AWS regions in the world, and you need to
+configure your DNS so that your end users will get the fastest network performance
+possible. Which routing policy should you apply?
+A. Geolocation routing
+B. Latency-based routing
+C. Simple routing
+D. Weighted routing
+6. Which DNS record should you use to configure the transmission of email to your
+intended mail server?
+A. SPF records
+B. A records
+C. MX records
+D. SOA record
+7. Which DNS records are commonly used to stop email spoofing and spam?
+A. MX records
+B. SPF records
+C. A records
+D. C names
+8. You are rolling out A and B test versions of a web application to see which version results
+in the most sales. You need 10 percent of your traffic to go to version A, 10 percent to go
+to version B, and the rest to go to your current production version. Which routing policy
+should you choose to achieve this?
+A. Simple routing
+B. Weighted routing
+C. Geolocation routing
+D. Failover routing
+9. Which DNS record must all zones have by default?
+A. SPF
+B. TXT
+C. MX
+D. SOA
+10. Your company has its primary production site in Western Europe and its DR site in the
+Asia Pacific. You need to configure DNS so that if your primary site becomes unavailable,
+you can fail DNS over to the secondary site. Which DNS routing policy would best
+achieve this?
+A. Weighted routing
+B. Geolocation routing
+C. Simple routing
+D. Failover routing
+11. Which type of DNS record should you use to resolve a domain name to another domain
+name?
+A. An A record
+B. A CNAME record
+C. An SPF record
+D. A PTR record
+12. Which is a function that Amazon Route 53 does not perform?
+A. Domain registration
+B. DNS service
+C. Load balancing
+D. Health checks
+13. Which DNS record can be used to store human-readable information about a server,
+network, and other accounting data with a host?
+A. A TXT record
+B. An MX record
+C. An SPF record
+D. A PTR record
+14. Which resource record set would not be allowed for the hosted zone example.com?
+A. www.example.com
+B. www.aws.example.com
+C. www.example.ca
+D. www.beta.example.com
+15. Which port number is used to serve requests by DNS?
+A. 22
+B. 53
+C. 161
+D. 389
+16. Which protocol is primarily used by DNS to serve requests?
+A. Transmission Control Protocol (TCP)
+B. Hyper Text Transfer Protocol (HTTP)
+C. File Transfer Protocol (FTP)
+D. User Datagram Protocol (UDP)
+17. Which protocol is used by DNS when response data size exceeds 512 bytes?
+A. Transmission Control Protocol (TCP)
+B. Hyper Text Transfer Protocol (HTTP)
+C. File Transfer Protocol (FTP)
+D. User Datagram Protocol (UDP)
+
+18. What are the different hosted zones that can be created in Amazon Route 53?
+1. Public hosted zone
+2. Global hosted zone
+3. Private hosted zone
+A. 1 and 2
+B. 1 and 3
+C. 2 and 3
+D. 1, 2, and 3
+
+19. Amazon Route 53 cannot route queries to which AWS resource?
+A. Amazon CloudFront distribution
+B. Elastic Load Balancing load balancer
+C. Amazon EC2
+D. AWS OpsWorks
+
+20. When configuring Amazon Route 53 as your DNS service for an existing domain, which
+is the first step that needs to be performed?
+A. Create hosted zones.
+B. Create resource record sets.
+C. Register a domain with Amazon Route 53.
+D. Transfer domain registration from current registrar to Amazon Route 53
