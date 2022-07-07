@@ -1,0 +1,75 @@
+Okay. Hello Cloud Gurus and welcome to this lecture.
+So this is the very last theoretical lecture before we can start getting our
+hands dirty in the AWS console.
+So this lecture is on identity access management often referred to as IAM.
+You might be wondering what those 101s mean,
+basically in Australian universities as well as some British and American
+institutions, when you're learning a new topic,
+it's accounting 101 or engineering 101.
+So identity access management 101 means that this is an introductory topic
+to identity access management. So what is IAM?
+Well basically IAM allows you to manage users and their level of access to the
+AWS console and it's really important to understand IAM and how it works both
+for the exam and for administrating a company's AWS account in real life.
+Basically, if you're going to use AWS,
+you need to understand IAM because IAM allows you to set up users, groups,
+permissions,
+and roles and basically allows you to grant access to different parts of the
+AWS platform. So identity access management offers the following features.
+It gives you centralized control of your AWS account.
+It gives you shared access to your AWS account.
+It gives you granular permissions. So you can say, okay,
+I want people to be able to access this service,
+but I don't want people to be able to access that service.
+It gives you Identity Federation. What do we mean by that? Well,
+it just means that you can use Active Directory or Facebook or LinkedIn,
+with identity access management.
+So potentially your users could log into the AWS console
+using the same username and password that they use to log into their Windows
+PCs.
+So that's just using Active Directory or it could mean that your end
+users, let's say you have developed a mobile game or something and it's storing
+information on AWS,
+they can do that using their Facebook credentials or their LinkedIn credentials,
+etc. IAM also gives you multifactor authentication.
+This means that when you're logging in to the AWS management console,
+you need a username, a password,
+and then a special code in order to log in and then it also provides temporary
+access for users or devices and services where necessary and a good example of
+that again, is if someone's using a mobile phone app,
+and they're storing data in your AWS account,
+you only want them to be able to do that when they're using the app itself.
+So it's temporary access.
+It also allows you to set up your own password rotation policy.
+So you may want your users to rotate their passwords every three months or every
+three weeks entirely up to you and it integrates with many different AWS
+services and it supports PCI DSS compliance.
+So PCI DSS compliance just is basically a compliant framework that if you're
+taking credit card details, you need to be compliant with the framework.
+So IAM supports PCI DSS.
+So we're going to learn some key terminology for IAM there's really four key
+terms that we need to learn. So one is users,
+and this is just simply end users such as people, employees of an organization,
+etc. We then have groups. So this is a collection of users.
+So each user in the group will inherit the permissions of the group.
+So you might have a group that is able to access S3 and you might have another
+group that's able to access EC2. If so long as that user is in that group,
+that user will inherit the permissions of the group. We then have policies,
+policies are made up of these things called documents,
+policy documents and these documents are formatted in JSON.
+So Java script object notation language and I'll show you what that looks like
+later on and it basically gives you permissions as to what a user, group,
+or role is able to do.
+So policies are your permissions and then roles are basically you create a role
+and you assign them to a AWS resource.
+A role is a way of allowing one part of AWS to do something with another
+part. So you might give a virtual machine inside AWS the ability to write
+files to S3, which is a type of storage within AWS.
+We're going to have a look at that in the EC2 section of the course.
+So that is coming up.
+So what is the best way to learn IAM? Well,
+like anything with AWS, the best way to learn is by getting your hands dirty.
+So that's the end of this lecture. If you've got the time,
+please join me in the next lecture where we're going to log into the AWS
+console. If you have any questions, please let me know. If not,
+feel free to move on to the next lecture. Thank you.
