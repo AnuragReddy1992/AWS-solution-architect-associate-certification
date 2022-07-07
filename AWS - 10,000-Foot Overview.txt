@@ -1,0 +1,391 @@
+Okay, hello Cloud Gurus
+and welcome to this lecture.
+In this lecture we're going to look at the
+AWS platform from a 10,000 foot overview.
+Now this is a real photo.
+Most of you may or may not know this
+but this is a photo that was taken in
+February of 2018.
+This is when Elon Musk sent his Tesla roadster to Mars.
+It actually overshot Mars
+and went to the asteroid belt,
+and this is a Hitchhiker's Guide
+to the Galaxy reference here.
+You can see on the screen it says, "don't panic".
+So we're going to have a look at AWS,
+we're going to have a brief look at all the different
+high-level services and some lower-level services.
+Don't panic, because there's an awful lot of services
+and you do not need to know
+every single service to pass your exam.
+I would wager now that there's very few people
+on the planet who know every single service
+in a lot of depth.
+Just because there are so many,
+so please do not panic.
+So let's go and have a look at the AWS Console in 2015.
+And this is what it looked like,
+and basically when I first started recording
+the A Cloud Guru lectures in 2015,
+I'd go and I'd talk through every single service.
+So what EC2 is, what Lambda is, what S3 is,
+and the reason I did that was because
+all of these services were relevant, more or less,
+to the Certified Solutions Architect Associate exam.
+Let's have a look at what it looks like in 2016.
+2016 - you can see that we've got more services,
+so we've got things like machine learning,
+we've got WorkMail, we've got a whole bunch
+of new services that are being added,
+like Elastic Transcoder for example.
+And these services actually weren't
+all that relevant to the exam,
+but I'd go through and explain what they were anyway.
+This is what the console looked like in 2017.
+So we're getting more and more and more services,
+and when I started to, you know, record my lectures
+and talk about every single one of these services,
+the course was getting to be about
+an hour and a half long, just on this section.
+And a lot of these services are no longer relevant
+to the Certified Solutions Architect Associate exam.
+So let's have a look at
+what the console looks like today.
+So this is what the console looks like today.
+Don't worry, in the next lecture
+we're going to look at how you can sign up
+to the console using Free Tier.
+So if you haven't already signed up
+I'll show you how to do that in the next lecture.
+And if you want to see all the services
+you can click up here and go "services".
+And you can group them or you can do them from A to Z.
+And if we scroll down there's an awful lot of services,
+and if I was to go through and explain
+what each individual service was,
+let's say for 30 or 40 seconds,
+the whole course is going to,
+this whole section of the course is probably going to take
+two and a half hours
+and I'm just going to be wasting
+a lot of your time, because a lot of these
+lower-level services are just simply not relevant
+to the Certified Solutions Architect Associate exam.
+Things like Amazon Connect, or Pinpoint,
+or, let's have a look, MediaConvert
+any of these media services.
+DeepLens for example - none of these are relevant
+to the Certified Solutions Architect Associate exam.
+So what I am going to do now is,
+in this lecture anyway, is I'm just going to go through
+and just talk about the high-level services.
+So compute, storage, databases, migration and transfer etc.
+And we're going to look at the platform
+from that perspective.
+And then I'm going to show you what is relevant
+to the AWS Certified Solutions Architect Associate exam.
+One other thing I will show you is, up here,
+you can change what region you're in -
+and we're going to have a look at what
+the different regions are in a second -
+and what the difference is between a region
+and an availability zone.
+For the rest of this course I would recommend that you use
+the US East, Northern Virginia region.
+The reason for that is this is the oldest region
+and this is where all the new services come out first.
+This is also the region that actually
+goes down the most as well,
+so when you're building your production workloads,
+maybe use US East, Ohio, or some of the other
+US West ones 'cause Northern Virginia
+does go down, tends to go down once a year.
+But, who knows, maybe that's all in the past.
+So let's have a look at the AWS high-level services
+and we'll start with the Global Infrastructure.
+The Global Infrastructure is what
+we've just been talking about.
+It's the regions around the world in which AWS is based.
+On top of the Global Infrastructure
+sits a whole bunch of high-level services.
+So we've got Compute - examples inside Compute
+might be EC2, might be Lambda etc.
+And we are going to cover those off, in the course.
+Storage - we've got things like S3,
+so this is where you put files into buckets.
+We've got different services in there,
+like EFS, for example.
+Again, we're going to cover it off, in the course.
+Databases - this could be relational databases, such as RDS,
+this could be non-relational databases, such as DynamoDB.
+Migration and transfer is a way of getting things
+to and from AWS - includes things like Snowball,
+which we are going to cover.
+Network and Content Delivery is basically
+one of the most, sort of, fundamental parts of AWS.
+So things like VPCs (virtual private clouds),
+as well as CloudFront, there's CDN -
+we're going to cover that in the course.
+Developer tools is not really relevant
+for the Certified Solutions Architect Associate exam.
+It is covered, as you might guess,
+in the Developer Asssociate exam.
+Robotics, blockchain and satellite are all
+new high-level services that were released
+at Re:Invent for 2018.
+Not covered in the course, I really hope
+there's a robotic specialty at some point,
+that would be super cool,
+but it is a very, very new high-level service,
+not relevant for the exam.
+Management and governance we will cover,
+media services we won't.
+Machine learning, so this is all the, sort of, AI,
+things like SageMaker, for example.
+That can ... some are ... you basically just
+have to be highly, sort of, aware
+of the different AI and ML capabilities
+for the Certified Solutions Architect Associate exam.
+They may ask you a question about one or two services,
+but you don't need to know it in a lot of depth.
+Where it does come up is in the new
+machine learning specialty cert,
+which I did actually just a couple of weeks ago
+and it is super, super tough.
+We've then got analytics,
+we've got security, identity and compliance.
+Security, identity and compliance we will cover off
+in the very next section of the course
+where we start to log into Identity Access Management.
+We're going to start creating our users groups and roles.
+We then have mobile, not really relevant.
+AR and VR, so AR is augmented reality
+VR is virtual reality, again, not really relevant.
+Application integration as well as AWS cost management.
+Cost management can be a part
+of the Solutions Architect Associate exam,
+it's a big part of the cloud practitioner.
+We then have customer engagement, business applications,
+desktop streaming, IOT and game development.
+So let's go ahead and start with the fundamentals
+and let's look at AWS Global Infrastructure.
+So what's the difference between a region,
+an availability zone and an Edge Location?
+So we'll start with the Global Infrastructure.
+So there's currently 19 regions
+and 57 availability zones around the world
+as of December 2018.
+And there's going to be five more regions
+and 15 more availability zones for 2019
+that are currently announced.
+Of course, there's going to be more.
+Don't worry, you're never going to be tested on the
+number of regions and availability zones.
+But it is important to understand
+the differences between them
+and also where they are, basically.
+Where's your local region?
+So before we look at a region, let's look at this.
+This is a data center and some of you
+may have seen data centers before,
+some of you may have not.
+And an availability zone is essentially
+just a data center.
+That's what I want you to think of an availability zone as.
+So an availability zone is a facility
+somewhere out in the country, or it could be in the city.
+And inside that facility
+is a whole bunch of computer stuff.
+So servers, we've got SANs,
+we've got, you know, switchers
+we've got firewalls, we've got load balancers,
+we've got storage.
+Basically, anything to do with cloud
+sits inside our data centers.
+So data center is just a building filled with servers,
+and an availability zone is essentially a data center.
+Now, an availability zone
+actually may be several data centers.
+But if they're really close together
+they're going to be counted as one availability zone.
+So one availability zone could be
+two or three data centers that are all within, say,
+a couple of miles of each other.
+That way, if there is a flood
+it might take out all three facilities.
+So it might take out that availability zone,
+but then you'll have another availability zone
+that will be, you know, a hundred miles away.
+And if that ... if it floods in one area
+it's not going to affect the other area.
+So you're going to have different availability zones
+in different regions.
+So what is a region?
+A region is just simply a geographical area,
+so each region consists of two or more availability zones.
+So we have the London region,
+we have the Northern Virginia region,
+we have, you know, the Oregon region,
+we have Sydney region, Singapore region,
+we have the Tokyo region etc., etc.
+So regions are just distinct geographical areas
+and each region will always consist
+of two or more availability zones.
+An availability zone is simply a data center,
+and a data center is simply a building
+that's filled with computer stuff.
+So pretty simple stuff.
+So let's have a look at today's regions.
+We've got North America.
+North America consists of
+a whole bunch of different regions.
+So you've got Northern Virginia, Oregon, US West.
+We've got the central region, which is Canada.
+US West that I'm talking about here
+is actually just for GovCloud.
+So GovCloud, you can see there's GovCloud US West
+and GovCloud US East.
+This is for government customers only
+This is not for private corporations.
+So do bear that in mind.
+We've then got the US East, which is in Ohio,
+and we've got US West, in Northern California.
+We then, down here, have a whole bunch of different
+Edge Locations, and you're always going to have
+more Edge Locations than you will have regions.
+You might be thinking, "well, what's an Edge Location?"
+Well, Edge Locations are endpoints for AWS
+which are used for caching content.
+So typically this consists of CloudFront,
+which is Amazon's content delivery network,
+and we're going to have a look at that
+in the S3 section of the course.
+It's a way ... let's say, you've got a big file
+and you've got a user who's sitting in Sydney
+and the server that they are
+trying to get the file from is in New York.
+Basically what happens is
+that user downloads it from New York,
+it is then cached inside the Sydney Edge Location,
+and then if somebody else from Sydney
+then tries to download that file,
+they don't need to get a file from New York,
+they can actually just get it
+from the Sydney Edge location.
+And again, I'll cover this off in more detail
+when we go and do the S3 section of the course.
+What's important is that you understand
+that an Edge Location is not a region,
+it's actually just a, sort of, a smaller location
+that AWS have and it's used for caching content.
+And there's always going to be more Edge Locations
+than there are regions.
+Currently there's over a 150 Edge Locations
+around the world.
+Let's have a look at South America.
+We've got a region in Sao Paulo,
+then we've got a whole bunch of different
+Edge Locations around Rio de Janeiro
+and Sao Paulo as well.
+We then have the EMEA region,
+so Europe, Middle East and Africa.
+So we've got the Irish region,
+which is one of the oldest regions inside Europe.
+We've got the London region, we've got the Frankfurt region
+and the Paris region.
+We've got a whole bunch of new regions that are coming
+in EMEA, so we've got regions in Cape Town,
+in Sweden, in Italy, that are all coming online as well.
+And then we have a whole bunch
+of different Edge Locations there.
+In APAC we've got the Singapore region,
+the Tokyo region, Osaka region, Sydney region,
+Seoul region, Mumbai region, Beijing region
+and the Ningxia region.
+And then we've got a whole bunch
+of different Edge Locations as well.
+So, what is it you need to know
+in order to pass
+your Certified Solutions Architect Associate exam?
+So we had a look at all these different
+high-level services.
+I'm not longer going to go into
+each individual service and explain, you know,
+what SageMaker is, or what EC2 is,
+or what Elastic Transcoder is.
+We will go and explain the most
+relevant services throughout the course,
+that will help you pass your exam.
+But we're not going to cover every single service
+on the AWS platform because that would be
+an entire course all unto itself.
+So what is it we need to know to pass
+our Certified Solutions Architect exam?
+Well, why don't we just start with
+what we don't need to know?
+So we don't need to know developer tools,
+we don't need to know robotics or blockchain,
+or satellites, we don't need to know media services,
+we don't need to know mobile,
+we don't need to know AR and VR, application integration.
+We don't really need to know cost management.
+We kind of do a little bit,
+but that's a bit of a touchy one so I made it fall off,
+but we will cover cost control on AWS
+'cause that is an important part
+of being a certified solutions architect.
+We don't need to worry about customer engagement,
+business applications, and IOT or game development.
+So these are the high-level services that you should,
+you know, focus on in order to pass your exam.
+And of these high-level services,
+there's a bunch of core services.
+And these are the bread and butter
+of passing your AWS
+Certified Solutions Architect Associate exam.
+So we've got security, identity and compliance
+which we're going to do
+in the very next section of the course.
+We have compute, we have storage, we have databases
+and we have network and content delivery.
+Compute is mostly just around EC2 and Lambda.
+Storage is going to be all around S3.
+Databases is going to be mostly DS
+as well as some DynamoDB and some Redshift as well.
+And I'll explain ... don't worry if all these
+sound like foreign languages,
+we are going to learn what they are throughout the course.
+Network and content delivery is all route 53
+which is Amazon's DNS service as well as VPCs
+which is the way ... it's like virtual private cloud.
+It's basically like a virtual data center
+where you're going to build everything.
+And basically, if you know route 53
+and you know VPCs inside out,
+you stand a very, very good change of passing this exam.
+And like I said, security, identity and compliance
+is going to be in the very next section.
+And in particular, you need to know
+Identity and Access Management inside out
+to have a good chance of passing your exam.
+So what are my exam tips?
+So you've learnt an awful lot already.
+Just understand the difference between a region,
+an availability zone and an Edge Location.
+A region is a physical location in the world
+which combines two or more availability zones.
+And so you have a London region,
+you have a Sydney region, a Singapore region etc.
+An availability zone is one or more discrete data centers,
+each with redundant power, networking connectivity
+housed in separate facilities.
+And then an Edge Location is just an endpoint for AWS
+which is used for caching content.
+Typically this consists of CloudFront,
+which is Amazon's content delivery network,
+and we're going to learn about that
+in the storage section of the course.
+So that is it for this lecture, guys.
+If you have any questions, please let me know.
+If not, feel free to move on to the next lecture
+where we're going to sign up to an AWS Free Tier account.
