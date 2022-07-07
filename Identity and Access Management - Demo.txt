@@ -1,0 +1,448 @@
+Okay, hello Cloud Gurus
+and welcome to this lecture.
+So it's our very first lab.
+We're finally going to start
+getting our hands dirty with AWS.
+And in this lecture, we're going to learn all
+about Identity Access Management.
+As mentioned in the last lecture,
+this is one of the most important AWS services
+because this service gives you access to control
+permissions to all the other services
+and to also create users, groups, and roles.
+So let's go ahead and get started.
+Okay, so here I am in the AWS console.
+And if you look up here, you'll be able to see your regions.
+I know I did cover this off
+in the last section of the course.
+I would always suggest using US East
+as your main region, Northern Virginia.
+Like I said before, the reason for that is
+this is where all the new products and services
+are launched first.
+So this is always the most up-to-date region.
+This is also the region that goes down the most.
+So if we want to find Identity Access Management,
+just click up on "Services".
+This will open up all the different services
+that are available for Amazon Web Services.
+I know it can be a bit of overwhelming.
+Like I said, in the ... section two, don't panic.
+No one person knows all of these services inside out.
+And only a small fraction of these services
+make up the Certified Solutions Architect Associate exam.
+Now we're looking for security.
+You can see it here, it's got the little shield,
+so Security, Identity, and Compliance.
+And what we're going to go ahead and do is click on
+Identity Access Management.
+And that will take us to this splash screen.
+And you'll be able to see in here
+that this is the landing page.
+Now, you've got a sign-in link,
+this is the link that you can send to your users.
+It's simply your account number,
+then .signin.aws.amazon.com/console
+You can actually go in here and customize it.
+So you could do an account alias of A Cloud Guru.
+If someone has already taken it, however,
+you're going to, you know, it's a universal namespace,
+so you won't be able to take it.
+So I'm going to say acloudguru2019.
+God knows if this will actually be available.
+No, someone has stolen it from me.
+Maybe I'll take 2020.
+So 2020, hit "Create", oh my God ...
+I'm, all right, going to do 2020 Ryan,
+something like that, no-one would have taken that.
+So there we go.
+So this has now changed that URL.
+And this is actually a DNS change.
+So this is a publicly accessible URL
+that people can go into to sign into this account.
+Now, the very first thing we're going to do is
+activate Multi-Factor Authentication,
+or MFA, on our root account.
+You might be thinking, "What is a root account?"
+Well, a root account is just the username ...
+it's the email address that you first signed up with,
+with AWS with, and when you login using
+the root account, you have what I would call God-mode.
+You're able to do anything inside of AWS.
+Now, for that reason, you pretty much don't want anyone
+to log in using the root account.
+You want to create, you know, a whole bunch of users
+and a whole bunch of different groups
+and put those users into groups.
+You also want to secure this root account
+because it does have God-mode access on it.
+So what you want to do
+is enable Multi-Factor Authentication.
+So if someone steals your username and password,
+they will not be able to log in
+without Multi-Factor Authentication.
+So to enable it, we just click in here
+and go to "Manage MFA".
+And it says "You are now accessing
+"the security credential page for your AWS account.
+"This is account credentials provides unlimited access
+"to your AWS resources."
+So just go ahead and hit "Continue".
+And in here, we can see the MFA,
+Multi-Factor Authentication, and all you need to do
+is click on "Activate MFA".
+And in here, you'll get the three different types.
+You've got virtual MFA, you've got a U2F - a security key -
+and you've got "Other hardware MFA device".
+I would just use the virtual MFA and you can download
+the Google authenticator app.
+And you can do that on the Google Play Store
+or the Apple App Store.
+So just type in Google Authenticator.
+Once you've downloaded that, go ahead and hit "Continue".
+And I'm going to go ahead and hit click here "Show QR code".
+Now what I would do before you open that app
+is I'd take a photo of this QR code
+and store it somewhere safe.
+That means that if you lose your
+Multi-Factor Authentication device
+or if you lose your phone, for example,
+so long as you have access to this QR code,
+you can always re-enable MFA.
+And you don't have to worry about
+contacting AWS's support team.
+Okay, so once you've installed Google Authenticator
+on your phone, you'll see a screen
+that looks similar to this,
+you might not have any authentication codes in there.
+All you need to do in order to add one
+is to hit this little plus symbol,
+and then go ahead and hit "Scan barcode".
+And there you go.
+You can see this is my lovely view from our London office.
+There's a whole bunch of Star Wars stamps,
+and all I need to do is then scroll this down
+and have a look at the QR code.
+And that has now added the new MFA
+to the bottom of my iPhone screen, which you can see here.
+And then all I need to do is go ahead
+and enter in my MFA codes in here.
+So I'm going to go ahead and do that now.
+It's 537624 and then I'm just going to wait
+for this MFA thing to change.
+And my MFA code's about to change,
+which is why it's gone red.
+And now I'm going to type in the new one,
+which is 770, and then 626.
+And then all you need to do is go ahead
+and hit "Assign MFA".
+And you can see it now says
+"You have successfully assigned virtual MFA.
+"The virtual MFA will be required during sign-in."
+So go ahead and hit "Close".
+And then you'll come back to this landing page.
+Notice, in here you can change your password.
+This is to change your password for the root account.
+In fact, everything here is for your root account.
+So you probably want to come out of it.
+Just go ahead and click on "Dashboards".
+And you can now see that we've got a new green tick
+with "Activated MFA on our root account".
+Before we go in and get more green ticks.
+I just wanted to point out up here
+that the region is "Global".
+So whenever you're doing anything inside
+Identity Access Management,
+such as creating users or groups,
+it's on a global basis.
+They're not locked down to particular regions.
+You're not creating a user in Northern Virginia
+and then having to create the same user in Australia,
+so just bear that in mind as well.
+So the next thing we want to do is go in
+and create an individual IAM user.
+So let's click on that and go ahead and manage our users.
+I'm going to go ahead and add my user.
+And my username is just going to be my name,
+so, ryan.kroonenberg
+is what I'm going to put in here.
+And then I'm going to go ahead
+and select my AWS access type.
+Now what we're using right now
+is called the Management Console.
+The AWS Management Console,
+you can also enable "Programmatic access".
+So we're going to enable both just for this user.
+Now we're going to use programmatic access
+in the EC2 section of the course.
+EC2 is just virtual machines.
+So that is coming up
+but we won't cover it off in this section.
+But I do just want to show you what happens
+when you enable programmatic access.
+You're going to be creating an access key ID
+and secret access key and you'll use these to interact
+with the AWS console.
+In here we've got our password,
+I'm just going to do an auto-generated password.
+And in here it says "Require a password reset.
+"User must create a new password at next sign-in."
+So not only does it auto-generate a password for that user,
+it's also going to make sure that they change it
+when they first sign in.
+Next, we're going to go ahead and add our permissions.
+We haven't created a group yet.
+So it's going to say "Add user to a group."
+Let's go ahead and create a group.
+And this group, I'm going to call in my group name,
+I'm going to call it "Developers".
+So developers, and my developers really need
+administrator access to AWS
+and this is where we add our policies.
+And if it's got this little AWS logo here,
+it means it's an AWS Managed Policy.
+So we want to add administrator access.
+Now you can add based on different job roles.
+So in here you can see the type - job function,
+and then you've got "AWS managed".
+Try scrolling to the bottom
+I guarantee you it's going to take forever.
+That is that how many,
+that is how many policies there are.
+So we're going to do administrator access.
+But if I was to type in something like billing,
+you can see a job function is in billing in here.
+Or if you've got your database administrator,
+database administrator is a job function.
+So there's a number of different job functions
+to save you time.
+If you want to know a list of all the job functions,
+just type into Google "IAM job functions",
+and it will give you the different types.
+So let's go ahead and create this group.
+We're creating the developers group
+and we're giving them full administrator access.
+That has now created our group.
+And now we're going to add this user to our group.
+We're going to go ahead and hit "Next".
+And we're going to go ahead and create our user.
+That has now added our user.
+In here you'll see that we've got our access key ID
+and our secret access key.
+This is for our programmatic access to AWS.
+You're only ever going to see this one time.
+So you can just click here and download a CSV file.
+So you see that's downloaded down there.
+Store that for later - we will go through
+and probably create an entirely new user
+when we get to that section of the course.
+And we can also email login instructions.
+And if you click on that link,
+it's going to open up your mail client
+and email them login instructions as well.
+And if you want to see your user's password,
+just click on the Show button,
+which is off to the left of the "Send email" link.
+So let's go ahead and hit "Close".
+We now have our user in here.
+So we've got ryan.kroonenberg.
+He's a member of the developers group,
+and nothing else has been added.
+We go back to our dashboard.
+We can see that we've created an individual IAM user.
+And we've also used groups to assign permissions.
+I just wanted to quickly show you a bit more into policies.
+So we added this administrative access policy
+to the group when we were creating the group.
+If you want to see more about the policy,
+just click on this little "down" arrow in here.
+This is JavaScript Object Notation, or JSON,
+which we were talking about before,
+and it basically is a whole bunch of key value pairs.
+So this is the version of the policy.
+This is the statement, we've got our square brackets.
+And in here we've got our curly brackets.
+And we ... again, we've got more key value pairs.
+So these key value pairs are under the statement.
+So this is what we call nesting inside JSON.
+So we've got "Effect": "Allow".
+The action is a star, so a wild card,
+so we're saying "Allow",
+and the action - we're allowing anything
+and on which resource?
+Well, we're allowing anything.
+So this is the most powerful administrate ...
+Or this is the most powerful policy
+that you can have in AWS.
+You're saying allow you to do anything
+with any resource within AWS.
+So this is administrator access,
+or, as some like to call it, God-mode.
+So let's go back to dashboards.
+We've created an IAM user.
+We've created a group.
+And then the last thing we want to do is just apply
+an Identity Access Management password policy.
+We go ahead and click on "Manage Password Policy" in here.
+We can now say that we want our minimum password length
+to be like 12 characters, we want one uppercase letter,
+we want one lowercase letter,
+we want at least one number,
+one alphanumeric character, etc.
+In here, we can have password expiration,
+we can prevent our password reuse.
+And we can have that the password expiration
+requires an administrator reset.
+So you can change, in here,
+all the different password policies.
+I'm going to go ahead and just hit "Apply".
+And if we go and click on our dashboard,
+we now have five green ticks.
+So we've achieved five out of five.
+Now in case you're wondering, where is my actual password
+that I need to send to my user?
+If you open up that CSV file,
+you'll be able to see in here.
+Here's the password that's been auto-generated.
+Here's my access key ID.
+I want you to think of this as just like a username
+that we're going to use to programmatically access
+the AWS console and here is our secret access key.
+Again, this is just like a password that we're going to use
+to programmatically access the AWS, you know, ecosystem.
+And then we've got our console login link.
+So all you need to do is send your user
+this console login link, their username and their password.
+If for some reason you lose that information,
+or you didn't save it, click on "Users",
+and then go ahead and click on the user in here.
+And then you can actually just click on their name.
+And in here, you'll be able to go in
+and change their security credentials by clicking up here.
+So we've got our security credentials in here.
+Our console password, we can go ahead and hit "Manage",
+and we can actually just set it
+so we can create our own custom one if we wanted,
+we can auto-generate a new one,
+and we can even enable or disable the console.
+And likewise with our access keys
+if you've lost your access keys,
+because I have shown you my access key ID
+and secret access key,
+straightaway what I'm going to do is mark ...
+"Make inactive".
+Because anyone who basically has access
+to your access key ID and secret access key
+could use your AWS account.
+So make sure you never share that.
+Now with your access key ID and secret access key,
+you can never use this to log in to the console,
+you can only use the console password.
+And again, if this access key ID
+and secret access key doesn't make a lot of sense right now,
+it will make a lot of sense later on in the course
+when we actually go ahead and start using it.
+So I'm just going to make it inactive.
+In fact, I'm probably just going to go in
+and delete it for now.
+And we'll go ahead and provision it later.
+The very last thing I want to show you is Roles.
+Roles are a way for one AWS service
+to go ahead and use another AWS service.
+So we're going to use this in the EC2
+section of the course where we're going to allow
+our little virtual machine to talk to S3.
+Let's go ahead and just create a role.
+So we're going to hit "Create role".
+In here we're going to say
+"Choose the service that will use this role."
+So I would like to ...
+it's going to be easy, too,
+because that's what we're going to use
+in the very next section, in two sections on.
+So I'm going to go ahead and hit "Next".
+And then in here, all I want to do is type in S3.
+And because we want S3, full access,
+we're going to use an AWS Managed Policy.
+Again, that's got the little icon there,
+which means that it's an AWS Managed Policy, you
+can create your own policies, which are customer managed.
+We're not going to do that in this course,
+that's beyond the scope of this course,
+but it is definitely possible.
+Let's go ahead and hit "Next: Review".
+And the role name, just give it a unique name,
+I'm going to call it S3, underscore, Admin, underscore
+and then Access.
+And now I'm going to go ahead and create the role.
+So that role has now been created.
+You can see it in here
+and we're going to use it
+not in the next section, but the section after that.
+Okay, so what have we learned so far?
+Well, we've learned that IAM is universal.
+It does not apply to regions at this time.
+So when you create a user,
+you're creating that user globally
+same when you create a role or when you create a group.
+We learned that the root account
+is simply the account created when you first
+set up your AWS account.
+It has complete administrator access,
+and it's always using your email address
+so that's sometimes called the root account email address
+and the password that you configured.
+We also learned that new users have no permissions
+when first created.
+We had to give our user, Ryan Kroonenberg, permissions.
+And to do that we created a administrator access policy.
+We assigned that to the developers group.
+We also learned that new users are assigned an access key ID
+and secret access key when first created.
+They use this to programmatically access
+the AWS ecosystem.
+And again, this is completely optional.
+You can just say, okay, I only want, you know,
+console access, or I want programmatic access.
+So those are the two different types of access.
+You can have one, you can have the other,
+or you can have both of them at the same time.
+So that's console access and programmatic access.
+We also learned that the user access key ID
+and secret access key are not the same as the password.
+So you can't use the access key ID and secret access key
+to log in to the console.
+You can only use it for programmatic access.
+And I'll show you what the programmatic access means,
+and how it works, later on the course,
+in the EC2 section of the course.
+Remember that you only get to view the user's password
+the access key ID and secret access key once.
+If you lose them, you're going to have to regenerate them.
+So make sure you save that CSV file in a secure location.
+Always set up Multi-Factor Authentication
+on your root account.
+Remember, your root account has God-mode.
+So you know, if someone hacks your email
+and they can do a password reset,
+you're going to be screwed.
+So you always want Multi-Factor Authentication.
+The great thing is, setting up Multi-Factor Authentication
+on AWS is super simple.
+All you need is a smartphone
+and you just need to download the Google Authenticator app
+and then you can set up Multi-Factor Authentication,
+which we saw right at the start of this lab.
+And then you can create
+and customize your own password rotation policies.
+So we went in and we made sure our passwords, you know,
+had 12 characters, they had a uppercase letter,
+a lowercase letter, a number and then a special character.
+So that is what we've learned so far in this lab.
+In the next lab, what we're going to do
+is we're going to go ahead and create a billing alarm.
+This will tell us if our AWS account is going to go
+over a certain threshold and give us an alert.
+So if you've got the time,
+please join me in the next lecture.
+Thank you.
