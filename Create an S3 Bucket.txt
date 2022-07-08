@@ -1,0 +1,203 @@
+Okay. Hello, Cloud Gurus. Welcome to this lecture. So in this lecture,
+we're going to go ahead and start getting our hands dirty with S3 passed all the
+boring theory stuff as always the best way to learn something about AWS is to go
+ahead and get your hands dirty. So, let's log into the AWS console. Okay. So,
+here I am in the AWS console. Now notice our region is Northern Virginia.
+If we go over to services, you'll find S3 is under storage. So,
+go ahead and click in there and notice our region has now changed to global. So,
+S3 does not require a region selection. So,
+S3 is a global service,
+and we're going to find that out very quickly because when we create buckets,
+it creates a unique DNS name or web address name. So,
+our bucket names need to be unique. So, if you tried to register the bucket,
+"test bucket", it's gone. And somebody probably took that in 2008 or 2009.
+So, you will need to create unique bucket names.
+Now we can see in here that I don't have any buckets,
+so let's go ahead and create our first bucket.
+And we put our bucket name in here. So I'm going to do Ryan and Faye,
+Faye is my co-presenter for AWS this week.
+And some of the other courses, and I'm just going to do: one, two, three, four,
+five, six. (I'm) going to put that into the Northern Virginia region.
+Here we can copy our settings from existing buckets.
+I don't need to do that because I don't have any existing buckets.
+And here you can see it says bucket settings for block public access.
+So by default, when we create our buckets,
+all the files we put into that bucket cannot be accessible by the public.
+And it used to kind of be the other way round,
+people used to be able to put stuff in S3,
+and now they just make one tiny mistake on the UI and that bucket would suddenly
+become publicly accessible.
+And I am talking like over a decade ago and then they get angry at Amazon
+because all of a sudden, all their files that they thought were,
+private was suddenly public. Now,
+Amazon have gone to great lengths to make sure that that doesn't happen.
+They block everything by default.
+So you don't need to worry about the security of your files if you just use the
+default settings. So by default,
+nobody can access any of the files that you put in your
+public buckets - or in your buckets, unless you make them public.
+And we'll look at how we do that a little bit later on. Likewise,
+we've got versioning. You can have version control on your files,
+in your bucket. And we'll look at how to do that later on as well.
+We're not going to do that now. In here, we can have our tags. So, for example,
+we could say which department that this bucket belongs to,
+and maybe this is our human resource department that owns this bucket.
+So this is where we're going to store everyone's payslips, for example,
+or any kind of confidential information on employees. In here,
+default encryption, server-side encryption. So,
+is this encrypted on Amazon side? Yes or no?
+It's always good idea to enable server-side encryption by default.
+I'm not going to,
+I'm just going to leave it as the default settings and that is it.
+Let's go ahead and create our bucket. And it's created it in less than,
+you know, less than a second, essentially. So you can see our bucket in here.
+So let's go into our bucket. So this is the overview of our bucket.
+And then we've got these different tabs. We've got objects, properties,
+permissions, metrics, management, access points, et cetera.
+And in here we've got our objects.
+So our objects are simply the files that we're going to put into our bucket.
+So let's go ahead and upload some objects. In here,
+you've got the upload files and folders option.
+So I'm going to go ahead and hit add files.
+And what I'm going to do is just add these two files. So,
+a picture of me and Faye at Re-Invent,
+and then the rest of the A Cloud Guru team at Re-Invent.
+I'm going to go ahead and hit open.
+Then I'm going to scroll down and I'm going to go ahead and hit upload.
+And so that is now uploading my files and you'll be able to see here. It says,
+"Upload succeeded, view file's details below".
+And you can see our files in here. Then once you've done that,
+you can go and hit exit,
+and then you'll be able to see your files in your bucket here.
+So if we have a quick look at, let's say Ryan and Faye,
+and if you click on the file name,
+you'll be able to go into this individual object. And you can see all the,
+object overview in here and note the object URL.
+Now this is a publicly accessible URL. And if I was to click on it,
+we're going to get the following XML script. And it basically says, "error",
+the code is "access denied", the message is, "access denied",
+request ID is that (points to random number),
+and the host ID is that (points to other random number).
+So essentially a GUI can't access this file because we do not have the
+permissions to do so. So if we just go back ... so
+back in the file, if we scroll down,
+we can have a look at some other properties of it.
+So we can seethe management configurations, our bucket properties,
+we can enable versioning, which we'll do a little bit later on.
+We've got different things like object lock.
+This will basically lock the object from being deleted or overwritten.
+But we don't want to do that just yet. In here, we've got our storage class,
+so we can actually go in and edit our object storage class.
+And right now it's in standard,
+but we could change this over to One Zone Infrequently Access storage.
+And this is our cheapest storage available.
+We can even move it to reduce redundancy, Intelligent Tiering, Standard,
+Infrequently Accessed, whatever.
+And you can do this on both an object and a bucket-level. So,
+if you do it on an object-level, it's just being done to the files.
+If you're doing it on a bucket-level,
+then it's just done to every object within that bucket. So,
+let's go back and scroll down here. We've got our server-side encryption.
+We can go ahead and turn that on, if we want.
+We've also got our access control lists. We've got our tags,
+so we can tag our objects, individually as well.
+And that's about it.
+What we're going to do now is we're going to go back over to our object and
+we're going to try and make this object public.
+So we're going to try and make it publicly accessible. So,
+you can go to "actions" and we go over to "make public" and click on that.
+When public-read access is enabled and not blocked by (the) "block public
+access" settings, anyone in the world can access the specified objects. So,
+right now public access is blocked because our "block public access" settings
+are turned on for this bucket. So, if I go ahead and hit, "make public",
+we're going to get this error message. And it's just going to say: well,
+we can't do that because everything in this bucket is blocked.
+Let's go ahead and exit. So, (we're) now back in our buckets,
+so how do we remove "block public access"? How do we remove that setting? Well,
+of course it's a permission,
+so we need to go into our permissions and we can go ahead and hit edit.
+And then all you want to do is uncheck this.
+And that will basically allow you to make objects in your bucket public.
+So let's go ahead and hit save.
+And then it's going to ask us to type "confirm" in here.
+And so we're going to go ahead and hit confirm, and that has now been saved.
+And if we go back to S3, we can see that here's the name of our bucket.
+And here is the access-level and it says, "objects can be public".
+So things can be public in this bucket.
+So let's go ahead and try and make this image public now.
+So go over to actions and we'll go make public.
+And then what we'll do is we'll just hit make public.
+Now you'll see this time and it's worked.
+We successfully allowed this object to become public.
+So if we just exit out of it,
+and if we click in here and just click on the name of the object (clicks on
+"Ryan&amp;Faye" upload). You'll be able to click on the object URL,
+that will now load that object.
+So it is now loading it and I can send that URL to anyone in the world and they
+will then be able to essentially go in and view this
+object anywhere in the world. This is Faye and I at the AWS Summit, New York.
+I actually thought it was Re-Invent, but it's clearly not.
+It's at the AWS Summit in New York.
+So we go back and if we go back over to our object, now.
+If we just go back to "permissions",
+we can now also see that "block public access" is turned off for all of them.
+Now we've only made that one object public.
+So if we were to go back to our objects by clicking in here (the bucket) and
+going to Re-Invent, for example, and then clicking on this URL,
+even though we've made the bucket publicly accessible,
+we haven't made this object public.
+So that's the next thing that we are going to go ahead and do.
+So all we need to do is just go back to our bucket,
+click in here and go over to our "actions".
+And we're just going to scroll down and hit, "make public",
+go ahead and make that public, and then go ahead and exit.
+And then we'll be able to click in here and we'll be able to click on that URL.
+And there we are at Re-Invent. This is a replay,
+which is the party after Re-Invent (picture of people smiling in a huge lit
+warehouse). So at the end of Re-Invent,
+they always have a big after party here are some of the A Cloud Guru team.
+So what am I exam tips? Well, as, you know, bucket names share common namespace.
+So you cannot have the same bucket name as someone else.
+So you cannot get "test bucket" or "A Cloud Guru".
+So make sure you choose a name that's unique to you. When you view your buckets,
+you view them globally, but you can have buckets in individual regions.
+So we saw that we had a global view of S3,
+but when we actually create our buckets, they're created in individual regions.
+You can actually replicate the contents of one bucket to another bucket
+automatically using cross-region replication.
+So we have our bucket in Northern Virginia.
+We can actually replicate the contents of that bucket over to Sydney.
+Or you can change the storage class and encryption of your objects
+on-the-fly, and just remember the different storage classes.
+So we have S3 Standard, S3 Infrequently-Accessed,
+S3 One-Zone IA (Infrequently Accessed).
+We then have S3 Intelligent Tiering,
+(you) then have S3 Glacier and then S3 Glacier Deep Archive.
+So those are the six different storage classes available to your objects using
+S3. And then finally we looked at Transfer Acceleration.
+So if we've got our users all around the world and they want to upload a file,
+a large file, to our bucket in London,
+what they can do is upload it to an Edge Location.
+And then those Edge Locations use the Amazon backbone networks to bring
+it into London and it can be a hell of a lot quicker.
+It really just depends on network latency and where it is you're uploading your
+files to.
+And my final exam tip for S3 is how to restrict bucket access,
+or even how to control permissions on buckets. Yeah,
+three different ways to do this.
+The first is using a bucket policy and this is going to apply across the entire
+bucket.
+Then the other way we can restrict bucket access or grant object access is
+using object policies. And rather than applying this across an entire bucket,
+these are actually applied to individual files within your bucket.
+And then finally,
+we can use IAM policies to users and groups within your AWS account
+to control bucket access.
+So maybe you want your HR department to be able to access the HR bucket,
+but you don't want the Finance teams or the Sales and Marketing teams to be able
+to read those confidential information.
+So you can use identity access management policies and applying them to
+individual users or to groups which can contain individual users.
+And then they would be able to access that bucket or not,
+depending on the policies that you define. So,
+please remember those three going into your exam.
