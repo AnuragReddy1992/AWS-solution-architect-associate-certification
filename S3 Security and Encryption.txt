@@ -1,0 +1,104 @@
+Okay. Hello Cloud Gurus and welcome to this lecture.
+In this lecture we're going to learn about S3 security as well as encryption.
+So we learned in the last lecture that by default all
+buckets, when we create them are private,
+and that was those four little checkboxes and you can set up access
+control to your buckets using bucket policies and access control lists.
+Now bucket policies work at a bucket level.
+Whereas access control lists go all the way down to individual objects and S3
+buckets can be configured to create access logs,
+which logs all the requests made to your S3 bucket.
+So if someone tries to access an object that is going to be logged,
+and this can be sent to another bucket or even another bucket in another
+account. So if you want to log, who's accessing your objects in your S3 bucket,
+you can definitely do that
+and you can store those logs in an S3 bucket in your primary AWS account,
+or you can actually set it up in a different AWS account and so
+this is really,
+really important to understand the two different types of encryption because you
+will be tested on this in the exam. So there's encryption in transit.
+Now whenever you go and visit a website, if you're going to
+HTTPS, it means that the traffic is going to be encrypted in transit.
+So basically between your computer and the server,
+that traffic is encrypted,
+no one who's eavesdropping on that will be able to break it and understand what
+you're looking at and that's why we use HTTPS.
+So encryption in transit is always achieved by SSL or TLS as it's
+also referred to. So that's whenever you're browsing using HTTPS,
+that is encryption at transit.
+Encryption at rest is where we encrypt the data that's being stored.
+So let's say we have a word document being stored on a hard disk drive.
+If there's no encryption at risk and somebody steals that hard disk drive,
+they will be able to access that word document.
+So I'm talking about encryption at rest in terms of the way it works with S3.
+There's two different ways that we can do this. We can do it on the server side,
+or we can do it on the client side.
+The server side is where Amazon helped you encrypt the object and on the
+client's side, it's where you encrypt the object and then upload it to S3.
+So let's look at it on the server side and there's 3 different types.
+There's S3 managed keys.
+This is where Amazon manages the keys for you automatically.
+So you don't need to worry about the keys at all. When we talk about keys,
+a key is just a way of encrypting the object and then decrypting it.
+So it's just like you would use a key with a lock.
+So this is where Amazon manage all the keys. so that's S3 managed keys.
+It's sometimes referred to as SSE-S3,
+which is server side encryption S3. We then have AWS key management service.
+This is where you and Amazon managed the keys together and this is called
+managed keys server-side encryption with KMS and then we have
+server-side encryption with customer provided keys.
+This is where you actually give Amazon your own keys that you manage and you
+can encrypt your S3 objects doing that as well and then, like I said,
+you can actually encrypt the object yourself on the client side.
+So you might do this on your your Mac or your PC or whatever,
+and then you upload that object to S3.
+So there's four ways of really doing encryption there's server side encryption.
+So we've got SSE-S3, SSE-KMS,
+and SSE-C customer managed keys or customer provided keys and then we also
+have encryption using client side encryption,
+where you basically encrypt the object and then upload it to S3.
+So let's go ahead and have a look at how we can do this in the AWS console.
+Okay. So here I am in the AWS management console,
+and what we're going to do is we're going to go over to services and we're going
+to go over to S3, which is under storage,
+and then what we're going to do is we're going to look at our bucket that we
+created when we first created our bucket. so it's called Ryan and Faye 123456.
+Let's go ahead in there and we'll see our two objects that we uploaded.
+So let's start with reinvent 2019. How can I make this object encrypted?
+Well, all I have to do is click on it,
+and if I scroll down all the way to the bottom we'll be able to see server side
+encryption settings.
+So right now the default encryption is disabled and there's no server side
+encryption, but go ahead and hit edit. I can enable server side encryption.
+We have two different types of encryptions. We've got, um in terms of the key,
+we've got Amazon S3 key. This is where Amazon manage the keys they create,
+manage, and use it for us, AWS KMS,
+which we'll cover off later on in this course,
+this is where the encryption key is basically managed by yourself.
+We're going to use AWS our SSE-S3 keys,
+the Amazon's S3 key, and we're going to go ahead and hit save,
+and we can now see that that object has now gone ahead and become encrypted.
+So if we were to do an object overview and scroll down,
+we'll be able to see decryption default encryption is enabled and it's using an
+Amazon master key. So if we go back over to our bucket,
+we've got another object in here called RyanandFaye.jpg.
+We could go in and encrypt that individually,
+but that's not really very efficient.
+What we might want to do is encrypt the entire bucket.
+So we can do that by clicking on properties,
+going over to our default encryption and hit Edit and then in here,
+we're going to enable server side encryption,
+and we're going to do it using the Amazon S3 key, or SSE-S3
+and we're going to go ahead and hit save and now every object that we put in
+this bucket is going to be encrypted because the bucket itself is encrypted.
+So we've turned on encryption for the entire bucket,
+and we're using the Amazon S3 master key. So going into your exam,
+just remember that you can encrypt individual objects,
+but you can also encrypt your objects at a bucket level,
+which is much more efficient. So that's it for this lecture everyone,
+if you have any questions, please let me know. If not,
+feel free to move on to the next lecture. Thank you.
+
+
+
+https://aws.amazon.com/blogs/security/how-to-prevent-uploads-of-unencrypted-objects-to-amazon-s3/
