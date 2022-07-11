@@ -1,0 +1,85 @@
+Okay. Hello, Cloud Gurus and welcome to this lecture in this lecture,
+we're going to look at S3 Object Lock and Glacier Vault Lock,
+and both of them are very similar to each other.
+One works for S3 and one works for Glacier. So what is S3 Object Lock?
+Well, you can use S3 Object Lock to store objects using a write once
+read many model or a WORM model and it can help you prevent
+objects from being deleted or modified for fixed amount of time or
+indefinitely.
+So if you've got an object and you don't want somebody to be able to go in and
+modify it, so, you know, change the data inside it,
+or you don't want them to be able to delete it,
+you can use S3 Object Lock to basically lock that object so it
+becomes basically unmodifiable and undeletable.
+So you can use S3 Object Lock to meet your regulatory requirements that require
+WORM storage,
+or you can use it to add an extra layer of protection against object changes and
+deletion and it comes in a couple of different modes.
+We've got governance mode and in governance mode users can't right or
+delete an object version or alter its lock settings,
+unless they have special permissions. So with governance mode,
+you can tech objects against being deleted by most users,
+but you can still grant some users permissions to the retention settings or
+delete the object if necessary.
+So governance modes basically locks it down to users who have a set of
+special permissions. Now,
+this is opposed to compliance mode and compliance mode a protected object
+version can't be overwritten or deleted by any user,
+including the root user in your AWS account. So governance mode,
+you can go in and alter it,
+but you need special permissions with compliance mode even the root user cannot
+do it. So when an object is locked in compliance mode,
+its retention mode can't be changed and the retention period can't be shortened.
+Compliance mode ensures an object version can't be overwritten or deleted for
+the duration of the retention period and retention periods is basically
+a period that protects an object version for a fixed amount of time.
+So it might be a week, might be a month, might be a year, et cetera.
+So when you place your retention period on an object version,
+S3 stores a timestamp in the objects version,
+metadata to indicate when the retention period is going to expire and then
+after the retention period expires,
+the object version can then be overwritten or deleted the user,
+unless you've also placed a legal hold on the object's version.
+You're probably wondering what a legal hold is.
+S3 Object Locks also enables you to place a legal hold on an objects
+version and like a retention period,
+a legal hold prevents an object version from being overwritten or deleted.
+However,
+a legal hold doesn't have an associated retention period and remains in effect
+until removed.
+Legal holds can be freely placed and removed by any user who has the S3
+put object legal hold permission.
+So that is S3 Object Lock let's move on to Glacier Vault Lock.
+Glacier Vault Lock basically allows you to easily deploy and enforce compliance
+controls to individual S3 Glacier Vaults with a Vault Lock policy and you can
+specify controls such as WORM in a vault Lock policy and lock the policy for
+future edits. Once locked the policy can no longer be changed.
+So it's just a way of locking your objects inside of Glacier,
+similar to S3 Object Lock. So onto my exam tips,
+just remember going into your exam if you see something talks about a WORM
+model,
+you need to lock an object I'm using a write once read many model,
+then you can use S3 Object Lock.
+Object Locks can be on individual objects,
+or they can be applied at cross the bucket as a whole.
+Object Locks come in two modes, governance mode and compliance mode.
+If you remember governance mode users can't overwrite or delete an object
+version or alter its lock settings, unless they have special permissions.
+With compliance mode though, protected objects version,
+can't be overwritten or deleted by any user,
+including the root user in your account and then finally just
+remember what S3 Glacier Vault Lock is.
+It allows you to easily deploy and enforce compliance controls for individual S3
+Glacier Vaults with a Vault Lock policy and you can specify controls such as
+WORM in a Vault Lock policy and lock the policy from future edits and once
+locked, the policy can no longer be changed.
+So really you just need to go into your exam understanding the difference
+between Object Lock and S3 Glacier Vault Lock.
+Object Lock is for S3 objects in S3.
+S3 Glacier Vault log is for, you know,
+Vaults inside of Glacier and then just remember with S3 Object Lock,
+you've got different modes,
+you've got your governance mode and you've got your compliance mode and in
+compliance mode, even the root user can't go in and delete that object.
+So that is it for this lecture everyone, if you have any questions,
+please let me know if not, feel free to move on to the next lecture. Thank you.
