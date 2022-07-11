@@ -1,0 +1,51 @@
+Okay. Hello, Cloud Gurus and welcome to this lecture and in this lecture,
+we're going to look at S3 Transfer Acceleration.
+So what is S3 Transfer Acceleration?
+Well we did talk about it in a little bit of detail in the S3 101
+but essentially it utilizes the CloudFront edge network to accelerate your
+uploads into S3 and instead of uploading directly to an S3 bucket,
+you can use a distinct URL to upload directly to an edge location,
+which will then transfer that file to S3 and you'll get a distinct URL to
+upload. So it might look something like this,
+a cloud guru.S3,-accelerate.Amazonaws.com and we're going to see that when we go
+over to Google. So just a reminder as to how it works. We've got a bucket,
+let's say it's in Ireland or in the UK,
+we've got our users all around the world.
+Our users will upload to an edge location first that will then upload the files
+across Amazon's backbone network directly to our S3 bucket and what's really
+cool about Transfer Acceleration is Amazon has built a tool that allows us to
+test it. So let's go over to Google and check that out. Okay.
+So I typed in S3 Transfer Acceleration tool into Google,
+and you can see the link here and it is actually hosted in an S3 bucket.
+So if you go ahead and click on it,
+it will load this page and it's going to take about five or six minutes to
+actually start or to actually finish but basically it's going to compare your
+upload doing it directly to all these different regions compared to if
+you turn on S3 Transfer Acceleration.
+So I'm just going to pause the video for five minutes and wait for this to
+finish. Okay. So that has now completed.
+So you can see if I am I'm based in London right now and if I was
+uploading to S3 directly,
+that would be my speed and if I use it if I used S3 Transfer
+Acceleration,
+then it would be 137% faster to Northern Virginia.
+It'd be 218% faster to San Francisco,
+173% faster to Oregon,
+it's actually slower to Dublin and this can be explained just by a sort of
+normal network traffic.
+So basically the regions that are closest to you and where you physically are,
+sometimes it can be a bit slower. It really just depends,
+but in most cases you can see basically everywhere it is faster.
+So that is S3 Transfer Acceleration and in terms of my exam tips,
+just remember exactly what it is. So you've got your users,
+you've got your edge locations,
+and your users upload their big files to the edge locations,
+which then traverse Amazon's backbone network and will upload those files
+directly to your S3 bucket in the region that you specify.
+So that is it for this lecture everyone, if you have any questions,
+please let me know. If not, let's move on to data sync overview.
+
+
+
+
+https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html
