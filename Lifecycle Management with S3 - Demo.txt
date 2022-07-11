@@ -1,0 +1,72 @@
+Okay. Hello Cloud Gurus. Welcome to this lecture. In this lecture,
+we're going to look at the lifecycle management with S3.
+So this is a demo and you will need to log into the AWS console. Okay.
+So here I am in the AWS console and as always, we will find S3 under storage.
+So go ahead and click in there and we're going to open up our bucket that we
+were using in the last lecture. So my version control demo,
+we're going to go in here and then what we want to do is go over to management
+and in management, we can find our lifecycle rules.
+So let's go ahead and create a lifecycle rule.
+So we'll call this-we'll just call it main lifecycle rules,
+something like that lifecycle rule.
+Now note that you can choose a rule scope,
+so you can limit the scope of this rule using one or more filters and the filter
+could be a prefix. So it could be a sub folder in your bucket. So you could say,
+Hey,
+only do this to the images of sub folder inside my bucket or you can
+say this rule applies to all objects in the bucket and if you do that,
+you have to acknowledge that it's going to apply to every object in the bucket.
+So I'm going to go ahead and do that. Now in here,
+this is where we determine our lifecycle rule actions and the more of these
+that you click, the more options you get down the bottom.
+So let's go through each one. So start with the top one.
+So transition current versions of objects between storage classes.
+So let's say that we have it just in our standard and after 30
+days we want to transition it to standard infrequently accessed.
+So we can go ahead and do that.
+We can transition previous versions of the object as well between storage
+classes.
+So we might want to do that 30 days after that object becomes non-current
+and that just simply means that there's been another version,
+a newer version that's been done over that.
+We could expire current versions of objects.
+I'm not going to do that or we could also do permanently delete previous
+versions of objects. So let's go ahead and do that and what we'll say is, Hey,
+after it's been a previous version,
+let's say 60 days after it's been overwritten,
+we want to delete that version of that object and in here we can actually add in
+more transitions. So this is the current version. So after 30 days,
+we're going to put it into standard infrequently accessed,
+and then maybe we want to move it over to Glacier and we want to do that
+let's say after 60 days, and then in here, you've got to say,
+I acknowledge that. So essentially what's happening in here is you put in,
+in fact, there's a really good summary down the bottom here.
+So in here we've got current versions of our objects and previous versions of
+our objects. So day one or day zero, we upload our object.
+30 days later,
+it's transitioned over to standard infrequently accessed and then 60
+days later,
+the objects is going to transition over to Glacier and be archived off.
+Our previous versions of our objects.
+basically when the object becomes non-current 30 days later,
+we're going to move that over to infrequently accessed and 60 days later,
+we may might want to go ahead and permanently delete that.
+So you can cut this in a lot of different ways using your lifecycle rule actions
+and you can add in transitions under each one
+and then you get a summary of what's going to happen in here and once you're
+happy with everything,
+you go ahead and create the rule and that has now created a lifecycle rule,
+which is across the entire bucket. If you don't want it,
+you can edit it or delete it as well and that's how lifecycle rules work and
+you'll always be able to find them under management in here, lifecycle rules.
+So let's go onto my exam tips. So my exam tips, well,
+just remember lifecycle management is so basically allows you to automate moving
+your objects between the different storage tiers.
+It also can be used in conjunction with versioning.
+So you don't need versioning turned on, but if you do have it turned on,
+you can use it in conjunction.
+So you can do it with your current objects as well as previous versions and like
+I just said,
+it can be applied to current versions and previous versions as well.
+That's it for this lecture everyone, if you have any questions,
+please let me know. If not, feel free to move on to the next lecture. Thank you.
