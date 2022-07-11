@@ -1,0 +1,214 @@
+Okay, hello Cloud Gurus,
+and welcome to this lecture,
+and this lecture we're going to look at
+AWS Organizations and consolidated billing.
+Now I know you must be wondering,
+I thought this was an S3 section of the course,
+why are we looking at AWS Organizations
+and consolidated billing,
+and what do they have to do with S3?
+Well in the next lecture
+we're going to look at how we can do
+cross account access with S3,
+how we can go in and use another AWS account's S3 bucket.
+But the only way we can enable that
+is by turning on AWS Organizations,
+so I want to just spend this lecture telling you
+what AWS Organizations is
+and how consolidated billing works,
+and then in the next lecture we'll go back to S3.
+So what is AWS Organizations?
+It's an account management service that enables you to
+consolidate multiple AWS accounts into an organization
+that you create and centrally manage.
+So let's have a look up here.
+We've got our organization,
+this could be the company that you work for.
+Then we have our Root AWS account.
+This is our master account,
+and the best practices are, is we use this for billing only,
+we don't deploy any resources in there.
+And then within our organization,
+we have OUs, or organizational units,
+so this might be our finance department,
+this might be our developers,
+and this might be our production developers,
+or this could be our production account,
+and this could be our Test and Dev developers,
+this could be TEST, this could be DEV,
+this could be UAT, et cetera, et cetera.
+And the way you apply permissions
+is by using policies,
+so just like what we do in IAM,
+we apply a policy document,
+and then that policy will then be inherited.
+So if we apply this policy here to this organizational unit,
+and perhaps this is our finance team,
+and we don't want our finance team
+using something like EC2,
+so we say hey, let's block EC2 to the entire finance team,
+that will then trickle down to
+all the other AWS accounts and organizational units
+underneath it.
+So that's all AWS Organizations is,
+it allows you to have multiple AWS accounts
+and be able to centrally manage them.
+You can also do consolidated billing.
+This is essentially where all your accounts...
+The fundamental principle behind pricing with AWS is
+the more that you use, the less that you pay.
+If you look at S3 storage for example,
+the more storage you use, the less and less you pay,
+it comes down in price.
+Now, when you use consolidated billing
+with AWS Organizations,
+it takes into account the aggregate of all of your accounts.
+The more you use S3 across the entire organization,
+the less that you pay.
+Typically, what we'll do is we'll have
+a paying account in here,
+this is independent and we would want it to not be able to
+access resources of the other accounts.
+Then we have our linked accounts,
+we've got our Test and Dev,
+our production,
+our back office,
+and these are all going to be independent.
+And then you add up the cost
+of all of these different accounts,
+and then your bill is going to be just, say, over £10,000,
+but you're getting the best price possible
+because you're consolidating your bill under one bill.
+The advantages of consolidated billing
+is it's one bill per AWS account,
+it's very easy to track charges and allocate costs,
+and you get volume pricing discount.
+Why don't we go ahead now and have a look
+at how we can set up AWS Organizations?
+You will need two AWS accounts for this in order to do it.
+You don't have to do this,
+you can just watch my video,
+it just means that if you don't have it set up,
+you won't be able to do the next lecture
+which is how you do cross account access using S3.
+But again, you don't necessarily have to know how to do it,
+it is a popular exam topic, however.
+You need to know the three different ways
+in which you can do that,
+but we'll cover that off in the next lecture.
+This is a lab,
+and you will need to log into the AWS console.
+Okay, so I'm going to log into my first account,
+it's just called A Cloud Guru account A,
+and that's at A Cloud Guru.
+I'm going to go ahead and hit next,
+type in my password.
+Now this is a brand new account
+that I just set up a few minutes ago.
+What I'm going to do is I'm going to go over to services,
+and you'll be able to find organizations here.
+If we just do a search for organizations,
+it's under the Management and Governance.
+You can also get to it if we click up here
+and go over to my organization,
+that's another way we can get to it.
+So going to load to organizations page.
+Now if this is a new account
+and you've never created an organization before,
+this is how we're going to do it.
+We're going to go in and click create organization,
+and in here we're going to go ahead
+and hit create organization.
+This will make us the root account for this organization,
+and you can see that by this little star,
+so this is the master account.
+So A Cloud Guru account A, and that's it.
+Now what we want to do,
+is we want to invite other accounts.
+I'm going to go in and hit add account,
+and I'm going to invite an account.
+I can also create an account within the master account.
+Because this is a new account,
+you can see that I have to verify that email address,
+so I'm just going to go ahead and do that.
+I've now verified my email address,
+so if I click on AWS Organizations again,
+I should be able to go in and add an account
+and invite an account,
+and now I can enter in the email or account ID
+of the account that I want to invite.
+I'm going to invite A Cloud Guru account B to A Cloud Guru.
+I'm going to go ahead and hit next, and hit invite.
+And it really is that simple.
+Now all you need to do is go check your email,
+and click on the link,
+and that will link that account to the organization.
+Now in order to see it,
+you will have to log in to the other accounts,
+so let's go in
+and log into it's A Cloud Guru account B at a cloud,
+and then dot guru.
+going to go ahead and hit next.
+And in here I just type my password,
+and I should be able to sign in.
+I've clicked the link in the invite
+and it's loaded this page.
+It says you have invitations to join other organizations,
+so I'm going to go ahead and accept,
+and now I'm going to join this organization.
+Go ahead and hit confirm.
+You can see that this account
+now belongs to that organization,
+and I have the option to leave the organization as well.
+I'm just going to log in as the master account.
+And I've just logged in as the master account,
+so again if I go over to services
+and scroll down to AWS Organizations,
+I should now be able to see those organizations in there,
+and you can see here A Cloud Guru account A,
+A Cloud Guru account B.
+So it really is that simple.
+Up here you will notice
+that we've also got our organize accounts,
+so in here we create OUs or organizational units,
+or we might have one for finance,
+we might have once for human resources,
+we might have one for our Devs,
+we might have one for production, et cetera.
+Then we can drop our AWS accounts in there.
+And in here, we've got our different AWS policies.
+We can actually apply policies to organizational units,
+or to accounts and restrict access,
+so we could say, hey, I don't want people
+in my Dev account using S3,
+or I don't want people in the finance team using EC2.
+You do that through a service control policy,
+very similar to how we use IAM
+and apply policies to our users, groups and roles,
+in AWS Organizations we apply service control policies
+to our organizational units or to our individual accounts,
+and then we can restrict access
+to what those AWS accounts can do.
+So let's go on to my exam tips.
+So onto my exam tips,
+and some best practices with AWS Organizations,
+just to remember to always enable
+multi-factor authentication on the root account.
+You should always use a strong and complex password
+on the root account.
+The paying account should be used for billing purposes only,
+do not deploy resources into the paying account,
+and the paying account is simply the root account
+or master account.
+And then we enable or disable AWS services
+using service control policies or SCP,
+and we do this either on an organizational unit basis,
+or on individual accounts,
+so if you don't want the finance team
+spinning up EC2 instances,
+you disable EC2 instances using service control policies.
+That is it for this lecture everyone,
+if you have any questions please let me know.
+If not, feel free to move onto the next lecture,
+where we're going to look at how we can use S3 buckets
+across multiple AWS accounts.
