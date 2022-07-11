@@ -1,0 +1,231 @@
+Okay. Hello, Cloud Gurus
+Welcome to this lecture.
+In this lecture we're going to look
+at cross-region replication.
+So this is a lab
+and you will need to log into the AWS console.
+Okay, so here I am in the AWS console.
+If we go over to S3, it's always under storage.
+And what we're going to do is we're going to go ahead
+and create our destination buckets.
+So what we want to do is replicate all our objects
+from this bucket, my version control demo
+over to a new bucket,
+and we'll put it in a different region.
+So let's call it myreplicationbucket.
+And then TokyoACG12345
+Hopefully that will be a unique name.
+And I'm going to put this in Tokyo, surprise, surprise.
+And in here I'm going to untick
+block all public access settings.
+Cause I want to be able to see
+whether or not the replication is working correctly.
+And we're going to acknowledge that that's fine.
+In here, bucket versioning,
+I'm going to leave it as disabled
+and you'll see why in a second,
+we'll leave everything else as default.
+And we'll go ahead and create our bucket.
+So that has now created our bucket.
+I'm just going to close this
+and we can see our bucket in here:
+myreplicationbucketTokyoACG.
+If we go into our original bucket with version control.
+If you remember, we've got two different versions.
+We have version one, we deleted version two.
+And then this is version three.
+And you can see it slightly bigger
+because we added the line of text.
+This is the final version.
+And then what we want to do
+is we want to go over to management
+and here we can see our lifecycle rules that we did earlier.
+And if we scroll down,
+we can see our replication rules under here,
+and we don't have any replication rules.
+So let's go ahead and create a replication rule.
+I'm going to call this rule replicatetoJapan.
+And here we can choose our IAM role.
+If you haven't created one before,
+then just go ahead and create a new role.
+You can see here,
+I was doing a demo a little bit earlier,
+but I broke something.
+So I have to redo it.
+But there is a role
+for cross cross-region replication in there,
+but that's only because I've created it before.
+So I'm just going to create a new role.
+And down here, we've got our source of buckets.
+So again, similarly to what we were doing
+with lifecycle rules,
+we can do it either to just some objects,
+depending on a filter,
+or we can do it to all objects in the bucket.
+And that's what I'm going to do
+to all objects in the bucket.
+And in here, we've got our destination.
+So do we want to choose a bucket in this account
+or do we want to choose a bucket in another AWS account?
+Let's go ahead and browse S3.
+And we're going to select
+our replication bucket TokyoACG12345.
+And you can see here right away,
+it says replication requires visioning
+to be enabled for the destination bucket.
+So we must have versioning turned on
+in our destination bucket
+in order for cross-region replication to work.
+So let's go ahead and enable a bucket replication.
+That can be a very popular exam topic by the way.
+So do remember that going into your exams.
+And here we can change the storage class
+for our replicated objects.
+So we can say, hey, instead of it being standard,
+let's make it standard infrequently accessed,
+or one zone IA or reduce redundancy or intelligent tiering
+or glacier or whatever.
+I'm going to do in standard IA.
+Here we've got replication time control
+and this basically guarantees it's going to replicate 99.99%
+of your new objects within 15 minutes.
+I'm going to leave that off.
+And here we've got replication metrics and events,
+and this basically allows you to monitor it
+through CloudWatch metrics.
+We don't need to do that.
+We'll just leave everything as default.
+We can replicate objects encrypted with AWS KMS
+if we wanted,
+and we can also replicate our delete markers.
+I'm not going to do that.
+I'm going to leave everything is default.
+I'm going to go ahead and hit save.
+And that has now created our replication rule.
+So what do you think has happened to our objects
+that are in our current bucket?
+Do you think they've been replicated across?
+So these objects here, mydocument.txt
+version three and version one,
+do you think they've already been replicated across
+to our bucket in Japan?
+Well, let's go in and have a look
+and the answer is no, they haven't.
+Now what happens with replication?
+Cross-region replication,
+is it only starts working the moment you turn it on,
+it doesn't take the objects that are already in your bucket
+and replicate them across when you turn it on,
+it only does it for all new objects
+from that point in time forward.
+So do remember that going into your exam as well.
+So what we want to do is we want to go in
+and add a new version of our document.
+So we're going to go in here
+and I'm just going to go in here
+and I'm going to update mydocument.txt
+So I'm in mydocument.txt,
+I'm going to call this version four.
+I'm going to say, this is the final final version.
+Go ahead and save that.
+And I'm back in the console
+and we're going to go and upload that file.
+So let's go ahead and add that file, mydocument.txt,
+You see it's version four, the final final version.
+Let's go ahead and hit upload.
+And that has now uploaded.
+If we go in and hit exit,
+we should be able to see three different versions.
+So there it is.
+We've got our 19-byte, 47-byte and our 53-byte file.
+If we tried to click on this and have a look at it,
+of course we won't be able to see it
+because we haven't made it public.
+Let's go ahead and make it public as well.
+So if we go back in here,
+we'll make this object public
+and go to actions, make public and make public.
+And now we should be able to see it when we go in.
+So if we click on our document,
+and then go over to here and click on our object,
+we can now see that it is now public.
+So let's see if it has a replicated across.
+And do you think that,
+has it replicated all the previous versions as well?
+Or do you think it's just the new version
+that's been replicated across to our bucket?
+And also, what do you think has happened
+to the public permissions?
+Do you think when I changed it in the source bucket
+it's changed it in the destination bucket?
+Well, let's go ahead and have a look.
+So we go into our destination bucket
+that has definitely replicated across.
+You can see it's a 53-byte file.
+Let's have a look at our version history
+and you can see it's only the newest version
+that's been replicated across.
+So it did not replicate all previous versions either.
+And if we go in here and click on it,
+surprise, surprise, we're not going to be able to view it,
+because we haven't made it public in our destination bucket.
+So we can do that if we want, but I'm not going to bother,
+but I just want to show you
+that if you change the permissions of an object
+in the source bucket, it does not change those permissions
+in the destination bucket.
+So bear that in mind going into your exam as well.
+And that's how cross region replication works.
+And the cool thing about cross-region replication
+is you can do it between buckets in the same AWS account,
+but you can also do it for buckets
+in different AWS accounts.
+And a typical use case of where you would do this
+is let's say, you've got all your log files
+for, let's say like a BPC or CloudWatch or whatever,
+whatever it is you're logging inside your AWS environment.
+It all comes into a bucket in S3 in that production account,
+you can then set up a rule
+so that that's replicated across
+to another AWS account in S3,
+and that people in your production account can't access it
+in the second account.
+So you could have that as your audit account.
+And then that way, if people are going in and changing logs
+in the production account if something dodgy is going on,
+you have a record of all the original data
+in the secondary account.
+And we cover that off
+in the certified security specialty in a lot more detail.
+So that is it for this one.
+Let's go ahead and have a look at my exam tips.
+And so onto my exam tips.
+Remember that versioning must be enabled
+on both the source and the destination buckets
+in order for replication to work.
+Remember that files
+in an existing bucket are not replicated automatically.
+And we saw that in our lab, we have to add new files.
+All subsequent or updated files
+will be replicated automatically.
+Delete markers are not replicated,
+and then deleting individual versions or delete markers
+will also not be replicated.
+And then just understand
+what cross-region replication is at a high level.
+So that is it for this lecture, everyone,
+if you have any questions please let me know.
+If not, feel free to move on to the next lecture,
+which is on transfer acceleration.
+
+
+
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-what-is-isnot-replicated.html#replication-what-is-not-replicated
+
+https://aws.amazon.com/solutions/implementations/cross-region-replication-monitor/
+
+https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-add-config.html
+
+https://aws.amazon.com/about-aws/whats-new/2020/11/amazon-s3-replication-adds-support-for-replicating-delete-markers/
