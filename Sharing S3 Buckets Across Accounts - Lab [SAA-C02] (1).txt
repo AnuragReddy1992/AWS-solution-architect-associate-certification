@@ -1,0 +1,146 @@
+Okay. Hello, cloud girls. And welcome to this lecture in this lecture.
+We're going to look at how we can share S three buckets. Yeah. Cross accounts.
+Now this is mostly a theoretic [inaudible] lecture,
+but we will have a lab where we can show you how to enable access, uh,
+to [inaudible] from one AWS account to another.
+You must have done all the steps in AWS organizations in order for this lab to
+work. So you must have done all the steps in the last lecture. Um,
+if you haven't, you just want to watch along. Don't worry.
+We're not going anywhere after this lecture,
+you don't need these buckets shared across accounts.
+We're not going to be using that again.
+It is a really important exam topic that does come up.
+So there are three different ways to share as three buckets across accounts.
+First one is using bucket policies. Now,
+if you remember bucket policies apply across the entire bucket,
+we're going to use bucket policies in conjunction with identity access
+management. Um,
+so this is going to apply across the entire bucket and it's programmatic access
+only, which means that you wouldn't be able to do this using the console.
+The other way is by using bucket access control lists. Now,
+if you remember bucket ACL was go all the way down to individual objects.
+So you use these in conjunction with identity access management. Again,
+this is going to be programmatic access only because we don't come from a
+developer background. We want to be able to do this and see it in the console.
+So in this lecture,
+what we're going to look at doing is how we can do this using identity access
+management roles. And it,
+this has gives you programmatic and console access as well.
+Now it's kind of annoying cause we cover off roles in a lot more detail in the
+next section of the course or role is just a way of temporarily granting
+access to an AWS resource. Um, either from a, another AWS,
+a service such as [inaudible] or by, uh, other AWS accounts.
+And we will cover it off in [inaudible] in the next section,
+the course will show you how we can use roles to access yes, three.
+But in this one,
+what we're going to do is create an IAM role that will allow us to access, um,
+uh, an S three bucket in a, another AWS account.
+This is a lab and you will need to log into the AWS console. Okay?
+So I've looked into the AWS console. This is a cloud guru account.
+A if I go over to my organization,
+I'll be able to see that this is the root account. So you can see it here.
+It's got the little star, the master account.
+Now the account I want to add is this one here. Uh,
+I've blurred out the account IDs, but that's what I'm going to go ahead and add.
+So I'm going to go over to my services.
+And what I want to do is go down to identity access management and what we're
+gonna do, it was create our first role. So we click on role.
+Let's hit create role, and here we've got different types of trusted entities.
+So I'm an AWS service. So we could give this role to an [inaudible] instance.
+For example, we're not going to do that. We're going to give it to,
+to another AWS account.
+So let's click up there and I want you to paste in the account number,
+all of your other account, uh, in here, and then go ahead and hit next.
+And then what we want to do is create a row and we're going to attach some
+policies to this role. So this is what gives us our access.
+So I'm going to type in S three and I want to give S3 full access
+to this role. And that's it.
+I don't want them to be able to use any other services such as [inaudible] et
+cetera. So next, I'm going to add my tags.
+I'm just going to leave that as blank and I'm going to give my role a name and
+we'll call it S three and then we'll call it a cross
+account, cross account access,
+something like that. And then I'm going to go ahead and hit create row.
+So that has now created my role.
+I can see it in here and you will be able to notice here. It says,
+give this link to users who can switch roles in the console.
+So I want you to copy that and put that into notepad or put it somewhere safe
+because you will need this link a little bit later on.
+Once you've done that all you need to do is go ahead and sign out and we're
+going to sign into our other AWS account.
+So I'm signing into my other AWS account now than to did my username and
+password. As you can see, it's a cloud account bait.
+And now what I want to do is go over to services and I want to go down to
+security, identity and compliance and going to go down to IAM. So I'm in,
+I am, and I want to go over to users and we're going to add a user.
+We need to do this cause you can't do this using the root account.
+So I'm going to call this username, Ryan Cronenberg,
+and I'm going to give myself program management console access.
+So we're in the management console. I'm not going to do programmatic access.
+We're going to cover that off in the next section of the course,
+I'm going to give myself a custom password. So just enter it in here.
+And then I'm not going to do a password reset in here.
+I'm going to add my user to a group.
+So let's create a group and we'll just call it administrator access. It's fine.
+So call it. This group name is admins. Go ahead and create the group.
+And we've attached a policy to that group. I'm going, of course,
+any user in that group is going to inherit the administrator access
+policy.
+So let's go ahead and hit next and hit next and create our user.
+So we've now created our user and they can sign in using this
+address. So why don't you copy that link to your clipboard?
+And then what I'm going to do is go ahead and log out now navigated to that link
+and I'm going to type in my username. So Ryan Cronenberg,
+and then in here going to do my credentials,
+go ahead and sign in.
+And so now signed in as that user who has administrator access to this site,
+you can see my username up here. Now, if you have a look,
+we've actually got a new button, it says switch role.
+We can now click the switch, roll button. Now in order to set this up,
+I want you to just paste that link that you had into your,
+you can go through here and fill this out,
+but you are going to have to remember the row name.
+So it's much easier to use that link that we saved earlier.
+So I pasted that into my browser and it's automatically filled out all the
+things that I need.
+And then all I'm going to do is go ahead and hit switch role.
+And I'll now be logged in to the other account. You can see up here,
+S3 cross account access, and then at, and then the account number. Now,
+if I go ahead and let's say, I want to go into billing.
+I want to see how much this account is getting billed,
+or I won't have permissions for that. It says you need permissions.
+The only permissions that we gave to this role is to [inaudible].
+So if I go over to services and go over to S3,
+I should be able to view all the buckets. There's no buckets in there right now,
+but I can go ahead, create a bucket.
+I'm just going to give it a random name and hit create.
+And then that bucket will then be created because I've got a S3 administrator
+access. So you can see I've been able to create that bucket.
+I won't be able to access any other AWS service though,
+because my permissions are literally just locked down to S three.
+So here I am in at UC to got,
+can't even see how many running instances there are, et cetera, et cetera.
+I could go ahead and try and launch an instance. Uh,
+but I'm not going to be able to do that, uh,
+simply because I don't have the permissions.
+The only thing I've got is the permissions to, uh, and there you go.
+You can see an error occur describing your selected AMI.
+I'm the only permissions I've got is, uh, for S three.
+So it's pretty simple. That's how you set it up. Let's go over to my exam tips.
+So going into the exam, you're going to be awesome.
+The three different ways are to share as three buckets across accounts.
+So you can use bucket policies with identity,
+access management and bucket policies always applies across the entire bucket.
+You can't lock down individual objects, and this is programmatic access.
+Only you can use bucket HCLs and identity access management, again,
+bucket ICLs go down to the individual, um, objects, uh,
+but it is programmatic access. Only if you need console access,
+you do exactly what we did just did we go into the master account,
+we create a cross account IAM role.
+We then go into the other account,
+make sure we've got a user that is set up in that other account.
+And then we just go over to the switch roles button,
+and then there'll be able to switch into the other AWS account and be able to do
+things depending on their level of permissions on that role.
+So that is for this lecture. Everyone, if you have any questions,
+please let me know. If not, feel free to move on to the next lecture. Thank you.
