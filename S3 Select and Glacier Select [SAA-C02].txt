@@ -1,0 +1,42 @@
+Okay. Hello, Cloud Guru and welcome to this lecture. In this lecture,
+we're going to look at S3 Select and Glacier, Select.
+So let's start with S3 Select. What is it? Well,
+basically it enables your applications to retrieve only a subset of data.
+I'm an object by using simple SQL expressions.
+So it's a way of essentially pulling your data from S3, using SQL.
+By using S3 Select to retrieve only the data needed by your application you can
+achieve dramatic or drastic performance increase and in many cases you can get
+as much as a 400% improvement.
+So let's say we've got our object that's sitting in S3.
+In order to get data out of that object, let's say it's a CSV file.
+It might be zipped up for example,
+we need to download the entire file extract or unzip the
+file, and then go ahead and query our data. But by using S3 Select,
+we can actually just go ahead and write a simple SQL query,
+which directly goes in and grabs our data and it's only downloading the data
+that we need.
+So let's assume all of your data is stored in S3 and like I said, in a zip file,
+it contains CSV files. Without S3 Select, you would need to download,
+decompress, and process the entire CSV file to get the data you need.
+With S3 Select you just use a simple SQL expression to return only the data
+from the store that you're interested in instead of retrieving the entire object
+and this means you're dealing with an order of magnitude less data,
+which improves the performance of your underlying application.
+So that is all S3 Select is.
+It's a way of using SQL to download the data that you need from
+S3. Glacier Select very similar concept.
+Some companies in highly regulated industries,
+such as financial services or health care write data directly to
+Amazon Glacier to satisfy compliance needs like the SEC rule
+17 8-4 or HIPAA requirements, for example,
+and many S3 uses have lifecycle policies that are designed to say,
+save on storage costs by moving their data into Glacier when they no longer need
+to access it on a regular basis. So Glacier Select is just like S3 Select,
+and it allows you to run SQL queries against Glacier directly.
+So that's all you need to know going into the exam.
+Just remember that S3 Select is used to retrieve only a subset of data from an
+object by using simple SQL expressions.
+You can get data by rows or columns using simple SQL expressions,
+and you basically save money on data transfer and increase your speed.
+If you have any questions, please let me know. If not,
+feel free to move on to the next lecture. Thank you.
