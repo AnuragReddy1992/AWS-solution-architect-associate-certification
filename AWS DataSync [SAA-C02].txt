@@ -1,0 +1,34 @@
+Okay. Hello, Cloud Gurus and welcome to this lecture.
+This is a really quick lecture on DataSync. Essentially.
+You just need to understand what it is going into the exam. So what is it? Well,
+DataSync basically allows you to move large amounts of data into AWS,
+and typically use it on your, on premise data center.
+You didn't stall the data sync agent as an agent and you would do this on a
+server that connects to your NAS or file system and that will then copy
+data to AWS and write data from AWS.
+So it's a way of synchronizing your data and it automatically encrypts your data
+and accelerates transfer over the wide area network.
+It performs automatic data integrity checks in transit and at rest as well and
+essentially what it does is it seamlessly connects to Amazon S3, EFS,
+or Amazon FSX for Windows file server to copy data and
+metadata to and from AWS.
+So basically it's exactly what it sounds like on the tin.
+It's a way of sinking your data to AWS.
+So going into the exam, that's really all you need to know.
+You need to know that it's used to move large amounts of data from on-premise to
+AWS. It's used with NFS and SMB compatible file systems.
+Replication can be done hourly, daily, or weekly,
+and the way you set it up is you just install the data sync agent to start the
+replication. Typically you'd do that on premise. However,
+you can also use data sync to replicate EFS to EFS and
+so if you were doing it like that,
+essentially you install the data sync agent on an EC2 instance that was
+connected to it,
+EFS and then you can use that data sync agent to replicate your EFS
+to a,
+another copy or another EFS in the cloud as well.
+So going into the exam, remember those five points and if you see you know,
+a scenario basically where it's talking about how you can move from on prem to
+AWS. DataSync is definitely one of the valid options. Okay.
+That's it for this lecture everyone, if you have any questions,
+please let me know. If not, feel free to move on to the next lecture. Thank you.
