@@ -1,0 +1,163 @@
+Okay. Hello, Cloud Gurus and welcome to this lecture.
+In this lecture we're going to look at versioning. So before we get started,
+let's just see what we can do with versioning. So using versioning with S3,
+basically this is going to store all versions of an object and including all
+writes,
+even if you delete the object and we'll see that when we log into the console.
+So versioning is a great backup tool and once versioning is enabled on a bucket,
+it cannot be disabled. It can only be suspended. So you can only suspend it.
+You can't go in and disable versioning.
+You have to delete the bucket and and create a new one to completely turn
+it off. it also integrates with the lifecycle rules.
+Now we're going to cover that in the next lecture as well.
+So we'll look at how we can use lifecycle rules and versioning to move things to
+Glacier. And versioning also comes with MFA delete capability,
+and this basically uses multifactor authentication,
+which can be used to provide an additional layer of security to stop people from
+going in and accidentally deleting objects. So to permanently delete something,
+you would need multifactor authentication to do that.
+So this is a lab let's log into the AWS console and have a look at versioning.
+Okay. So before I go over to the AWS management console,
+I've just created a text file. I've called it my document, and we've called it.
+This is version one, and I've just saved that to my downloads directory.
+So I want you to go ahead and do the same,
+and then we'll go over to the AWS management console. Okay.
+So I'm in the AWS management console.
+What we're going to do is we're going to go over to services and as always S3 is
+under storage, let's go in and go in there.
+And then what we're going to do is we're going to go ahead and create a bucket.
+So let's create a new bucket and I'm going to call list my
+version control
+demo 12345.
+Let's see if that's available and we're going to unrestrict public access
+because we're going to want to have a look at these files in the bucket,
+and then we're going to and turn on versioning.
+So go ahead and create the bucket. Make sure you use a DNS name.
+make sure you acknowledge this as well,
+but make sure you use a unique bucket name. So here we go,
+that seemed to work for me my version control demo 12345 and we can see
+in here that objects can be public.
+So let's go ahead and click in here and the first thing we're going to do is
+we're going to go ahead and hit Upload,
+and we're going to go in and add our files.
+Now my file is just called my document sitting in here.
+You can preview it and it says, this is version one.
+So I'm going to go ahead and hit Open,
+and then I'm going to go in and hit Upload. So that has now uploaded.
+Let's go ahead and make it public so I can go in and see it.
+So I'm going to click on the document, go actions,
+make public and make public and then we'll go in and close this
+down and let's just click on the object and click on the object
+URL and you can see it says, this is version one.
+So it is a publicly accessible text file in our bucket.
+So what we're going to do now is I'm going to go back over to our text editor,
+and I'm just going to change this to this is version two,
+I'm going to go ahead and save and back in my bucket and I'm going to go in and
+upload a another file. So let's go add that file and this is called my document.
+You can see that this is version two. I'm going to go ahead and hit upload,
+and then I'm going to upload that and hit Exit. Now, before we play with that,
+let's just go back to our text editor and we're going to make this version
+three.
+We'll say this is the final version.
+So I'm going to save that. I'm back in the AWS management console.
+I'm going to upload that file. So add files,
+and then we're going to add in my document .txt,
+I'm going to go ahead and hit Open,
+and then I'm going to go ahead and hit upload. Okay.
+So we've uploaded three versions of our file.
+Now we can actually see those three versions by clicking in here and going to
+list versions and we can see here, we've got version one, version two,
+and then version three and note that version three is slightly bigger because we
+added the text. This is our final version.
+Now what we can do is we can go ahead and click in on version one and we can go
+and click on the object URL and you can see that we can actually view that.
+What do you think would happen to versions two and three?
+Do you think we'd be able to view those or do you think we have to go in and
+make those public first? Well,
+let's go in and have a look if we actually just click if we go back to the
+bucket, sorry, and we click in here list versions.
+So let's go ahead and have a look. If we can see version two.
+So go in and have a look at version two.
+We click on this link and we're going to get an error message saying access
+denied. So each version, if you want it to become public,
+you have to specifically go in for each and every version and make it public
+and also let's just prove this as a point.
+If we go in and click on just my document .txt. So this is version three. Again,
+we're going to get the same error message,
+but what's really interesting is if you go in or go back to our bucket,
+and if we click in here and we go make public,
+do you think that will make all the versions underneath it public because we're
+making this particular document public,
+or do you think it would just make version three public? So again,
+we can test it.
+If we go in and have a look at version three or now be able to see that because
+it is public. So this is version three, this is the final version.
+We go back to our object and list our versions.
+We can now try and have a look at version two by clicking in here and you'll see
+that version two is not public because we never made that version public.
+So every time you make something public, even if it's the latest version,
+it doesn't necessarily make the other versions public.
+You have to go in and do that individually.
+So that's something to remember for your exam.
+Another thing that we can just have a look at is if we delete an object.
+So if we go in and hit delete,
+what we're going to do is just type in here delete to confirm that we want to
+delete this object and this object has now disappeared from our bucket.
+so if we hit exit, we can see that there is no objects in our bucket. However,
+if we turn this on, we can see that the three different versions are still here.
+It's just got a delete marker over the top of it and delete markers simply
+means that it's hiding these these versions of that object
+from your view, but they're still stored there. So you haven't deleted.
+It's basically just hidden and to restore an object, you can go in and hit,
+delete the delete marker. So if we delete the delete marker,
+so we type in here permanently
+delete and delete objects that will now delete our delete
+marker and what will happen is if we just turn off our version again,
+that object has now been restored to our bucket. Now,
+the final thing we need to have a look at is versioning itself.
+We go into bucket versioning and hit edit,
+and here we can only suspend versioning.
+We cannot disable it so we can suspend it and this
+will suspend the creation of object versions for all operations,
+but it's going to preserve existing object versions.
+So if I suspend bucket versioning for this bucket,
+my versions are still all going to stay there.
+The only way I can get rid of them is to go in and delete each version
+individually. So if I can actually do that,
+I can go in here and go list versions,
+and then we could go in and delete version two, for example.
+So if we go in here and hit delete,
+and then we type in permanently
+delete, that will permanently delete that version.
+So if we go in here and then you can see now we've got version one and version
+three, and we can test that. So click in here,
+that's version one and go back here and this is
+version three, but we no longer have version two.
+It has been permanently deleted.
+So you can permanently delete individual versions but it is a process.
+If you delete the file itself,
+it's just putting a delete marker over the object,
+the object itself isn't deleted and all versions aren't deleted. However,
+you can go in and individually delete previous versions.
+So hopefully that all makes sense. Let's go on to my exam tips.
+So what are my exam tips?
+So just remember that versioning stores all versions of an object,
+including any rights, and even if you delete an object,
+it's going to place a delete marker over that object but the versions that
+existed before it will still exist.
+It's a fantastic backup tool and once enabled version and cannot be disabled,
+it can only be suspended. It integrates with lifecycle rules,
+which we're going to look at in the very next lecture and this is the most
+important for the exam just remember that versioning has multifactor
+authentication delete capability,
+and this basically uses multifactor authentication in order to delete file.
+So if someone wants to delete a file,
+they'll have to provide MFA in order to do it and this can be used to provide an
+additional layer of security.
+It's critical to remember that going into your exam.
+So now that we know about versioning,
+let's go ahead and have a look at lifecycle rules. So if you've got the time,
+please join me in the next lecture. Thank you.
+
+
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html
