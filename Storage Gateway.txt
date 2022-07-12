@@ -1,0 +1,261 @@
+Okay, hello Cloud Gurus
+and welcome to the very last theoretical lecture
+of this section of the course.
+So this is on Storage Gateway.
+Now, I'll be honest.
+I did the exam about two days ago
+and Storage Gateway didn't come up.
+However, it used to be a very popular exam topic
+and you should still know what it is
+because a lot of people don use Storage Gateway
+to move data into AWS.
+So what is Storage Gateway?
+Well, it comes in a bunch of different flavors
+but basically it's a service
+that connects an on-premise software appliance
+with cloud-based storage to provide seamless
+and secure integration
+between an organization's on-premise IT environment
+and AWS's storage infrastructure.
+And the service enables you to securely store data
+to the AWS cloud for scalable and cost-effective storage.
+So what does that actually mean?
+Well, let's have a look at our data center.
+So we've got Storage Gateway here
+and Storage Gateway is basically a virtual
+or physical device
+and it's going to replicate your data into AWS.
+Now, it always used to be a virtual device
+but they have released hardware appliances now
+so you can actually have a physical Storage Gateway as well.
+So Storage Gateway's software appliance
+is available for you to download as a virtual machine image
+that you install on a host in your data center.
+And Storage Gateway supports either VMware's ESXi
+or Microsoft's Hyper-V as the hypervisor.
+So a hypervisor is just what you run virtual machines on.
+And once you've installed your gateway
+and associated it with you AWS account
+through the activation process,
+you can use the AWS Management Console
+to create the Storage Gateway option that is right for you.
+So Storage Gateway comes
+in effectively three different flavors
+and they are as follows.
+So we have our File Gateway
+and this is either NFS or SMB.
+We then have our Volume Gateway and this is using iSCSI.
+So File Gateway is basically a way
+of storing files in S3
+whereas Volume Gateway is a way of storing basically copies
+of your hard disk drives
+or virtual hard disk drives in S3
+and there's two different types of Volume Gateway.
+You've got your stored volumes
+and then you've also got your cached volumes as well.
+And then finally, we have Tape Gateway
+and this is a virtual tape library
+so let's go ahead and have a look at all of them.
+So we'll start with File Gateway.
+This is basically where files are stored
+as objects in your S3 buckets
+and they're accessed through a network file system
+or NFS mount point.
+And then ownership permissions and timestamps
+are durably stored in the S3,
+in the user metadata of the object associated with the file
+and once objects are transferred to S3,
+they could be managed as native S3 objects
+and bucket policies such as versioning,
+lifecycle management and cross-region replication
+can apply directly to objects stored in your bucket.
+So you can have all the goodness of S3.
+So it's basically a way
+of connecting your on-premise infrastructure to S3.
+So here's a good example.
+Got our application server here.
+It's using an NFS mount point to Storage Gateway.
+That then connects in over the internet
+or over Direct Connect which we're going to cover off later
+on in the networking section of the course
+as well as Amazon VPC.
+And then it's going to store your files in S3.
+And this diagram's slightly out of date.
+It has S3-IA, it doesn't have S3 with intelligent tiering
+and it doesn't have the two different types of Glacier
+but you get the point.
+It basically is a way of storing
+your application server's data into S3.
+So that's all File Gateway is.
+Volume Gateway basically presents your applications
+with the iSCSI block protocol.
+So it basically you can use virtual hard disk drives
+and data written to these volumes
+can be asynchronously backed up
+as point-in-time snapshots of your volumes
+and stored in the cloud as EBS snapshots.
+And the snapshots are incremental backups
+that capture only change blocks
+and all the snapshot storage
+is also compressed to minimize your storage charges.
+So Volume Gateway basically is a way
+of storing your virtual hard disk drives in S3.
+And it looks like EBS snapshots.
+Now, don't worry, we haven't covered off what EBS is yet.
+We will cover that off in EC2
+in the very next section of the course
+but just think of Volume Gateway
+as a way of storing virtual hard disk drives in the cloud.
+And it comes in two different flavors.
+We've got stored volumes
+and this allows you to store your primary data locally
+so you always have a complete copy of your data locally
+in your data center
+and it's backing that data up to AWS.
+And stored volumes provide your on-premise applications
+with low latency access to their entire dataset.
+So with stored volumes,
+it's really important to remember
+that it's the entire dataset
+and it's going to provide durable, offsite backups
+and you can create storage volumes and mount them
+on an iSCSI drive from your on-premise application servers
+and then data written to your stored volumes
+is stored on your on-premise storage hardware
+and this data is then asynchronously backed up
+to S3 in the form of EBS snapshots
+and at the moment is between one gig to 16 terabytes in size
+for stored volumes.
+If that has changed, don't worry about it.
+You're never going to be tested on volume sizes
+in the AWS exam.
+It's always going to be scenario-based questions.
+So this is what it looks like here.
+We've got our users and our client.
+They're using the application servers.
+This then uses an iSCSI connection
+to our host and our host
+is running our gateway virtual machines
+and essentially we're creating volumes on this host
+and then what's happening is the virtual machine
+is then replicating these volumes up to AWS
+and storing it as snapshots in S3.
+Cached volumes is slightly different.
+So you do have to remember the differences between them
+and cached volumes is basically,
+it doesn't do the entire dataset locally.
+It is only doing the most frequently used data
+in your Storage Gateway.
+So cached volumes minimizes the need
+to scale your on-premise storage infrastructure
+while still providing your applications
+with low latency access to their frequently accessed data.
+So you can create storage volumes
+of up to 32 terabytes in size
+and attach them as iSCSI devices
+from your on-premise application servers.
+Now, your gateway stores the data that you write
+to these volumes in S3
+just like the lat one and it retains recently read data
+in your on-premise Storage Gateway's cache
+and upload buffer storage.
+So it's between one gig and 32 terabytes in size
+for cached volumes.
+Again, don't worry, you'll never be tested on that.
+It's just important to understand
+that cached volumes is a way
+of caching the most actively used data
+whereas with stored volumes,
+it's the entire dataset.
+So again here's a diagram.
+We've got our users, we've got our application servers.
+It's connecting in through iSCSI to our host
+and our host is running our virtual machine gateway,
+our gateway VM.
+This is also accessing SAN,
+so storage attached networking
+and again, that's just like basically a big disk.
+And then the gateway VM is replicating our information
+over to S3.
+So that's how that one works.
+And then finally we have Tape Gateway.
+It offers durable, cost-effective solution
+to archive your data in the AWS cloud.
+So it's a way of getting rid of tapes.
+The virtual tape library interface it provides
+lets you leverage your existing
+tape-based backup application infrastructure
+to store data on virtual tape cartridges
+that you create on your tape gateway.
+So if you are already using tapes
+and different applications, software that connects
+into tapes, you can actually replace
+your entire tape infrastructure
+and just use Tape Gateway.
+So it's a really great way of moving your backups to cloud.
+And so each Tape Gateway is pre-configured
+with a media changer and tape drives which are available
+on your existing client backup applications
+as iSCSI devices and you can add tape cartridges
+as you need to archive your data
+and it's supported by a really popular backup software
+like NetBackup, Backup Exec, Veeam, et cetera, et cetera.
+And this what it looks like.
+So over here, we've got Data Center A,
+Data Center B, we've of our tape drives.
+This is running as a gateway virtual machine.
+So this is our Storage Gateway
+and essentially it's just replicating our virtual tapes
+to S3 and of course,
+then you can archive them off to Glacier as well
+to keep your costs low.
+So that is it for Storage Gateway.
+Like I said, I did the exam a couple of days ago
+and it did not come up at all.
+It may well have just been moved over
+to the SysOps Administrator Associate.
+It is a critical subject to understand going
+into your SysOps Administrator Associate.
+That being said, it is also important to understand it
+if you do work as a solutions architect,
+especially if you're working with a company
+that's moving to AWS and they've got a virtual tape,
+they've got a tape library.
+It's good to know
+that you can actually leverage Storage Gateway
+to move that over to virtual tapes
+and replicate it over to the cloud.
+So what are my exam tips?
+Well, we've got File Gateway.
+This is NFS and it's for flat files
+and it's going to be stored directly on S3.
+We've got Volume Gateway
+which is using iSCSI
+and it consists of two different volumes.
+So we've got stored volumes.
+Stored volumes is your entire dataset
+to be stored on S3.
+Then we've got cached volumes
+and this where your entire dataset
+is still stored on S3
+but the most frequently accessed data
+is cached on site.
+And with stored volumes, the entire dataset
+is stored on site.
+So that's the difference.
+Stored volumes is you've got your entire dataset
+on site, cached volumes is where you've only got
+your most frequently accessed data cached on site
+and then we also have Gateway Virtual Tape Library.
+And I have been, like I said as well,
+we were talking about that these were virtual appliances
+or virtual machines.
+You can also get physical Storage Gateway appliances
+as well now.
+So that is it for this lecture, guys.
+You've done really, really well.
+You're at the end of the S3 and IAM section of the course.
+In the next lecture, we're just going to summarize
+everything that we've learnt.
+So if you've got the time,
+please join me in the next lecture, thank you.
