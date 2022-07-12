@@ -1,0 +1,113 @@
+Okay. Hello, Cloud Gurus and welcome to this lecture in this lecture,
+we're going to talk about CloudFront signed URLs,
+and cookies and then we're also going to look at S3 signed URLs and essentially
+what is going to happen is when you go into the exam,
+you're going to be given a bunch of different scenario questions,
+and you need to decide whether or not you're using a CloudFront signed URL or
+cookie, or if you were just using an S3 signed URL.
+So before we explore what the difference is between the two,
+let's just review what we've learned about CloudFront.
+So CloudFront is Amazon's CDN or content distribution network.
+It's a way of caching your large files at locations that's close to your end
+users.
+So an edge location is simply the location where the content is going to be
+cashd and this could be this is different to an AWS region or
+availability zone.
+We have a lot more edge locations than we do regions or availability zones.
+The distribution is simply the name that's given to the CDN and this consists of
+a collection of edge locations and the distribution will
+be connecting up to an origin and this is the origin of all the files that the
+CDN is going to distribute and this can either be an S3 bucket,
+or it could be an EC2 instance,
+or it could be an elastic load balancer so with a whole bunch of EC2 instances
+behind it, or it can even be Route 53,
+and then we have two different types of distributions.
+We've got our web distributions,
+which is typically used for websites and then we've got our RTMP distributions,
+which is used for media streaming.
+So the first thing is we need to look at what if you've got a site where you
+want to restrict content access.
+So where people who are viewing video files, for example,
+need to pay to view it and that's exactly what we do at A Cloud Guru.
+So we use CloudFront and we want our members who pay our monthly or
+annual fees to be able to access the entire platform.
+So we need to be able to restrict our content access. So how do we do this?
+Well, we used signed URLs or cookies,
+but where would you use a URL versus a cookie?
+So we'd use CloudFront signed URLs,
+where you've got an individual file.
+So say you want somebody to be able to access one individual file
+so one file equals one URL.
+If however you want that individual to be able to access multiple files.
+Like for example, if you log into A Cloud Guru,
+you want to be able to view all the different lectures that we have.
+Then you essentially, instead of giving them a URL, instead,
+you would give them a cookie and you do a signed cookie,
+and then they can go ahead and access a multiple files.
+So if you do get a scenario based question,
+and it's talking about premium content and they need to go in and view a whole
+bunch of different video files, for example, then you will be using a cookie.
+If it's just one file, then you can use a signed URL.
+So when we create a signed URL or a signed cookie,
+we a policy and the policy can include things like the URL expirations,
+how long it's valid for, IP address ranges. So if you know,
+you'll end customer's IP address ranges, you can put that in there as well,
+as well as trusted signers.
+So you can say which AWS accounts can create signed URLs.
+You can put that in a policy as well. So in terms of how signed URLs work well,
+here we have our CloudFront distribution with our edge locations.
+That's connecting into our backend to our origin,
+which is in this case an S3 bucket,
+or it could be an EC2 instance or an elastic load balancer,
+et cetera and it's using OAI to do that
+authentication.
+So users will not be able to access by default the S3
+bucket or the EC2 instance directly it's using origin
+access identity OAI so you're users will only be able to access
+CloudFront, which then uses OAI to access the origin.
+So we've got our client here,
+they then could into our applications.
+So they enter in their username and password.
+So we have our authentication and authorization.
+So the application looks at their username and password. It says, yep,
+login and then it uses the SDK to generate signed
+URL.
+So it's using CloudFront SDK to generate a signed URL or assigned cookie and
+that's returning that back to the client.
+The client can then use CloudFront to access the files in
+S3, EC2, or elastic load balancer, etc.
+So CloudFront signed URLs. You can have different origins,
+so it doesn't have to be EC2o. It can be S3,
+could be elastic load balancers et cetera.
+When you generate that key pair it's account wide and it's managed by the
+root user. So when you generating that signed URL,
+it appears as a key pair and that is managed by the root user.
+You can utilize all the caching features of CloudFront,
+and you can also filter by date by path, by IP address,
+by expiration, et cetera.
+So that's the CloudFront signed URL and S3 signed URL is
+slightly different. This is where you're not using CloudFront,
+where people have direct access to S3 and it basically when
+you create this it issues or request as the IAM user who creates the
+pre-signed URL.
+So you have all the same permissions as the IAM user who has created
+that signed URL and S3 signed URLs have a limited lifetime.
+So when you go into the exam,
+if they're talking about a CloudFront signed URL versus an S3 signed URL,
+or just think about whether or not your users can actually access S3,
+if they using OAI through CloudFront, then they can't.
+So you'd be using a CloudFront signed URL,
+but if they can access the S3 bucket directly,
+and it's just an individual object, then you probably want an S3 signed URL.
+So going into the exam,
+just remember to use signed URLs and cookies when you want to secure content
+so that only the people that you authorize are able to access it.
+Remember that assigned URL is for individual files and one file equals
+one URL. A signed cookie is for access to multiple files.
+So one cookie allows you to access multiple files,
+and that's what we use at A Cloud Guru and then remember that if your origin is
+EC2 then you want to use CloudFront.
+If your origin is going to be S3 and you've only got a single file in there then
+you want to use a S3 signed URL instead of a CloudFront signed
+URL. So that is it for this lecture. Everyone, if you've got any questions,
+please let me know if not, feel free to move on to the next lecture. Thank you.
