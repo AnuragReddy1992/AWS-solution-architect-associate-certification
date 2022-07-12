@@ -1,0 +1,105 @@
+Okay, hello, Cloud Gurus
+and welcome to this lecture.
+In this lecture, we're going to look at the
+difference between Athena and Macie.
+And this can be a very popular exam topic
+comparing the two different services.
+And they'll give you a scenario and they'll ask you
+which service to choose.
+So why don't we start with Athena?
+What is Athena?
+Well, Athena is an interactive query service,
+which enables you to analyze and query data located in S3
+using standard SQL.
+So this is a really cool service, you can basically use SQL.
+I don't know if you're familiar with SQL, but it's, you
+know, basically a language that you use to get
+knowledge out of databases.
+So it could be using Microsoft SQL Server, or My SQL,
+you would basically say something like, hey, select star
+from this table, and that would show you the entire table.
+So maybe you want to see all your students in a table in a
+database, you'd say, hey, select star from the students
+table, and that will show you all your students
+in that table in that database.
+So that's all that sequel is.
+This, effectively allows you to turn S3 into a giant
+database and you can actually query S3 using standard SQL.
+Now the cool thing about Athena is that it's serverless.
+There's nothing to provision you pay per query
+or per terabyte scanned.
+There's no need to set up complex extract transform load
+or ETL processes.
+So how do you get your data out of S3?
+How do you put it into something like RDS?
+You don't need to worry about any of that Athena will
+basically allow you to turn S3 into a database,
+you can run SQL queries against it.
+And it works directly with data stored in S3.
+So where would you use this?
+Well it can be used to query log files stored in S3.
+So this could be your elastic load balancer logs,
+which we will cover off in the next section of the course,
+could be S3, access logs, etc.
+You can also use it to generate business reports
+on data stored in S3.
+So maybe you want to run queries against your payroll data.
+You can use it to analyze AWS cost and usage reports.
+And you can run queries on click stream data
+that's stored in S3 as well.
+So now that we know what Athena is, what is Macie?
+Well, let's start with what PII is, first.
+what is PII?
+PII is just personally identifiable information.
+And this is information that's used to establish
+a person's identity.
+So this data could be exploited by criminals
+and used in identity theft or financial fraud.
+Some examples of PII might be your home address,
+it could be your email address, it could be your
+social security number, your passport number,
+your driver's license number, your credit card numbers,
+your date of birth, phone number, bank account number,
+credit card number, et cetera.
+That's all that PII is.
+Now what is Macie?
+Well, Macie a security service that uses machine learning
+and natural language processing or NLP to discover,
+classify and protect sensitive data stored in S3.
+So it uses AI to recognize if your S3 objects contain
+sensitive data such as PII and it basically gives
+you dashboards, reporting and alerts.
+And it works directly with the data stored in S3.
+And it can also analyze CloudTrail logs.
+And this is great for PCI DSS.
+So if you're taking credit card payments on your website,
+as well as preventing ID theft.
+Now you can see why people get the two confused
+cause the Athena allows you to query your data
+on S3 based off SQL Server, sorry,
+based off SQL commands that you write.
+However, Macie it also queries data on S3,
+but it's using machine learning and natural language
+processing to discover PII information.
+So there's similar but different services.
+So going into your exam, just remember what Athena is
+and what it allows you to do.
+It's an interactive query service.
+It allows you to query your data located in S3 using
+standard SQL, it's serverless, and it's commonly used
+to analyze log data stored in S3,
+whereas Macie is essentially as a security service
+it uses AI to analyze your data in S3
+and help identify personally identifiable information
+or PII.
+It can be used to analyze CloudTrail logs for suspicious
+API activities, includes dashboards, reports and alerting.
+And it's great for PCI DSS compliance
+and for preventing ID theft.
+So if you know the difference between a Athena
+and Macie going into your exam,
+you're going to do very, very well.
+So that is it for this lecture, everyone.
+If you have any questions, please let me know.
+If not, feel free to move on to the next lecture.
+Thank you.
