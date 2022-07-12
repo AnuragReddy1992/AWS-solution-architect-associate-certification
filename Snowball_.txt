@@ -1,0 +1,118 @@
+Okay, hello Cloud Gurus,
+and welcome to this lecture.
+This lecture is a theoretical lecture, and it's on Snowball.
+You might be thinking, what is Snowball?
+Well, this is a Snowball, this is what they look like.
+They're basically big, big disks.
+So a Snowball is a petabyte-scale data transport solution
+that uses secure appliances to transfer
+large amounts of data into and out of AWS.
+So, like I said, it's a big disk.
+It's a way of getting huge amount of data into AWS.
+And you can also use it to export data from AWS.
+And using Snowball addresses common challenges
+with large-scale data transfers
+including high network costs,
+long transfer times, and security concerns.
+Transferring data with Snowball is simple,
+fast, secure, and can be as little
+as one-fifth the cost of using high-speed internet.
+Snowball basically comes in two flavors.
+You've got 50 terabytes or 80 terabytes.
+So, Snowball uses multiple layers
+of security designed to protect your data,
+including tamper-resistant enclosures, 256-bit encryption,
+and an industry-standard Trusted Platform Module,
+or TPM, which is designed to ensure both security
+and full chain-of-custody of your data.
+And once your data transfer job
+has been processed and verified
+AWS performs a software erasure of the Snowball appliance.
+And they do it in such a way that you can't
+just take a Snowball and restore the data
+from previous customers as well.
+It's completely wiped, basically they nuke it, essentially.
+We also have a Snowball Edge.
+Snowball Edge comes in 100 terabytes' worth of data.
+And this is a device
+with an onboard storage and compute capability.
+So you can actually run, like, Lambda functions
+from Snowball Edge,
+and we're going to cover off what Lambda is later,
+but, essentially, this gives you compute and storage.
+And you can use Snowball Edge
+to move large amounts of data in and out of AWS,
+as a temporary storage tier for large local datasets,
+or also to support local workloads
+in remote or offline locations.
+And to give you an idea, one of the major airlines ...
+they do a lot of testing of the aircraft
+and they actually have Snowball Edges in their aircraft.
+And it's not just storing data inside
+the aircraft, but it's also doing compute.
+It's running, like, Lambda functions as well.
+So, basically, Snowball Edge is kind of like having
+a mini-AWS, you know, at your disposal.
+So Snowball Edge connects to your existing applications
+and infrastructure using standard storage interfaces,
+streamlining the data transfer process,
+and minimizing setup and integration.
+And Snowball Edge can cluster together
+to form local storage tiers
+and process your data on-premise, helping ensure
+your applications continue to run
+even when they are not able to access the cloud.
+So, like I said, it's like having a ...
+sort of, a portable version of AWS.
+So, what is Snowmobile?
+Well, Snowmobile is just insane.
+It's an exabyte-scale data transfer service
+used to move extremely large amounts of data to AWS.
+You can transfer up to 100 petabytes per Snowmobile.
+It's basically a 45-foot long ruggedized shipping container,
+which is being pulled by a semitrailer truck.
+And that makes it easier to move massive volumes of data
+to the cloud, including video libraries, image repositories,
+or even a complete data center migration.
+And transferring data with Snowmobile
+is secure, fast, and cost-effective.
+So, this is when you should use a Snowball.
+Basically, we're looking at different
+available internet connections here.
+So, go to T3, which is 44.736 megabits per second.
+We've got 100 megabits per second.
+And then we've got 1,000 megabits per second.
+And if we were pushing 100 terabytes
+at those different speeds
+you can see how long it's going to take.
+So it's going to take 269 days, or 120 days, or 12 days.
+So if you were basically going to use AWS Snowball
+with those three different speeds,
+over here is the different amounts
+that you should consider using Snowball.
+So two terabytes or more for this connection.
+Five terabytes or more for 100 megabits per second.
+And then 60 terabytes or more for 1,000 megabits per second.
+So, that's all Snowball is.
+What are my exam tips?
+Well, just remember what Snowball is.
+Remember that Snowball can import to S3
+and export from S3 as well, and that's really it.
+You really just need to,
+if you get a scenario-based question
+talking about moving large amounts of data
+into the AWS cloud you want to use Snowball.
+The next lecture is just a fun lecture.
+It's completely optional,
+it's where we actually get a Snowball.
+And we connect it up, and then we basically copy some files
+to our Snowball, and then send it off to AWS.
+That will not come up in your exam at all.
+So if you want to skip the next lecture, fine.
+But if you've got the time,
+please join me in the next lecture.
+After that we're going to cover off Storage Gateway.
+And then we're going to summarize the rest
+of this section of the course.
+So if you've got the time please join me
+in the next lecture, thank you.
