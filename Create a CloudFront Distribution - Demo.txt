@@ -1,0 +1,219 @@
+Okay, hello cloud gurus
+and welcome to this lecture.
+In this lecture, we're gonna go ahead
+and create our first CloudFront distribution.
+So this is a lab and you will need
+to log into the AWS Console.
+Okay, so here I am in the AWS Management Console.
+The first thing I'm gonna do is just go over to S3,
+and if you remember from the very start
+of this section of the course,
+we created this bucket and this had a picture
+of me and Faye, and then my brother
+and me with Jeff Barr.
+So those are our two images in there.
+We're going to use this bucket as our origin.
+So this is what we're going to attach
+our CloudFront distribution to.
+So to go and get CloudFront,
+it's not actually under Storage,
+it's part of Networking.
+So if we just scroll down
+you'll see it in here,
+Networking and Content Delivery,
+and you'll see CloudFront in there.
+So go ahead and click on CloudFront
+and that will open up our CloudFront distribution.
+Now, you can see straightaway
+that this is a global service
+so CloudFront is across the entire world.
+It's not done on a regional basis.
+And what we want to do is go ahead
+and create our first distribution.
+We have two different types of distribution.
+We've got a web distribution
+and an RTMP distribution.
+I'm gonna go and do a web distribution.
+RTMP is used for media files
+using Adobe's Flash Media Server's
+RTMP protocol.
+Th at used to be an exam question,
+doesn't seem to come up as much anymore,
+but just remember the two different types of distributions.
+Let's go ahead and do a web distribution.
+And here we've got our origin domain name
+and if you click in here, you will be able
+to see all our valid origins.
+And so what I'm gonna do
+is I'm going to click this one,
+so acloudguru-2019.
+Our origin path, if you don't know
+what it is, you can click in there,
+but essentially if you have a directory
+inside your origin, so specific directory
+inside your bucket, you can specify the path.
+I'm not gonna go do that.
+Origin ID.
+I'm going to, it's gonna set me up an origin ID.
+I'm gonna leave that as default.
+You can restrict your bucket access
+so you can basically say that users
+will always access the S3 content
+using CloudFront URLs, not Amazon S3 URLs.
+And that can be quite useful
+when you're using signed URLs
+to restrict your content.
+I'm not going to do that.
+I'm just gonna say No for now.
+And I'm gonna leave basically everything as default.
+So you can scroll all the way down.
+Here's where you set your TTLs.
+You've got your minimum, your maximum,
+your default.
+So TTL is just the time to live
+for your objects in their edge locations.
+We can restrict viewer access,
+so we can say hey, we only want people
+to be able to use signed URLs
+for our CloudFront distribution.
+A good example of that.
+Let's say you're a media company,
+maybe like Netflix, and you want to make sure
+that only users who've paid for your content
+are able to access it.
+Just remember that going into your exam
+that you can restrict access
+using signed URLs or signed cookies.
+I'm not gonna do that.
+I'm just gonna leave, like I said,
+everything as default.
+You can actually put web application firewalls
+in front of your CloudFront distributions.
+We're gonna cover off what WAFs are
+later on in this course,
+but if you already know what that is,
+it's basically a layer seven firewall,
+so you can do that to increase the security of it.
+Again, I'm not gonna do that.
+I'm just gonna basically leave everything as default
+and click Create Distribution.
+That is gonna go and create
+and deploy my distribution.
+Now, this can take some time.
+It can take up to 15-20 minutes,
+sometimes up to an hour.
+It's also similar when you go and disable it.
+It takes time.
+And you need to disable it before you delete it.
+So I'm just gonna pause the video,
+make myself some lunch
+and come back when this is ready.
+Okay, so it's been over an hour
+and my distribution has now been deployed,
+so you can see the status down here is Deployed.
+And we've got the ID and we've got the domain name.
+Now, this is the domain name
+that we would use to connect
+to our CloudFront distribution.
+So what I want you to do is just copy that
+into your clipboard.
+I'm just gonna hit Copy.
+And then we're gonna go over to Services.
+We've gonna go over to S3.
+And we'll be able to go into our S3 bucket
+so mine one was called this.
+And I'm going to type the distribution's name,
+forward slash and then fayeryan-replay.jpg,
+into my browser.
+I'm gonna paste it in here,
+then forward slash, so it's fayeryan-replay.jpg.
+I'm gonna hit Enter and there we go.
+It has loaded it, and it loaded it
+very, very fast.
+So we now know that the distribution is working
+and it's loading our assets from S3.
+Just gonna go back over to the AWS Console.
+We go back over to CloudFront.
+Again, it's always under Networking,
+so here it is, CloudFront.
+And we're gonna go back in
+and have a look at my distribution.
+Now, what you can do is you can click in here
+and you can go to your distribution settings
+and you can start editing your settings.
+So you can change your distribution
+after it's been deployed.
+And what I want you to really notice
+is this invalidation.
+So we can go ahead and create an invalidation.
+And we can invalidate individual objects
+or entire directories,
+or entire sub-directories,
+et cetera, et cetera.
+So if you did something like forward slash star
+that would invalidate basically everything.
+So you can invalidate a distribution
+and when you're invalidating, it just means
+that it's no longer going to be
+on the edge locations.
+So if you get a scenario question in your exam,
+where you're talking about,
+you know, you push out some data
+and then you figure out something's wrong
+and you do an update,
+but it's not showing up correctly,
+the way to deal with that
+is to create an invalidation.
+So let's go ahead and delete this distribution
+'cause it's not covered in free tier,
+so I'm just gonna go and hit Disable.
+And hit Disable.
+And that does actually also take some time.
+It can take up to 15 minutes.
+Once it's been disabled,
+then you can click in here and hit Delete.
+So do do that, don't leave the distribution.
+We're not gonna need it
+for the rest of this course.
+So what are my exam tips?
+Really you just need to understand
+what CloudFront is at a high level.
+You need to understand what edge locations are.
+So it's the location where content's gonna be cached,
+and it's very separate to an AWS region
+or availability zone.
+We have edge locations all over the world.
+You need to understand what an origin is,
+and this is basically just the source
+of the files that your CloudFront distribution
+will distribute.
+And this can either be an S3 bucket,
+can be an EC2 instance,
+can be an Elastic Load Balancer,
+or Route 53, et cetera, et cetera.
+Then we have our distribution.
+So this is just the name given to the CDN,
+which is a collection of edge locations.
+And our distributions can either be
+a web distribution, which is the one
+that we just set up,
+or an RTMP distribution,
+which is used for Adobe Flash Media Streaming.
+And then moving on, edge locations
+are not just read only.
+So we saw that when we were looking
+at transfer acceleration.
+You can write to them, too,
+so you can put an object on them.
+And objects are cached for the life of the TTL,
+so they're cached for the life of the time to live,
+and that's always in seconds.
+And like we just saw, you can invalidate
+cached objects, but you are going to be charged.
+So that is it for this lecture guys.
+If you have any questions, please let me know.
+If not, feel free to move on to the next lecture.
+Thank you.
+
+
+https://repost.aws/questions/QUoUZgHZh7SEWlnQUPlBmVNQ?annID=7356
