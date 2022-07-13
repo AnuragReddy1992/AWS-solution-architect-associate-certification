@@ -1,0 +1,361 @@
+Okay, hello Cloud Gurus,
+and welcome to this lecture.
+In this lecture, we're all going to learn
+about Elastic Compute Cloud or EC2.
+And so this will be a theoretical lecture.
+In the rest of this section of the course
+it's extremely hands-on,
+we're going to be going into the AWS Console,
+we're going to be provisioning EC2 instances,
+we're going to be SSH-ing into them,
+and we're going to be turning them into little web servers.
+So you are going to learn an awful lot.
+But before we do that, we should learn what EC2 is.
+So what is EC2?
+Well, basically, it's a web service
+that provides resizable compute capacity in the cloud.
+And it reduces the time that it takes
+to obtain and boot new server instances to minutes,
+allowing you to quickly scale capacity both up and down
+as your computing requirements change.
+Now I was around for ...
+I've been in tech for quite a while.
+And I remember a time before AWS came along
+when, if you placed an order
+for a web server or a database server,
+they were actually physical servers.
+And certainly when I worked at Rackspace,
+that was definitely the case.
+And it would take anywhere from 10 days to do a deployment,
+sometimes up to 20 days.
+And in other companies I worked for,
+it'd be six months before we could deploy those resources.
+And of course, when you were paying for these,
+you were paying for the servers upfront.
+Now, we could amortize the cost over a monthly basis,
+but you still had huge capital expenditure.
+And if you weren't using these web servers,
+you still had to pay.
+And then Amazon EC2 came along,
+and you were able to provision virtual machines in the cloud
+at this, like seriously, the click of a button,
+and it'd be ready within a couple of minutes,
+and it just changed the entire world.
+So how is EC2 priced?
+Well, if you've done
+the Certified Cloud Practitioner course,
+you'll remember in it we had a pricing section,
+and we looked at a particular white paper
+called AWS pricing overview.
+Now, don't worry, you don't actually need
+to read this white paper
+for the Certified Solutions Architect Associate
+but it does have a principle
+that basically applies across all of AWS.
+And the conclusion of the white paper says,
+while the number and types of services
+offered by AWS have increased dramatically,
+our philosophy on pricing has not changed.
+You pay as you go, you pay for what you use,
+you pay less as you use more,
+and you pay even less when you reserve capacity.
+So EC2 has a number of different pricing models,
+we've got "On Demand",
+and this allows you to pay a fixed rate by the hour,
+or even by the second with no long-term commitments.
+So you can literally just spin it up,
+have it running for a couple of hours,
+and then terminate the instance.
+And this is great for developers
+because you can go in, test an environment, see if it works,
+and then go in, shut it down.
+I couldn't imagine a world where that was not possible.
+Just 20 years ago, you would have to go in
+and provision big physical servers,
+you'd have to have the money to do it.
+And it means all these little startups
+that are operating on a shoestring budget
+could not have taken their product to market.
+So, you know, AWS has changed the world
+by introducing on-demand pricing for virtual machines.
+We then have reserved, and this basically provides you
+with a capacity reservation,
+and it offers a significant discount
+on the hourly charge for an instance.
+And the contract terms are one year or three years.
+So this is where you're going to contract with AWS
+to either a one-year or three-year term.
+And the more you pay upfront,
+the more you're going to save.
+So we then have "Spot" instances,
+and this is basically where Amazon have excess capacity.
+So not everyone's using EC2 at once.
+And what they do is they drop the prices
+of their EC2 instances
+to try and get people to use that capacity.
+However, when other people are provisioning on-demand
+or other EC2 instances, and they run out of capacity,
+they will want that capacity back.
+So the price moves around with spot instances,
+it's exactly like the stock market, it goes up and down
+and basically you set the price that you want to bid at,
+if it hits that price, you have your instances,
+if it goes above that price,
+then you're going to lose your instances
+within a couple of minutes.
+So it moves around a lot.
+And we'll look at the use cases for that
+in a couple of slides.
+We then have Dedicated Hosts.
+These are physical EC2 servers that are dedicated to you.
+And this can help you reduce costs by allowing you
+to use your existing server-bound software licenses.
+So if you've got some really strict licensing conditions
+with Oracle, for example,
+you might want to be using Dedicated Host.
+Again, we'll look at the use cases to that coming up.
+So we'll start with on-demand,
+and on-demand pricing is useful for users
+that want the low cost and flexibility of Amazon's EC2
+without any upfront payment or long-term commitments.
+And it's also good for applications with short-term, spiky,
+or unpredictable workloads that cannot be interrupted.
+And applications that are being developed
+or tested on for Amazon's EC2 for the first time.
+And we're basically going to be using on-demand
+for the rest of this course.
+So we're going to provision our EC2 instances
+and then when we're finished,
+we're going to go in and terminate them.
+Moving on to reserved pricing.
+This is useful for applications
+with steady state or predictable usage,
+applications that require a reserved capacity.
+And users are able to make upfront payments
+to reduce their total computing costs even further.
+And reserved pricing comes in a number of different types.
+So we've got our standard reserved instances.
+And these offer up to 75% off on-demand instances,
+and the more you pay upfront,
+and the longer the contract, the greater the discount.
+We've got convertible reserved instances.
+And we're going to come to this,
+but basically, the way EC2 works
+is you have a virtual machine,
+but you have different types of virtual machines.
+So you'll have ones that are very high RAM,
+with RAM utilization,
+or you'll have ones that have very good CPUs,
+and you can pick and choose,
+and they're called "instance types."
+Now with standard reserved instances,
+you can't convert one reserved instance to another.
+So if you get a T2, and you want to go over to an R4
+or something like that, you can't do that with standard,
+with convertible, you can.
+So it allows you to change
+between your different instance types.
+We then have scheduled reserved instances.
+And these are available
+to launch within the time windows that you reserve.
+So maybe you run a school or something like that,
+and when everyone comes in at nine o'clock and logs in,
+you need to scale for two hours while you do the login,
+so you can actually schedule having reserved instances
+to a specific time window.
+So those are the three different types of reserved pricing,
+So spot pricing, like I said,
+this is Amazon selling off their excess capacity
+at a lower rate.
+So it's useful for applications
+that have flexible start and end times.
+So if Amazon suddenly want that capacity back
+and you're not willing to pay a certain price,
+what will happen is those EC2 instances will be terminated.
+So it's useful for applications
+that are only feasible at very, very low compute prices.
+And it's useful for users with urgent computing needs
+for large amounts of additional capacity.
+And then finally we have our Dedicated Host pricing.
+And that's useful for the regulatory requirements.
+So it might be that the government says
+that you cannot support multi-tenant virtualization,
+you have to use a Dedicated Host.
+It's also great for licensing,
+which does not support multi-tenant virtualization
+or cloud deployment.
+So if you've got some really harsh Oracle licensing,
+for example, you might want to use Dedicated Hosts.
+And it can also be purchased on-demand,
+so you can actually pay for your Dedicated Host by the hour.
+And they can be purchased as a reservation as well
+for up to 70% off of the on-demand price.
+So I mentioned before
+that we have all these different EC2 instances.
+So these are all the available instances today.
+Now don't worry, you're never going to be tested
+on a particular type of instance, certainly not
+in the Certified Solutions Architect Associate exam.
+Where you will start getting this
+is at the professional level.
+They'll give you a bunch of scenario questions
+and then they'll ask you
+what type of instance would best suit your needs.
+Okay, so let's run through these.
+We'll start with F1,
+so this is for Field Programmable Gate Arrays.
+And the use cases for this
+is things like genomic research, financial analytics,
+real-time video processing, big data, etc.
+If you don't know what FPGA is, go ahead and look it up.
+It's really interesting stuff.
+Effectively it allows the chips to be reprogrammed
+after being manufactured.
+So they're rewired in a sense,
+but it's completely beyond the scope of this course.
+But it is interesting tech.
+Moving on to I, so we've got the I3s.
+These are high-speed storage.
+And these are used for things like NoSQL databases,
+data warehousing, etc.
+We then got G3s, these are graphics-intensive,
+and these are used for things like video encoding,
+3D-application streaming, etc.
+We've got H1s, these are high disk throughputs,
+useful for things like MapReduce-based workloads,
+distributed file system such as HDFS and MapR-FS.
+We then have T3s, these are our lowest-cost,
+general-purpose instances.
+And we're going to be using the T3s
+throughout the rest of this course.
+And typically the use case for that
+is web servers, small databases, etc.
+We've got D2s, these are dense storage.
+These are used for file servers,
+data warehousing and Hadoop.
+We've got R5, these are memory optimized
+and these are useful for memory-intensive apps or databases.
+We then have M5, this is for general-purpose use,
+and typically use this for application servers.
+C5, these are compute-optimized,
+and these are going to be useful
+for CPU-intensive applications and databases.
+Got our P3s, these are graphics or general-purpose GPUs.
+These are good for things like machine learning
+or Bitcoin mining, etc.
+We then got our X1, these are memory-optimized,
+and these are useful for things like SAP HANA,
+Apache Spark, etc.
+We then have our Z1D, these are high-compute capacity
+and high-memory footprint
+and they're ideal for electronic design automation, so EDAs,
+and certain relational database workloads
+with high per-core licensing costs.
+We then have our A1s, these are ARM-based workloads.
+And this is useful for scale-out workloads
+for things like web servers.
+ARM is just basically a cheaper type of CPU,
+so it's useful for ARM-based workloads.
+We then have our U-6tb1, and these are used for bare metal.
+So don't worry, you don't need to understand
+what each instance is and does
+for the Certified Solutions Architect Associate exam.
+When you do go on to do DevOps Pro or SA Pro,
+you will have to understand this a little bit better.
+It is good to learn it now, though.
+And to help you learn, I've just made a mnemonic.
+So there's been so many mnemonics over the years,
+but this year for the 2019 mnemonic,
+we've got F for FPGA, I for IOPS, G for graphics,
+H for high disk throughput, T for general purpose,
+so think of a T2 or T3 micro, D for density, R for RAM,
+M which is the main choice for your general-purpose apps,
+C for compute, P for graphics, so think pics,
+X for extreme memory, Z for extreme memory and CPU,
+A for ARM-based workloads and U for bare metal.
+So how are you going to remember that?
+Well, it's Fight-Dr-McPx-Z AU.
+So here is Dr-McPx-Z, you can tell that she's a doctor
+because she's got a stethoscope.
+She's from Scotland
+because she's wearing the tartan, you know, sort of clothes,
+so that's Mc,
+she's a pixie [Pix-Z],
+so you can clearly see the pixie with the wings,
+and then I did AU, so AU could either be Austin
+or it could be Australia,
+it's whatever you want to use to remember AU.
+Our offices are in both Austin, Texas,
+as well as in Melbourne, Australia.
+So maybe that's the way you remember it,
+the A Cloud Guru offices.
+So you're going to go with fight this Dr-McPx-Z
+in Australia or in Austin.
+So that's how you can remember
+all the different instance types.
+Like I said, it's not really important
+for the Certified Solutions Architect Associate exam.
+It is important when you go on and do the professionals.
+And I will just say one thing,
+these numbers here will change throughout the year.
+Again, you don't need to remember the numbers
+or anything like that.
+So an F1 might become an F2 or an R5 might become an R6,
+but it doesn't matter,
+the numbers are basically just the generation.
+So this is the fifth generation
+of the memory-optimize instance.
+So on to my exam tips.
+So the first one is, just remember what EC2 is.
+It's virtual machines in the cloud.
+It's a web service that provides resizable compute capacity.
+And Amazon EC2 reduces the time required
+to obtain and boot new servers instances to minutes
+from ... previously from days or even months
+depending on where you worked,
+allowing you to quickly scale capacity
+both up and down as your computing requirements change.
+So remember what EC2 is.
+And we're going to spin up a EC2 instance
+in the very next lecture.
+Remember the different pricing types.
+So we've got On Demand, we've got Reserved,
+we've got Spot and we've got Dedicated Hosts.
+On Demand's where you pay an hourly or by-second rate,
+Reserved is basically
+where you sign a one- or three-year contract,
+and the more you pay upfront, the better discount you get.
+Spot moves around like the stock market,
+and really just depends on Amazon's own supply and demand.
+And then we've got Dedicated Hosts,
+and this is where you get a dedicated physical machine
+to you and you can also, again,
+pay for that on-demand as well.
+And then just remember that if you've got a spot instance
+that has been terminated by EC2,
+you're not going to be charged for a partial hour of usage.
+However, if you go in and terminate that instance yourself,
+you will be charged for the hour
+in which the instance ran.
+That can be a popular exam question.
+And like I said, you don't really need to know
+all the instance types
+for the Solutions Architect Associate.
+It can be helpful later on when you go and do the Pro.
+is just Fight-Dr-McPx-Z in Australia or in Austin.
+So there's Dr-McPx-Z, we're going to go and fight her
+in Australia or Austin.
+It's silly, I know, but it really, really does help you
+remember all the different instance types.
+So that is it for this lecture, everyone.
+In the next lecture, we're going to go in,
+get our hands dirty
+and provision our first EC2 instance.
+So if you've got the time,
+please join me in the next lecture, thank you.
+
+
+
+
+
+https://aws.amazon.com/ec2/faqs/
