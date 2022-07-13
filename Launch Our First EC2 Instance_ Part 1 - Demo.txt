@@ -1,0 +1,362 @@
+Okay. Hello, Cloud Gurus and welcome to this lecture in this lecture.
+We're going to provision our very first EC2 instance. So this is part one.
+We're going to keep it just under 20 minutes if we can and we're going to
+provision a little EC2 instance and turn it into a web server.
+So this is a lab and you will need to log into the AWS console. Okay.
+So here I am in the AWS console. Now up here, we can control our region.
+I'm going to do this rest of this course in Northern Virginia,
+and we're going to go over to services and we'll find EC2 as the very first
+service that's under compute. So go ahead and click on that.
+So this is the EC2 dashboard. This is actually a new dashboard.
+You can toggle between the older dashboard and the new dashboard just by turning
+this off on and off.
+I'm going to use the new dashboard and you can see here that I've got everything
+as zeros.
+So I haven't gone in and launched an EC2 instance before.
+So we can launch an EC2 instance just by clicking in here and going to launch
+instance and go ahead and launch your first instance. Now,
+step one is always to choose an Amazon machine image and an Amazon machine image
+is just choosing your virtual machines.
+So do you want to be running Amazon Linux or do you want to be running SUSELinux
+or Red Hat, or would you like to be running Windows for example?
+so I'm going to go with Amazon Linux 2 AMI.
+We are going to use this for the rest of the course.
+So go ahead and click on Amazon Linux 2 AMI.
+In here we've got all our different instance types,
+so we can actually control it up here as well. So we can have micro instances,
+compute optimized, general purpose, GPU, memory optimized, storage optimize,
+et cetera, and is see if you can remember that pneumonic.
+It was fight Dr.Mcpxe au.
+So that's these instances in here.
+Now where you'll see free tier eligible that means that this instance stays
+within free tier. So for the rest of this course,
+we are going to be using T2.micros. T3.
+you can get T3.micros now. but again, it's not going to be free tier eligible.
+So I'm going to run a T2.micro.
+Let's go ahead and configure out instance details and this is where we really
+start to set everything up. So the number of instances I'm going to launch one,
+I'm not going to click launch into an auto scaling group.
+We're going to cover off auto scaling group in the high availability section of
+the course. Down here,
+we can do request spot instances so we could set our spot price.
+I'm not going to do that. We're just going to go on demand.
+I'm going to launch it into our default VPC.
+VPC just stands for virtual private cloud.
+We're going to have a whole VPC section coming up.
+Right now we're just using our own default VPC that Amazon created for us in,
+when we go down into the VPC section, of course, we'll be creating our own.
+Subnets in here this is a way of choosing which availability zone you want
+to go into. So if you want USDS 1a 1b 1c et cetera,
+et cetera you can select in here.
+Interesting thing to note that this is randomized.
+So if I was to sign up to another AWS account and I select US
+East 1a.
+Basically the two accounts might be in completely different availability zones.
+So 1a for one account might not be 1a for another account.
+So it's something to note down here. We've got auto assigned public IP address.
+I'm going to do that placement groups. We haven't covered off.
+we we'll cover that off later but essentially it's for high performance
+computing.
+Capacity reservations so this is where you can reserve capacity on your
+EC2 instances in a specific availability zone, not going to do that.
+IAM roles we'll cover off later and here we've got our shutdown behavior.
+So what happens if we shut down this instance,
+do we want to stop it or terminate it here?
+We've got enabled termination protection.
+This is to stop us from accidentally deleting our EC2 instances.
+I am going to enable it for this one. Here we've got monitoring.
+So this is enabled CloudWatch.
+We are going to cover off CloudWatch in this section of the course,
+CloudWatch by default will monitor your EC2 instances every
+five minutes. If you want it to be less than that,
+if you want it to be every one minute interval,
+you need to enable detailed monitoring but if you do do that,
+you won't be in within free tier. Tenancy in here we can say, Hey,
+I want shared hardware. I want a dedicated instance or a dedicated host.
+I'm just going to use a shared hardware.
+Elastic interface we won't cover off yet. and down here,
+we've got advanced details and this is where we can pass bootstrap scripts and
+we're going to look at that later on in this section of the course.
+So basically all you need to do is go ahead and click on the protect against
+termination, accidental termination,
+and you can go ahead and leave everything else as default. Next,
+let's go in and add our storage.
+Now we are going to cover off the different EBS volume types later on in this
+section of the course. But for now, we've got three, we've got general purpose.
+We've got provisioned IOPS. These are both SSD and then we have magnetic,
+which is standard and if we click over here and go to Add New Volume,
+we actually get more options and that's because this is the root device volume
+and the root device volume can only launch on SSD or magnetic standard,
+but you can have additional volumes and additional volumes include things like
+cold, hard disk drive and throughput optimized hard disk drive and these are all
+magnetic as well. Like I said, let's not get too bogged down in this right now.
+We're going to go and learn about that later on in this section of the course,
+I'm going to delete this off.
+So we're just going to launch the root device volume.
+When we say root device volume or EBS,
+all we're talking about as a virtual disk on in the cloud,
+this is where our operating system is going to be installed.
+So let's go ahead and add our tags. I am going to add some tags here.
+So I'm going to call this name. I'm going to call it a web server 01
+the department. So this is the tough apartment that owns that web server.
+I'm just going to call it developers, developers,
+and add tag. So we might have employee ID.
+This would be our employee ID who provisioned it, et cetera, et cetera.
+So this is a way of keeping track of our EC2 and our AWS
+infrastructure. Let's go ahead and configure our security group.
+Now security group is just a virtual firewall. That's all it is.
+It's a virtual firewall, which allows communication over particular ports.
+We're going to cover security groups in a lot of detail in the VPC section of
+the course, but for now, just understand that it's a virtual firewall.
+This is how you enable traffic on the various different ports.
+So HTTP goes across port 80.SSH goes across port
+22. So you're just allowing various different types of communication to your EC2
+instance through your security group.
+We are going to create a new security group.
+I'm just going to call mine web DMZ. So demilitarized zone.
+So this is the security group that all my web servers are going to go into and
+I'm going to add a role. I'm going to allow port 80, so HTTP,
+and we're going to do it to 0.0.0.0/0
+and so this is a CIDR address range. Again,
+we're going to cover this off in the networking section of the course,
+but essentially when these are all zeros,
+you're opening it up to the whole world.
+Now you might want to lock your SSH down to your particular IP.
+You can just click in there and then it will lock it down to this IP address.
+So you can only SSH in on this IP address.
+The problem with that is that if your IP address changes,
+then you won't be able to access this EC2 instance.
+So I'm just going to do 0.0.0.0/0. So
+I'm going to copy and paste it in there and it'll give us a little warning.
+So let's go ahead and hit review and launch,
+and we're going to go ahead and hit launch. Now we do need to create a key pair,
+because we've never done this before.
+So the way I like to think of public key and private keys is this is asymmetric
+encryption. So it means you need two so asymmetric.
+With symmetric encryption it's just one. So with asymmetric encryption,
+you've got a public key,
+and I want you to imagine that as a padlock and you can go and take your public
+key and you can go and put it everywhere. You can put it on your bike,
+you can put it on your front door, you can put it on your neighbor's front door.
+It doesn't matter if someone gets your public key.
+Your private key is the key that opens that padlock and you do not want anyone
+else to get your private key because then they can open up all your padlocks.
+You can open up all your public keys.
+So your public key will go on your EC2 instance.
+The private key will save locally on your machine and you will use that private
+key to be able to SSH into your EC2 instance.
+So let's go ahead and create a new key pair,
+and I'm just going to call my and the, on my US East 1.
+US East 1 key pair. There we go.
+So my use one KP, I'm going to go ahead and download that.
+So download that to a safe location.
+You will need it to connect to your EC2 instance.
+So I've gone ahead and hit launch instance,
+and I'm going to go in and view my instances.
+So it can see now that it's launching, this is my instance ID.
+We can see it's inherited the name from my tag.
+We can see the instance type is a T2.micro it's available in US East 1d it's
+currently pending and the status checks are initializing.
+It's already got a DNS address.
+So this is a web address that we can use to go and visit our EC2
+instance and down here,
+we can see you can move this so that it's bigger or smaller just by clicking
+these. and we can see all our information in here so we can see our
+public IP address. For example, we can see that it's an VPC.
+We can see what sub-net it's in, et cetera, et cetera,
+et cetera and this will become more and more familiar to you as you go on
+throughout the course and get your hands dirty with EC2.
+Now I would copy this public IP address to clipboard,
+just click on this little icon and now what we're going to do is we're going to
+SSH into our EC2 instance. So there's actually,
+a few different ways that we can connect in to our EC2 instances.
+We can use Terminal for Mac.
+We can use a plugin for Chrome if you're using windows, for example.
+but the easiest way,
+which is uniform across both is just by clicking connect up here and using
+EC2 instance connect and you can go ahead and just hit Connect.
+Your username is always going to be EC2-user and go ahead and hit connect that
+will open up a new tab,
+and it will basically establish a session directly with your EC2 instance.
+So we can see in here, I'm already connected to it.
+I can do things like sudo su to elevate my privileges to root and then I can go
+ahead and run yum updates, et cetera, et cetera.
+I am going to show you how to do this using Terminal using a for Mac users
+as well as a plugin for Chrome.
+but just do whatever it is that you find best works for you.
+Throughout the rest of this course, I'm going to be using Terminal in my Mac.
+the reason is, is I've been using it for 10 years.
+I'm very used to it and it's also a lot easier for you guys to see the screen
+because I can adjust the text, make it larger, change the fonts,
+et cetera but the easiest way probably for you guys is just to go ahead
+and hit connect and then use EC2 instance connect.
+So Mac users I'll quickly show you how to use Terminal to connect to your EC2
+instance, windows users.
+If you want to jump ahead to about 13 minutes and 30 seconds,
+I'll show you how to install a plugin, Google Chrome. Okay.
+So if we click on applications and we scroll all the way down,
+you'll be able to see utilities and in here we've got Terminal.
+Let's go ahead and open that up. By default,
+you'll be in your downloads directory and if you type in ls for list.
+You'll be able to see the files and folders in there.
+Now I can see my key pair here. It's called my US East 1 key pair.
+So what I'm going to do is I'm just going to make a directory called SSH,
+and I'm going to move my US East 1 to my SSH directory
+and then I'm going to go into my SSH directory. So it's just CD SSH,
+and then I can see it in here. Now,
+what I'm going to do is going to change the permissions.
+I'm going to type chmod and then 400,
+and then my US East 1 key pair and you can hit tab by the way,
+that's how it will auto fill and that has just changed the permissions to lock
+my key down and then what I'm going to do is I'm just going to clear the screen
+and we're going to type SSH and then EC2-user,
+and then at, and then we need to paste our IP address in there,
+and then we need to do minus I,
+and then it was called my US East 1 key pair.
+So basically we're connecting in as EC2 user at this address
+using this key pair and it'll ask you if you want to continue connecting hit.
+Yes and you should be able to connect in. Now, if you are having trouble,
+some networks block port 22.
+so you need to go and do this at home under home network,
+or do it on your you know,
+on your phone or something like that because some networks like public
+libraries, for example or at schools or even in your office,
+they might be blocking port 202s. This is a common,
+a frustrating thing that some people get when they can't connect to their EC2
+instance. If it's not working,
+it's probably because your network's blocking the port 22.
+You will be able to do this at home though. So I have connected in,
+and what I'm going to do is just elevate my privileges to root.
+So we do that by typing sudo su and this will change my user. You can see here,
+it's gone from EC2 use it to root and this basically gives me super user access.
+This gives me administrator access across the entire EC2 instance,
+but you shouldn't really do this.
+I know a lot of Linux admins will be looking at this saying you should.
+Why don't you just type sudo for everything? But for the rest of this course,
+I am going to do it just because it makes the commands easier and it makes it
+easier for beginners to follow along. So again,
+I'm going to go ahead and clear the screen for windows users.
+What you need to do is go ahead and install Google Chrome as your browser and
+then we're going to add a extension in Chrome,
+which will basically turn our browser into an SSH client.
+So what I want you to do is once you've installed Chrome,
+go over to Google and just type in SSH Chrome
+extension into Google and go ahead and hit enter and in here,
+you'll be able to see it's called the secure shell app and I'll put this link in
+the resources section of the course.
+So go ahead and click on that and then all we want to do is go ahead and
+download this extension. So I'm going to go ahead and hit,
+Add to Chrome that will then add this to Chrome,
+go ahead and hit Add App and that will go ahead and install this extension
+into Chrome can take a little bit a while,
+so just wait for it to finish installing and there we go. It has now installed.
+Now to get to this extension,
+you just need to navigate to Chrome :// and then apps.
+That's how you are able to access your apps in Chrome and then we have it here.
+It's the secure shell app. So go ahead and click on that.
+And then what we want to do is we want to go in and configure this in order to
+connect to our EC2 instance.
+So the first thing we need to do is go ahead and grab the IP address.
+So here's another EC2 instance I've just spun up and I'm going to go ahead
+and click back in here and so my username is just going to be EC2 -user.
+So type that in EC2 -user, and then the host name in here,
+we'll just paste in our IP address and then what we need to do is go and create
+our identity. Now, in order to do that,
+we need to navigate to where we installed or where we downloaded
+our PEM file. Now we need to navigate over to the command prompt.
+So just click on the windows button, go ahead and hit run,
+and then just type CMD command that will fire up the command prompt you need to
+navigate to where you installed or where you downloaded your PEM file.
+so mine's installed on the downloads directory.
+So I'm just going to go to my downloads directory. So CD downloads,
+then I'm just going to type DIR,
+and that will list everything in my directory and you can see here,
+we've got my key pair. So this one's called
+mykp.pem.
+I'll just make this a bit bigger so you can see it and then we want to do is we
+want to type the following command. So we want to type in SSH-keygen,
+and then -y and then -f and then we're going to type the name of our key
+pair. So it's mykp.pem and then we're going to output that to mykp
+and then .pub. So we're basically generating our public key.
+So this is asymmetric encryption,
+which means you always have a private key and a public key.
+A public key is basically like a padlock. You
+can give anyone a copy of that public key,
+but they cannot open it up without the private key and that's why you'd never
+hand out your private key to anyone,
+because then they can open up your public key.
+That's the way I always like to think of it. So if we type in DIR now.
+We can see our two files. We've got mykp.pem which
+is our private key and mykp.pub, which is our public key.
+The last thing we need to do is just rename the mykp.pem
+to just mykp. So you can give it any name that you want,
+but you've got to lose the .pem extension. Once we've done that,
+let's go back over to our to our Google Chrome extension.
+So it's in here and then we're going to go ahead and hit import,
+and then what you want to do is just navigate to your downloads directory and
+import those two files. Now, again,
+you must have changed that extension from .pem to just being called.
+We're basically having no.
+So go ahead and hit open that will then change your identity to that key pair
+and then you should be able to just clicking here,
+I've lost my username and password again, but I can just regenerate it.
+and then we should be able to go ahead and connect. So if we just hit enter,
+it'll now say it's isolating the plugin is connecting to that IP address,
+just type in yes and then it's going to add it to the list of known hosts and
+then we go, we have logged in to our EC2 instance.
+We can elevate our privileges,
+and then we can go ahead and clear the screen and now you can follow along with
+all the commands in windows as well.
+And then what we're going to do is we're going to apply some operating system
+updates. So if we just type in yum update -yes.
+So yum update -y it will just look for operating system updates.
+You can see here that I do not need any updates. There's no security updates.
+So this is using the latest packages and then what I want to do is I want to
+install Apache.
+So we type yum install httpd -yes and that we'll
+go through and install Apache and Apache basically turns our EC2
+instance into a web server. Once you've done that,
+you can be able to go to your cd var www html directory,
+and anything that you put in here will be basically a website,
+will be accessible over port 18.
+So let's clear the screen and what we're going to do is we're going to create a
+little file. We're going to call it nano and then index.HTML.
+Nano is just a text editor, and I'm just going to write some really quick HTML.
+So it would be HTML header,
+not going to go bother with body and all of that. I'm just going to say, hello,
+Cloud Gurus and we're going to end our header,
+and we're going to end our HTML and then hit control X
+and then hit yes,
+and then hit enter and you'll be able to see that file in there and so as soon
+as we turn on the Apache service or the httpd service,
+this web server will become a,
+basically a web server and anyone will be able to go to our index.HTML.
+So to turn it on, all we need to do is type service HTTPD
+and then start and that will start the httpd service and then you might just
+want to type a command called check config on.
+Check config on we'll just basically start the httpd service
+If your EC2 instance accidentally reboots,
+you don't need to go in and manually go in and turn it on at the next reboot.
+So let's go ahead and test this by going over to a web browser. Okay.
+So here I am in a web browser,
+and all I'm going to do is paste in my IP address, hit enter,
+and you can see it. Hello, Cloud Gurus.
+So we've created our very first little web server.
+So I'm going to end this lecture here. You've done really, really well.
+If you've got the time,
+please join me in the next lecture and we'll have a look at what else we can do
+with our EC2 instance, before we go in and terminate it.
+So if you've got the time, please join me in the next lecture. Thank you.
+
+
+
+
+
+
+
+https://media.acloud.guru/aws-csa-2019/resource/0d16c6b1-a88f-ecfe-157c-1bf203fdd9cb_b11e8356-0df1-e8ad-b36a-b6bcb0431b4b/aws-csa-2019-f7533d2b-9ef6-4d11-ae91-b917aab13c15.html?Expires=1662024402&Signature=VGZsohHU+N/TW+0yuisP7k7YGz1704F02ktTgVgCkDuMfMQ7WX87hBwPYD4sIf0YLB/2bspVzpz2wqRclHKqI0deU2rCgLWG+bnDtiNY/a/Nx+8CzDWEX1BEeHqeP7OejQW7zudac9vEtw4dt/GZnvt8XA+YpwTcDJSofTyicGPsD/v6EU0BxT61rWT2zRXybqCIwhaRnuqoyoCIGjpPH/PzpFj6KY0BFHF51/zPTEHCLKXeC3UNCViQBstfzxe66YxyPxyiwXoJlmLLun82l7MbzYNVB5VDjWbicowyzhaJku4U+FslHGGMdEzm1F9CvGt03PwufpdBVuQXy54k0w==&Key-Pair-Id=APKAISLU6JPYU7SF6EUA
+
+https://help.acloud.guru/hc/en-us/search?utf8=%E2%9C%93&query=puttY+ssH+ppK
+
+https://chrome.google.com/webstore/detail/deprecated-secure-shell-a/pnhechapfaindjhompbnflcldabbghjo?hl=en
+
