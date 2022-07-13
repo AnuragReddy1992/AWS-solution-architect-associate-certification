@@ -1,0 +1,157 @@
+Okay.
+Hello Cloud Gurus and welcome to Part 2 of launching our first EC2 instance.
+Let's go back over to the AWS console. Okay,
+so here I am in the AWS console. I'm in EC2. Down here,
+we can see all the details about our EC2 instance so we can see which key pair
+it's using. So it's using my us-east-1 key pair.
+We can also scroll down and we can see that termination protection is turned on.
+This is a true value.
+We can see a whole bunch of different stuff including our IP address.
+Your DNS address, your public DNS address, you can use this,
+this URL and you'll still be able to browse to the Hello Cloud Gurus
+webpage. In here we've got our status checks.
+This comes up a lot in the SysOps Administrator Associate.
+You've got a system status check. This is checking the underlying hypervisor.
+So it's checking actual physical machine and then we've got our instance status
+check. This is actually going and checking the EC2 instance itself.
+You can hold over here and have a read of it by holding your mouse over the
+little eye symbol and here we've got our monitoring.
+Now we are going to do CloudWatch later on in this section of the course.
+We can turn detailed monitoring on for this EC2 instance and here we can
+see our CPU utilization, we can see our network,
+we can see a different disk utilization, status checks,
+et cetera,
+et cetera and we are going to go in and create our own CloudWatch metrics and
+dashboards later on in this section of the course and then here we've got our
+tags and this is what we set up when we first provisioned
+this EC2 instance. Now I can go up here and I can do different actions.
+I can go in and stop my instance. I could go in and try and terminate it,
+but you see here,
+I can't click this button and that's because termination protection is turned
+on. If I wanted to turn it off, I just need to go over to my instance settings.
+In here we can see,
+we can do a whole bunch of different stuff so we can add or replace roles.
+We can change our termination protection. I'm going to go ahead and hit 'yes,
+disable'.
+I'm now able to go in and go 'terminate' and if I click this button here,
+it will terminate that EC2 instance.
+I'm going to leave it running so that we don't have to keep provisioning EC2
+instances. There is a couple more things I want to show you though.
+So over here we've got different things that we can do.
+We've got our spot requests, we've got our reserved instances, dedicated hosts,
+scheduled instances, and then capacity reservations.
+If I click on reserved instances,
+I can go in and start to purchase my reserved instances and you can go through
+and have a look at the different types. So you could say you want Linux,
+you want a standard tenancy. In here you could say, I want a T2.micro,
+you know, super large, whatever. Let's go T2 small. Term,
+let's go straight for the 12 to 36 months. Let's go payment option, all upfront,
+and then you could go and hit search and that will show you these different
+instances. You can then go and add these to your cart.
+So if you're basically purchasing a T2.small for 36 months,
+effectively it's going to be $229.
+And that's going to that's a pretty good rate, when you think about it,
+for a virtual machine in the cloud for three years - you're going to only pay
+300 bucks or less than 300 bucks, 229.
+So that's how you go and purchase reserved instances.
+Let's go back over to the EC2 dashboard and I'm just going to go ahead and hit
+launch instance and I just wanted to show you some more things.
+So we're going to launch an Amazon Linux 2 AMI,
+we're going to leave it as default and we're going to leave this as default.
+So in here,
+this is where we add our storage and we've got our root device volumes.
+So that's our volume type and our root device volume,
+like I said in the last lecture,
+simply means where our operating system is going to be installed.
+So where are we installing Linux or where are we installing Windows on our C
+drive? So that's all a root device volume is. In here we can see the size,
+so it's going to be 8GB. In here we've got the volume type.
+Now there's only three different volume types in here for our root device
+volume. We've got general purpose one, GP2.
+So this is general purpose SSD. We've got provisioned IOPS,
+or IO1 and then we've got magnetic.
+So these are our two SSD volumes that we can have and then we've also just got
+standard magnetic in here. In here we've got our IOPS.
+So if we were to use provisioned IOPS, we would start at 400 IOPS.
+If we were to use general purpose,
+it's going to have a baseline of 3 IOPS per gig,
+with a minimum of 100 IOPS and burstable up to 3000 IOPS and if you haven't
+heard the term IOPS before, it just means it just means Input Output Per Second
+and essentially it's how fast your hard disk drive is.
+In here we've got 'delete on termination'.
+So if we were going to delete our EC2 instance,
+are we going to delete the root device volume along with it? Well,
+yes we are and in here we've got encryptions so it used to be that you couldn't
+encrypt a root device volume right from the get go.
+You can definitely do it now. So do remember that going into your exam.
+You can encrypt your root device volumes. In here we can add a new volume.
+So we've got our volume types, so we've got EBS volumes.
+In here we can adjust the size.
+Note that the volume type now changes.
+So we've actually got five different volumes.
+We've still got our general purpose SSD, our provisioned IOPS SSD,
+and our magnetic standard. We have two additional volumes.
+We've got our cold hard disk drive and then we've got our throughput optimized
+hard disk drive and this might be useful for things like data warehouses,
+et cetera and cold hard disk drive is just our very cheapest form of storage and
+we are going to cover off all the different volume types later on in the course.
+So you might want throughput optimized and you might want that at 500GB
+and that will then tell you the throughput in megabits per second in here.
+So we get between,
+basically 500 megabits per terabyte. So because we've only got 500GB,
+we're going to be looking,
+between 20 to 123 megabits per second.
+Note that 'delete on termination' is not automatically ticked for your
+additional volumes.
+So if you went in and provisioned this EC2 instance and then terminated it,
+it would delete the root device volume,
+but it wouldn't delete any of your additionally attached volumes
+to that EC2 instance. And again, you can also add encryption in here.
+So I'm just pointing out this now,
+if you do hear me say in the course later on that root device volumes cannot be
+encrypted, that's no longer the case. They definitely can be encrypted.
+It is a popular exam topic now.
+We will look later on in the course as to how we can take
+a un-encrypted root device volume and go ahead and encrypt it.
+There is a process that you have to go through and it becomes a very popular
+exam topic,
+both for EC2 as well as RDS and we will cover that off later on in the
+course. Let's go ahead and have a look at my exam tips.
+So my exam tips,
+just remember that termination protection is turned off by default,
+so you must turn it on. When it's turned on,
+you can't go in and automatically or accidentally terminate your EC2 instances.
+Remember that on an EBS backed instance,
+the default action is for the root EBS volume to be deleted when the
+instance is terminated. So if you go in and terminate your instance,
+it's going to delete the root device volume,
+but any additional volumes by default won't be deleted.
+So that can be a thing that comes up in the exams a lot. Also,
+remember that EBS root volumes of your default AMIs can now be
+encrypted.
+You can also use third party tools such as BitLocker for Windows to encrypt the
+root device volume.
+Or it can be done when creating the AMIs and we're going to show you how to do
+this in a lab.
+You can also do it using the AWS console or using the API.
+So we do have a lab coming up,
+which will show you how to take an unencrypted root device volume and go through
+a process to encrypt that. And that, again,
+is a very popular exam topic but like I said,
+just remember that your EBS root volumes for your
+Amazon AMIs can now be encrypted as well and also remember that you
+can take additional volumes and encrypt them as well.
+So that is it for this lecture, everyone.
+You have learnt an awful lot about EC2 so far.
+I hope you had lots of fun logging into your first EC2 instance.
+In the next lecture, we're going to look at security groups.
+Security groups are basically just virtual firewalls that control traffic to our
+EC2 instances. So if you've got the time, please join me in the next lecture.
+Thank you.
+
+
+
+
+
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html
