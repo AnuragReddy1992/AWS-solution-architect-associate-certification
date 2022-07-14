@@ -1,0 +1,290 @@
+Okay. Hello, Cloud Gurus and welcome to this lecture. In this lecture,
+we're going to look at EBS volumes as well as snapshots.
+So this is a lab and you will need to log into the AWS console. Okay.
+So here I am in the AWS console, I'm in the Northern Virginia region.
+I'm going to go over to EC2. Hopefully you remember where it is right by now,
+but it is under Compute and we've got this EC2 instance that's running in here.
+This is our little web server. We actually go down to volumes.
+We'll be able to see the volume that it's running on,
+and you can see that this volume is in US East 1d we go over to
+our EC2 instance by going to the dashboard and clicking on running instances,
+you'll see that the actual virtual machine as is in US East 1d,
+and this is a really important topic to remember for your exam,
+wherever your EC2 instance is,
+the volume is going to be in the same availability zone. And that makes sense.
+If you think about it, if you think about a physical computer,
+you always want the hard disk drive to be as close to the motherboard as
+possible.
+so when you've got a virtual machine and then a virtual hot disk drive,
+you want them to be in the same availability zone.
+You don't want them to be in different availability zones because you're going
+to have a huge amount of lag.
+So just really important to remember going into your exam,
+that your EBS volumes will always be in the same availability zones as your EC2
+instance.
+So another common scenario in your exams will be where you want to move
+your EC2 instance or your EBS volume from one availability zone to another and
+we'll look at how we can do that in a little bit in this lab but the first thing
+I want to show you is what happens if we terminate this instance,
+what is going to happen to this volume?
+So let's go ahead and kill off our little web server. He's served us well.
+So I'm going to go over here and go to instance state and click on terminate and
+I'm going to go ahead and terminate that.
+So that is now shutting down my EC2 instance, but go over to my volumes as well.
+Right now it says it's in use,
+but I'm just going to pause the video for a couple of minutes and see what
+happens. Okay. So it's been a couple of minutes.
+I'm just going to hit the refresh button,
+and now you can see that it's removed that EBS volume automatically
+from my volume's you know, console.
+So if we go back over to EC2 let's go ahead and launch a new instance.
+We're going to use the Amazon Linux 2 AMI,
+and I'm going to go in and I'm going to use a T2.micro.
+I'm going to leave everything else as default.
+I'm going to go ahead and add my storage.
+Sure. So in here we can see our storage. We've got our root device volume.
+This is the snapshot of it. It's eight gigs in size.
+It's using general purpose SSD. These are the defined IOPS and over here,
+we can go ahead and encrypt it. We're not going to do any encryption yet.
+We will cover that off later on in the course,
+what we're going to do is we're going to add another three volumes.
+So we're going to go in here and we're going to add cold, hard disk drive.
+We're going to go in and add throughput optimized hard disk drive,
+and we're going to go through and add magnetic.
+So we've added different volumes.
+We're going to do the default sizes and what we're going to do is a bit later on
+as we're going to go through and promote one of these to provisioned IOPS on the
+fly. We're not going to do any encryption note that when we're adding additional
+volumes, delete on termination is not checked automatically.
+so we're just going to leave everything as default and next,
+go ahead and add our tags.
+Let's go in and add our tags. I'm not going to add any tags.
+I'm going to use an existing security group. I'm going to use my web DMZ,
+which has HTTP and SSH open to the world and I go ahead and hit
+review and launch and I'm going to go ahead and launch that EC2 instance.
+So that will take a couple of minutes to come up.
+What I'm going to do is I'm just going to pause the video while I wait for this
+EC2 instance to come live. Okay so that EC2 instance is now alive,
+and I've actually got a pretty cool IP address.
+I've never seen a three IP address before.
+So I'm going to go down and I'm going to have a look at my volumes.
+So it's under the elastic block store in here.
+I'm going to go ahead and click on volumes and you'll be able to see our
+different volumes in here. So we've got GP2.
+This is our root device volumes.
+So this is where our operating system is installed. We've got ST1.
+This is our throughput optimized one. We've got SC1.
+This is our code hard disk drive and then we've got standard and this is our
+standard magnetic volume. Remember this is previous generation.
+So let's go ahead and have a look at what we can do with these volumes.
+So if we go to ST1,
+we can go to our actions and we can go and modify our volumes.
+We can actually just go in and change the size.
+So we could increase this from 500 gigs to a thousand gigs and go
+ahead and hit modify and that we'll go ahead and modify the volume.
+Now it says here that it may take some time for performance changes to take
+effect. So it will you know,
+it will impact on your performance and it may take some time for it to take
+effect because it is increasing the hard disk drive of it and you also may need
+to extend the operating system file system on the volume to use it.
+So your operating system will only see the 500 initially of what you will might
+have to go in and do is you'll have to go in and run a command and basically
+repartition the drive so you'll be able to see the full 1000,
+and you can actually learn about how to do that by clicking on the Linux or
+windows one. Again,
+it's beyond the scope of the Certified Solutions Architect course as to how to
+do this.
+We do cover it off in the certified Sys Ops Administrator Associate course.
+However, so let's go ahead and modify this volume,
+and that is now increasing this volume from 500 gigs to 1000.
+Another one we'll have a look at let's go over to GP2.
+So this is our root device volume and the reason you can find that it's the root
+device volume is it has come from that AMI.
+It's come from that Amazon machine image, the Linux, Amazon Linux 2 AMI,
+and this is the snapshot.
+so we were basically using Amazon snapshot of that AMI and we can go
+over here and modify this volume and we can change the volume type.
+We can actually go up to provision to IOPS.
+So instead of staying at GP2,
+we could modify it to provisioned IOPS and again,
+this will affect the performance of the EC2 instance,
+but notice that you don't have to go and you know,
+shut it down or stop the instance or anything like that.
+You can do it on the fly. So it is really, really clever technology.
+So I'm just going to pause the video.
+I'm going to wait for this to upgrade to provisioned IOPS,
+and I'm going to wait for one of these to upgrade to 1000 gigs.
+So I'm just going to pause the video now. So it's been a couple of minutes.
+I'm just going to go ahead and hit Refresh, and we can see that this is now IO1,
+and we can see that this is now 1000 gigs. So it took a little bit of time.
+This is actually still just coming into use but it only to actually took a
+couple of minutes, which is pretty amazing when you think about it,
+not only are we changing the storage medium,
+but we're also increasing the amount of storage available.
+So it is pretty cool tech.
+So one of the things a very popular exam question is let's say that you've
+got your EC2 instance and your EBS volume in a particular
+availability zone. So in US East 1b for example,
+and you want to move it to YS East 1c how do you go about doing that? Well,
+the easiest way to do that is to go into is to find your root device volume
+and all your volumes, depending on the scenario question, but let's just say,
+it's the root device volumes.
+So you want to move this root device volume to another availability zone.
+Let's go ahead and see how we do that.
+So we go to Actions and we're going to go and create a snapshot and a snapshot
+is exactly what you would think it is. It's basically a photograph of the disk,
+and I'm going to call this my EC2 snap 2019,
+something like that and then I'm going to go ahead and hit Create Snapshot and
+that is now creating a snapshot and snapshots do take a little bit of time.
+You can find snapshots here under EBS. If you click on there,
+it sometimes won't even show up in here for a couple of minutes.
+You can see that is pending. so while that is,
+I'm just going to pause the video and wait for this to come back up online.
+Okay so that snapshot has now been completed and you can see it in him.
+Now with our snaps, what we can do is we can go ahead and create an image,
+or we could create another volume.
+If we create an image we can then use that image to be deployed into
+other availability zones. So let's go ahead and create our own.
+Image. Okay so we're going to give out image a name.
+We're going to call it My EC2 Image something like that,
+and you can leave everything else as default.
+One thing I will point out to you though is the virtualization type.
+So you've got two different types of virtualization types with AWS.
+You have paravirtual or HVM virtualization. If you hover your mouse over,
+you can read this. It says, when you launch an instance from an AMI,
+it uses either paravirtual PV or hardware,
+virtual machine virtualization HVM,
+and HBM virtualization uses hardware assist technology provided by the
+AWS platform.
+With HVM virtualization the guest VM runs as if it was on native hardware
+platform,
+except that it still uses PV network and storage drivers for improved
+performance, some instance type support,
+both PV and HVM while others support only one or the other.
+So essentially, if you are creating an image from an EBS snapshot, you want to,
+and you want as many different EC2 instance types as possible,
+you want to make sure that this is on hardware assisted virtualization,
+and that is the default one now.
+So make sure this is hardware assisted virtualization that will give you a lot
+more different,
+EC2 instance types to launch this image from later on.
+So let's go ahead and hit create,
+and let's go ahead and hit Close and once that image has been created,
+we'll then be able to go and use that image to provision new EC2 instances
+and we can see our images over here under AMI. So if I go in here,
+we can see that image is now available,
+and I can go ahead and click on that and go ahead and hit Launch and then Now
+you can see all the different, EC2 instances that are available to us.
+so we want to choose the T2.micro,
+and I'm going to go over and hit next to configure our instance details.
+If your screen looks like this, when you are trying to deploy your EC2 instance,
+it means that your virtualization type was set to paravirtual instead of
+HVM. So bear that in mind,
+HBM will often give you much more different EC2 instance options.
+So go ahead and hit Next and then what we can do is we can launch that into a
+completely different subnets, okay. Go and launch it into US East 1a.
+so completely different availability zone and sorry.
+Sometimes I interchange sub-net and availability zone.
+We will cover off what they are in the VPC section of the course, but for now,
+just note that we can launch this into US East 1a.
+So I'm going to go in and I'm going to add my storage at my tags.
+I'm going to not do any tags. I'm going to use an existing security group.
+I'm going to use my web DMZ review and launch and I'm going to go ahead and
+launch that. Now you don't have to go ahead and do this.
+I'm just showing you how we can migrate data from one EBS
+instance or one EC2 instance in one availability zone to another.
+So the first thing you do is you go ahead and do you create a snapshot.
+You then turn that snapshot into an AMI,
+and then you use that AMI to launch in to other availability zones.
+The other cool thing you can do is of course,
+copy the AMI in to different regions.
+So we could go in and go here to actions and we could go ahead and hit copy
+AMI and we can now move this Amazon machine image from our
+destination regions, sorry, from our existing regions.
+So from Northern Virginia, and we can go ahead and move this over to London,
+for example,
+and then we can use this image to launch our EC2 instances into the
+London region. So this is a way of not only moving across availability zones,
+but also a way of moving across regions and the only difference here is we're
+copying the AMI from one region to another.
+Once that AMI is in a new region,
+we can then launch it into that region and choose any availability zone that we
+want. So there's a popular exam questions that will come up in your exam.
+So let's go back over to EC2, and I'm just going to go to my running instances.
+We can see that we've got our two running instances. This is the new one,
+the one that we just launched into US East 1a and we've got one in USD,
+swampy. We go over to our volumes.
+We should be able to see our new volume as well.
+so we've launched this one is just on a GP2 standard.
+Here's our original one, which is on provisioned IOPS.
+So we learned right at the start Of this lecture.
+If I go ahead and delete the EC2 instance that the root device volume is going
+to be deleted as well but what about these additional volumes?
+What do you think will happen if I go in and terminate those two EC2 instances,
+do you think these three volumes will be terminated along with this one?
+Or do you think that they will persist? And that again,
+this can be a very popular exam topic. So let's go over to our,
+you see two instances and we can test this.
+So I'm going to go in and click in here, go to actions instance state terminate.
+So we're terminating both of them and that will go in and terminate
+them.
+So I'm just going to pause the video and wait for this instant state to change
+to terminated. So these have now changed to terminated.
+Let's go over and have a look at our EBS volumes,
+and you can see that these have persisted. The state has changed,
+they're now available. but they have persisted on.
+So when you terminate an EC2 instance by default,
+the root device volume will also be terminated. However,
+additional volumes that are attached to that EC2 instance will continue
+to persist. So do bear that in mind.
+So the next thing we want to do is just go ahead and delete these volumes.
+I'm going to go in and go delete volumes and go ahead and hit Yes,
+Delete and that has now deleted our volumes.
+I'm going to go through and delete my snapshots and my AMI,
+because I don't want to be you know, racking up charges willy nilly.
+So I'm just going to go in and delete that sometimes if you do delete a snapshot
+too quickly after terminating an EC2 instance, you will get this error.
+So you can just come back and do that in a little bit and then in terms of my
+AMI, just going to go in here and go ahead and de-registered this AMI.
+so we've now cleaned it all up.
+So just remember the volumes exist on EBS and just think of EBS as
+a virtual hard disk drive in the cloud.
+Remember that snapshots exist on S3. So when we created that snapshot,
+that's going to take a photo and that photo is stored on S3 and
+like I said, just think of snapshots as a photograph of the disk.
+Remember that snapshots are point in time copies of volumes.
+When you take that snapshot that's how that volume existed at that particular
+point in time. Snapshots are also incremental.
+So this means that only the blocks that have changed since your last snapshot
+are moved to S3. So we went on,
+if we took a snapshot and then created a new file and on that volume,
+and then we took another snapshot, only the blocks, only the Delta,
+the changes between the blocks would be basically replicated to
+S3.
+So snapshots are incremental and remember that if it's your first snapshot,
+it may take some time to create now to create a snapshot for an
+Amazon EBS volume that serves as a root device.
+So one that you install your operating system on it's best practice to stop the
+instance before taking the snapshot. So just remember that, however,
+you can take a snap while the instance is running.
+so you can either do it while at the instance is stopped or while it's running
+and just remember that you can create AMS from snapshots as well
+and you can change EBS volumes sizes on the fly and that includes
+changing the size and the storage type and volumes will always be in the
+same availability zone as the EC2 instance.
+So you'll never have a volume in one in a availability zone and your EC2
+instance in another. Then in terms of migration,
+just remember that we can migrate EC2 volumes from one availability zone to
+another. To do that we simply need to take a snapshot of it,
+then create an AMI from the snapshot,
+and then use that AMI to launch the EC2 instance in the new availability
+zone. Likewise, we can move EC2 instances from one region to another,
+by taking a snapshot of it creating an AMI of the snapshot and
+then copying the AMI from one region to another and we then use the
+copied AMI to launch the new EC2 instance in the new region.
+So that is it for this lecture guys in the next lecture,
+we're going to just quickly compare the different types of EBS volume types.
+So we've got EBS and then we've got instant store.
+so we will cover that off and then we're going to look at encryption and how we
+can use encryption with EBS volumes. So if you've got the time,
+please join me in the next lecture. Thank you.
