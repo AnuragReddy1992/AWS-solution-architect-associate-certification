@@ -1,0 +1,251 @@
+Okay, hello Cloud Gurus
+and welcome to this lecture.
+In this lecture we are going to look at Security Groups.
+So this is a lab
+and you will need to log in to the AWS console.
+Okay, so here I am in the AWS console.
+We're going to go to EC2 which is under "Compute,"
+and we're going to click in here and
+we'll be able to see our instance.
+Now, if we click on our instance and grab our
+public IP address, we can go ahead and load our web page.
+So, I want you to navigate over to your public IP address
+and load your web page.
+Okay, so here I am in my browser,
+I'm just going to paste it in here.
+And you can see straight away it says "Hello Cloud Gurus."
+So we go back over to EC2,
+just going to maximize the screen.
+The reason we're able to browse to our web page
+is we've enabled port 80 on our security group.
+Port 80 is just the HTTP port
+and you can see your security groups
+just by scrolling down here.
+There's always going to be in the description.
+So here's my security group here.
+I can actually click in here and view my Inbound rules.
+We can see here that
+port 80 and port 22 are open to the world
+and that my security group is called WebDMZ.
+So let's go over and edit our security groups.
+So it's here under "Network and Security,"
+you can see Security Groups.
+And in here you are able to create security groups,
+delete security groups, edit security groups, etc.
+So go over to our WebDMZ,
+I'll just make this a bit bigger so you can all see.
+You've got our description in here
+and it is basically just the name of our security group,
+the ID of it and then the description
+and then which vpc it's in.
+And then if we click in here, we've got our Inbound rules.
+So we have opened up HTTP on port 80
+and we have done this to 0.0.0.0/0, so this is IPv4,
+we've also done this on IPv6 and
+we've also done SSH on port 22 to IPv4.
+So if I go ahead and delete this rule,
+what if I go in and edit and delete my two port 80 rules
+and hit "Save," what do you think is going to happen?
+How quickly do you think this is going to take effect?
+If I go back over to my browser,
+I click in here and hit refresh,
+and you can see down here it says connecting.
+It's going to hang for about a minute
+and then it's going to time out.
+So every time you make a rule change on a security group,
+that change takes effect immediately.
+And that can be a really popular exam question,
+going into your exams.
+So that took just over 60 seconds,
+but you can now see that it has timed out.
+So by deleting that rule in the security group,
+the change took effect immediately
+and I now cannot access the website.
+If I go back to the AWS management console,
+I can go in here and I can go "Add Rule"
+and we're going to go in and "Add HTTP"
+and we're going to do it for port 80
+and by default we're going to open it up
+to both IPv4 and IPv6
+and hit "Save."
+And if we scroll down we can now see that
+that rule has taken effect on our WebDMZ.
+Sorry, I'll just click in here,
+so you can see it in here now.
+I'll just full-screen this so it is easier to see,
+so now you can see HTTP and HTTP on IPv4 and IPv6.
+And if just go over to my other browser,
+that is now loading immediately, so "Hello Cloud Gurus."
+So we've learned that if you make a change
+to a security group, that change takes effect immediately.
+Let's have a look at our Outbound rules,
+so in here we have an Outbound rule of all traffic.
+A protocol for everything, port for everything,
+destination to everything.
+What would happen if we go and delete this,
+would that delete all our Outbound traffic?
+Would we suddenly be able to send a request
+to our EC2 instance but nothing will then come back out?
+Let's go and test that,
+I'll just come out of full screen
+and in here if I hit "Refresh."
+And you can see that it loads immediately.
+So by deleting that rule, nothing happened.
+And the reason for that is security groups are stateful.
+So essentially when you create an Inbound rule,
+an Outbound rule is created automatically.
+So if you allow HTTP in,
+it is automatically allowed out as well.
+If you allow RDP in or if you allow SSH
+or you allow MySQL in,
+it's automatically going to be allowed back out.
+Now, when we get to the VPC section of the course,
+you're going to learn about network access controllers
+or NACLs, as we like to call them, and those are stateless.
+So when you create an Inbound rule,
+you also have to create an Outbound rule as well.
+So security groups are stateful,
+network access controllers are stateless.
+And that's something we'll learn again
+in the VPC section of the course.
+I also want you to have a look here, if I go to "Edit" and
+I go to "Add a Rule," there's no way,
+I can add rules all I want,
+I can allow traffic over Oracle RDS,
+or Redshift or SMTPS, whatever.
+Whatever port it is, I can allow but
+I can't actually go in and block an individual port.
+I can't go in and say,
+"Hey, don't allow any traffic across this."
+There's no way of blacklisting a particular port
+and likewise there's no way of blacklisting
+a particular IP address.
+You can't do that with security groups.
+Where you can do that is with network access controllers
+and again we going to look at that
+in the VPC section of the course.
+But for now what is really important
+is just to remember that
+you can't block individual IP addresses
+using security groups
+and you can't block an individual port.
+But the way security groups work, right,
+is when you create a security group,
+everything is blocked by default.
+You have to go in and allow something.
+So everything is blocked by default
+but when you go in and allow HTTP or MySQL
+then the traffic is allowed through.
+So that's another thing to take away,
+going into your exam.
+So I'm just going to close this and go ahead and hit "Save."
+Next thing we're going to do is
+just go over to our default security group
+and what I'm going to do in here is
+I'm going to add some Inbound rules.
+So let's go and add MySQL for example, so scroll down.
+MySQL Aurora, so 3306 and let's add SQL Server,
+which will be 1433, so if we find SQL Server,
+which is right here, MS SQL, and so 1433, there you go.
+Go ahead and hit "Save" and then it's just giving me,
+saying that I need to enter a CIDR address range.
+So if I put 0.0.0.0/0
+and 0.0.0.0/0
+and there we go.
+I'm going to go ahead and hit "Save."
+And that has now allowed MySQL and MS SQL
+through our default security group.
+Now if we go back to EC2 and click on our running instances,
+you can see in here that we've only got
+one security group attached to this EC2 instance.
+You can attach more than one security group
+to an EC2 instance.
+The way you do that is, you just click on "Actions,"
+and you go over to Networking
+and here you go "Change Security Groups."
+And we can go ahead in here
+and click "Assign Security Groups."
+We now have two security groups assigned
+to our EC2 instance.
+So we've got our default one, as well as our WebDMZ.
+We click on "View Inbound Rules," this actually looks
+a little bit better now, because we can actually see
+which ports are opened by which security groups.
+So we're saying here
+that WebDMZ is allowing port 80 and port 22
+and our default is allowing
+port 1433 as well as 3306.
+So it's allowing MySQL in as well.
+So that is how we can add and remove security groups,
+and of course if you add a security group
+to an EC2 instance,
+that effect takes place immediately.
+So I'm just going to go in and I'm going to just clean up.
+I'm going back to my security groups
+and I'm going to delete my ...
+I'm not going to delete my default one
+but I am going to delete those rules
+that we just created.
+Because you really don't want MySQL and SQL Server access
+open to the entire world.
+It's not a very good security practice.
+And the next thing I'm going to do
+is just going to go back over to EC2
+and I'm going to remove that security group.
+So if you go to Actions
+and then go over to Networking and Change Security Groups,
+I'm just going to remove the default one
+and make sure that it is still in the WebDMZ.
+So let's go have a look at my exam tips.
+So on to my exam tips -
+just remember that all inbound traffic
+is blocked by default.
+So you have to go into a security group and enable it.
+So we went and enabled port 80, we enabled port 22, SSH.
+We enabled MySQL, etc., etc.
+All inbound traffic is blocked by default
+but then you can go in and enable individual ports.
+Remember that all outbound traffic is allowed.
+So even if we went in and deleted that rule,
+it has no effect on a security group whatsoever.
+The reason for that is security groups are stateful
+which we are about to come up to.
+Changes to security groups take effect immediately.
+So as soon as we deleted port 80,
+we could no longer access our website,
+soon as we added it again, we could.
+You can have any number of EC2 instances,
+within a single security group and you can also have
+multiple security groups attached to EC2 instances.
+So there is not a one-on-one relationship at all.
+You can have as many EC2 instances
+within an individual security group as you want.
+And likewise, you can have multiple security groups
+attached to individual EC2 instances.
+We learned that security groups are stateful,
+so we don't have to change Inbound and Outbound ports.
+If you enable something on the Inbound,
+Outbound is enabled automatically for that port.
+And if you create an Inbound rule allowing traffic in,
+which is exactly what I just said,
+that traffic is automatically allowed back out again.
+And you cannot block specific IP addresses,
+using security groups, instead you going to do this
+using network access control lists.
+We're going to learn all about that
+in the VPC section of the course.
+And then finally you can specifically allow rules
+but you cannot set any deny rules in a security group.
+So if you see any scenario questions
+about setting up a deny rule on a security group,
+security groups don't work like that.
+By default they deny everything,
+but then you go in and allow.
+You can't put a specific deny rule on a security group.
+But you can do that with network access controllers
+and like I said, we will cover that off in the VPC section
+of the course. So, that is it for this lecture, guys.
+If you have any questions, please let me know.
+If not, feel free to move on to the next lecture,
+where we're going to look at EBS volumes.
+please join me in the next lecture. Thank you.
