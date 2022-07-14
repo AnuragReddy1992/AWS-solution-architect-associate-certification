@@ -1,0 +1,88 @@
+Okay, hello Cloud Gurus
+and welcome to this lecture.
+This lecture's called EBS 101.
+Now we briefly touched on EBS in the EC2 101 lecture
+and we've also used EBS already
+when we provisioned our very first EC2 instance,
+but in this lecture we're going to deep dive
+a little bit deeper into EBS.
+So what is EBS?
+Well, EBS basically stands for Elastic Block Store,
+and essentially it's a virtual hard disk in the cloud.
+It provides persistent block storage volumes
+for use with Amazon EC2 instances in the AWS cloud,
+and each Amazon EBS volume is automatically replicated
+within its own availability zone
+to protect you from component failure,
+which is offering high availability and durability.
+So, all EBS is, is a virtual hard disk drive in the cloud,
+and it comes in five different flavors.
+So we've got General Purpose SSD,
+which is what we've been using so far.
+We've got Provisioned IOPS, which is also SSD.
+So this is where you want really, really fast
+input, outputs per second.
+We then have Throughput Optimized Hard Disk Drive,
+this is actually a physical hard disk drive,
+so it's not SSD, it's magnetic.
+So this is where it's going to be optimized for throughput.
+We then have our Cold Hard Disk Drive,
+again this is magnetic.
+And then we also just have Magnetic.
+So, let's look at the different use cases for each one.
+So let's start with General Purpose SSD.
+So our SSDs are broken down into
+General Purpose, and Provisioned IOPS.
+General Purpose is basically designed for
+SSD volumes to balanced price and performance
+for a wide variety of transactional workloads,
+and essentially it's use case is most workloads.
+Now these API names you will need to know
+going into your exam.
+It does come up, they do sometimes use the API names,
+they certainly do it in the
+Certified SysOps Administrator Associate exam as well.
+So, General Purpose SSD is gp2,
+and it's suitable for workloads up to
+16,000 IOPS per volume.
+If you start going above 16,000 IOPS,
+you're going to need to go over to Provisioned IOPS.
+And Provisioned IOPS SSD is the
+highest performance SSD volume,
+and it's designed for mission-critical applications.
+So your workloads here will be databases.
+And the good thing about Provisioned IOPS SSD
+is it's capable of going up to 64,000 IOPS per volume now.
+We then have over here all our different
+hard disk drive options.
+So, we've got our Throughput Optimized Hard Disk Drive.
+Our Cold Hard Disk Drive.
+And then, our EBS Magnetic.
+So, Throughput Optimize is obviously for
+optimized throughput.
+So where you would use this would be things like
+big data, and data warehousing, it's known as st1.
+And it's maximum IOPS per volume
+is going to be 500 IOPS per volume.
+Your Cold Hard Disk Drive,
+this is the lowest-cost hard disk drive of volume
+and it's designed for less frequently accessed workloads.
+So this could be things like file servers, etc.
+So, and again, the IOPS on this is not great, it's 250.
+We then have EBS Magnetic,
+this is basically previous generation hard disk drive.
+It is still available,
+so you can still use it in the console,
+and this is basically for workloads
+where data is infrequently accessed.
+So it might be where you're doing a bit of data archiving
+but for some reason you opt not to use Glacier.
+And again, the IOPS for that is between 40 to 200.
+So the best way to learn EBS,
+is to go ahead and start playing with it.
+So in the next lecture we're going to learn all about EBS,
+and we're going to look at how we can create new volumes,
+how we can do snapshots,
+how we can resize volumes on the fly, etc., etc.
+So, if you've got the time,
+please join me in the next lecture, thank you.
