@@ -1,0 +1,193 @@
+Okay, hello Cloud Gurus
+and welcome to this lecture.
+In this lecture we're going to talk about
+Encrypted Root Device Volumes.
+So root device volume is basically
+just the hard disk that has
+your operating system on it,
+so it's that EBS volume that has
+your operating system on it,
+and it used to be that you couldn't
+actually encrypt that when you first
+provisioned your EC2 instance.
+And this was always a very popular exam topic,
+because it would ask you how to go in
+and encrypt it.
+And what you used to have to do,
+is basically, provision your EC2 instance
+with an unencrypted root device volume,
+you then had to take a snapshot,
+you then had to make a copy of that snapshot
+and when you were making that copy,
+then you could encrypt it
+and then, basically, you provision an AMI
+from that snapshot and then you could launch
+encrypted root device volumes.
+So it was a bit of a process to go through
+and that's why it was quite a popular exam topic.
+AWS have completely changed all this now
+and you can provision root device volumes immediately,
+when creating an EC2 instance.
+So we're going to look at how we can
+do that in this lab
+and we're also going to look at
+if you do have unencrypted volumes
+how you can go in and encrypt them as well.
+So this is a lab and you will need
+to log in to the AWS console.
+Okay, so here I am in the AWS Management Console.
+Let's go over to "Services"
+and we'll go over to "EC2"
+and we'll see in here I've got
+no running instances, I've just terminated one.
+Let me go ahead and launch an instance,
+I'm going to use an Amazon Linux 2 AMI.
+I'm going to use a t2.micro.
+I'm going to leave everything as default
+and go and add my storage.
+Now in here, this is our root device volume
+and you can see that it's on General Purpose SSD
+and in here, our encryption,
+this used to never be an option.
+So you never used to be able to change this.
+Now you can change this and you can go ahead
+and create an encrypted volume
+right from the start.
+So that is an important new feature of EBS.
+I'm not going to do that for now,
+because I want to show you a way
+of encrypting your volumes if you create
+a volume that's unencrypted to begin with.
+So let's go ahead and add our tags
+and we'll add a tag, we'll just give this a name
+as "Unencrypted ...
+"Root Device Volume,"
+something like that.
+And, yes, I did spell "encrypted" wrong
+and so there we go
+and we'll go over and add to our security group.
+So we're going to add this into
+our WebDMZ security group.
+Go ahead and hit "Review" and "Launch."
+And I'm going to go ahead and launch that.
+Now, we're not going to log into this
+or do anything to this EC2 instance,
+other than play with it in the console.
+So I'm just going to pause the video
+and wait for this instance to come up online.
+Okay, so that EC2 instance is now live
+and if we go over to "Volumes"
+under "Elastic Block Store,"
+we an see it in here and you can see
+that this isn't encrypted.
+So if we did want to encrypt this
+all we need to do is go over to our "Actions"
+and what we want to do is create
+a snapshot of this volume.
+And I'm going to call it
+"MyUnencrypted Snap."
+And we're going to go ahead and hit "Create Snapshot."
+And I'm just going to pause the video
+and wait for this snapshot to come live,
+so I'm just going to pause the video here.
+Okay, that is now live and if we look
+under "Encryption" here we can see
+that it is not encrypted.
+We can click in here and what we can do
+is go over to our "Actions" and go over to "Copy."
+And then when we're copying,
+we can say, "Hey, encrypt this snapshot."
+And it'll ask us what key that we want to use,
+so I'm just going to use my standard EBS key
+and then in here is our description,
+so I might just change this to "Encrypted"
+and then "Snap."
+And then I'm going to go ahead and hit "Copy."
+So now we're creating a copy of our snapshot
+and we are changing it from being unencrypted
+to being encrypted in here.
+I'm just going to pause the video
+and wait for this to come back up online.
+We can see in here that that is now live
+and it is encrypted.
+The next thing we want to to is go ahead
+and create an image of this.
+I'm going to call it "MyEncrypted ...
+... EncryptedImage."
+And we're going to go ahead and hit "Create."
+That is then going to create an encrypted AMI
+and then we can use that AMI to launch
+encrypted EC2 instances.
+So that's how you take an unencrypted
+root device volume and you basically create
+a snapshot of it.
+You then copy the snapshot and enable encryption.
+You then create a AMI from that snapshot
+and then you can launch that EC2 instance
+as an encrypted, you know, root device volume.
+So that could come up in the exam
+if they say, "Hey you've already got, you know,
+"you've got an unencrypted root device volume
+"you need to encrypt it, how do you do it?"
+That's the process, but what it ...
+Like I said, it used to be that you couldn't
+have encrypted root device volumes
+and it was a very popular exam topic,
+as to how to go and encrypt them.
+Now you can encrypt them just by launching
+an encrypted root device volume.
+So just be aware of that going into your exam.
+Just going to wait for this AMI to come live now.
+My apologies, it already is live.
+So what we could do is we could go ahead
+and hit "Launch."
+And we could go ahead and launch this
+as an EC2 instance
+and you'll see that it is already encrypted by default.
+If you click in here and go "Not Encrypted,"
+you'll see it's giving you a warning message
+and it's saying, "Well, it needs to be encrypted,
+as the selected snapshot is encrypted."
+So you can't take a snapshot that's encrypted
+and then launch it as an unencrypted volume, either.
+So I'm not going to go ahead and do that.
+We're just going to go ahead and "Cancel."
+Feel free to go in and delete that instance,
+as well as going in and deleting
+the snapshot and the AMI.
+And let's go on to my exam tips.
+So, just remember that snapshots
+of encrypted volumes are encrypted automatically.
+So if you do take a snapshot
+of an encrypted volume it's going to
+be encrypted automatically.
+Volumes restored from encrypted snapshots
+are encrypted automatically, as well.
+You can share snapshots,
+but only if they are unencrypted.
+And these snapshots can also be shared
+with other AWS accounts, or made public,
+but they have to be unencrypted.
+And you can now encrypt root device volumes
+upon the creation of an EC2 instance.
+If, for some reason, you didn't do that
+and you had an unencrypted root device volume,
+the process for making it encrypted
+is to create a snapshot
+of the unencrypted root device volume.
+You then need to create a copy of the snapshot
+and select the "Encrypt" option.
+You then need to create an AMI
+from the encrypted snapshot
+and then you use that AMI to launch
+new encrypted instances.
+So that is it for this lecture, everyone.
+If you have any questions please let me know.
+If not, feel free to move on to the next lecture.
+Thank you.
+
+
+
+https://aws.amazon.com/articles/public-ami-publishing-hardening-and-clean-up-requirements/
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/building-shared-amis.html
