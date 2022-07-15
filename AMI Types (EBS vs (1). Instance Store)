@@ -1,0 +1,200 @@
+Okay, hello Cloud Gurus
+and welcome to this lecture.
+In this lecture we're going to look
+at the two different types of AMIs that you can launch.
+So we've got EBS, which we covered off in the last lecture.
+And then we've also got Instance Store
+and this does actually come up in the exam.
+I did take the exam just a few days ago
+and you are definitely quizzed on this.
+So you need to understand the difference between EBS
+and Instance Store.
+So when you go and select your AMI,
+and we're going to do this very shortly,
+you can basically select your AMI
+based on a number of different factors.
+So you can select it on Regions, you can select
+it on the Operating System,
+you can select it on the Architecture,
+so this could be 32-bit or 64-bit,
+you can select it based on Launch Permissions
+and then finally you can also select it based
+on the storage for the Root Device
+or otherwise known as the Root Device Volume.
+And you get two different options here,
+you get Instance Store, which is sometimes referred
+to as Ephemeral Storage.
+And then you have an EBS backed volume.
+And we've been using EBS Backed Volumes
+throughout the whole of this course so far.
+In this lecture, what we're going to do is we're going to go
+and launch an AMI using instance store
+as well as one using EBS Backed Volumes.
+We're going to look at the differences.
+Before we do that though, I just want to let you know
+that all AMI is categorized as either backed by EBS
+or backed by instance store, so it's one or the other.
+So for EBS Volumes, the root device
+for an instance launch from the AMI is an Amazon EBS volume
+created from an EBS snapshot.
+The Instant Store Volumes, however, the root device,
+so the root device volume is basically where
+the operating system is installed.
+So the root device volume is created from a template
+that's actually stored in S3.
+So they have quite different.
+So let's log into the AWS console and have a look.
+Okay, so here I am in the AWS console. If I
+go to services again we're going to go over to EC2 compute
+and we're goin to launch two different instances
+and we'll go through it very, very quickly.
+So first one, we're just going to do it as standard.
+So we're going to do our Amazon Linux 2 AMI.
+We're going to leave everything as default.
+Again, everything has default,
+I'm not going to add any tags.
+I'm going to use my existing security group,
+webdmz and I'm going to go ahead and hit launch
+and I'm going to acknowledge that I've got my key pair.
+So there we go we've launched our Amazon Linux AMI
+and that is now in a pending state to be launched.
+Let's go launch a second instance,
+but instead of going through
+and choosing Amazon Linux 2 AMI,
+let's go over to our community AMIs
+and in here we can sort by operating system,
+we can sort by architecture
+or we can sort by the root device type.
+And we can select instance store.
+So I'm going to go ahead and launch an instance store one.
+I'm just going to use the default one at the top
+and you can pick any one that you want.
+Now notice because I am launching an instance store,
+it restricts the number of instance types that I can choose
+and basically the smallest one I can choose is a M3 medium.
+So I'm going to go in and choose that.
+You don't have to do this if you want
+to not come out of free tier.
+You can just watch what I do on my screen.
+I'm going to leave everything else as default.
+In here notice the volume type is instance store
+and if you read up here it says your instance
+will be launched with the following storage device settings,
+you can attach additional instance store volumes
+to your instance.
+You can also attach additional EBS volumes
+after launching an instance, but not instant store volumes.
+So if we do want additional instance store volumes,
+we have to do it here.
+We can't go on and add additional ones later.
+I'm going to leave this as default.
+So I'm just going to leave everything here as default
+and I'm going to go in and add my tags.
+I'm not going to do any tags.
+I'm going to use an existing security group.
+I'm going to use my webdmz.
+I'm not going to go ahead and review and launch
+and I'm going to go ahead and launch that.
+So now we're going to have two EC2 instances,
+one with an instance store
+and then one with normal EBS backed.
+And the way we can tell
+the difference between them is the size.
+So my t2.micro is EBS backed,
+and that's in US-East-1b.
+My M3.medium that's in US-East-1C
+and that is going to be instance store back.
+So I'm just going to pause the video and wait
+for this to come back up online.
+Okay, so that is now available.
+So if we go over to volumes,
+we'll be able to see just one volume.
+So we can't even see our instance store volume here.
+We can only see our EBS backed volume.
+And you'll notice if we go in here,
+actually, let's go back over to our instances.
+And if we go and click on here, we're able to go to actions,
+instant state and hit stop.
+And we can go ahead and stop this instance.
+And if we stopped this instance,
+all the data on our EBS backed volume will persist.
+So it's persistent storage.
+But if a click up here and I go over to my actions
+and go to my instance state. All I can do is reboot
+this instance or terminate it.
+I cannot stop it at all.
+And that's because it's instance store backed.
+Now you might be wondering, well what does that mean?
+Well, if we go over to our status checks here,
+and if you remember that we have,
+two different status checks,
+we could our system status checks
+and our instance status checks.
+Let's say we've got an instant store volume
+and this is sitting on top of a hypervisor
+and our hypervisor starts to fail.
+Our system status check will start
+to say something like impaired.
+And what you would normally do with EBS is you basically go
+and stop that EC2 instance
+and then you would, start it again.
+And when it starts, it will load up on another hypervisor.
+So you can, you know, stop your instances from,
+you know, having issues with the underlying hypervisor
+simply by stopping them and starting to get them again
+and they'll start off on another hypervisor.
+You can't do that with an instance store volume.
+So if this underlying hypervisor does have any kind of type
+of issue and for some reason completely stops, that's it.
+You're going to lose all the data
+on your instance store volume.
+And for that reason it's called Ephemeral Storage.
+So what I'm going to do now is I'm just going to go ahead
+and terminate this instance because it is costing me money,
+it's not within free tier
+and I'm going to terminate it in there.
+Like I said, you can't actually sit in volumes
+because it's not an elastic block store
+or an EBS volume it's an instant store volume.
+So onto my exam tips, so we learned
+that Instant Store Volumes
+are sometimes called Ephemeral Storage.
+So the reason for that is if for some reason
+they're stopped, you're going to lose all of your data.
+Instant store volumes cannot be stopped.
+If the underlying host fails,
+then you're going to lose your data.
+So that's all I mean is if some reason it stops,
+if for some reason the underlying host fails,
+you are going to lose all your data
+on your virtual hard disk drives.
+With EBS backed instances, they can be stopped
+and you're not going to lose the data
+on that instance if it is stopped.
+And you can reboot both and you're not going
+to lose any of your data.
+It's basically only if the host fails,
+and that EC2 instance stops and it's instant store,
+then you will lose your data.
+And then by default, both root volumes
+will be deleted on termination.
+However, with EBS volumes, you can always tell AWS
+to keep the root device volumes.
+You can't do that with instance store.
+So that is it for this lecture.
+Everyone, if you have any questions, please let me know.
+If not, feel free to move on to the next lecture
+where we're going to look at elastic network interfaces
+versus elastic network adapters
+versus elastic fabric adapter.
+So if you've got the time,
+please join me in the next lecture.
+Thank you.
+
+
+
+
+
+
+
+https://d1.awsstatic.com/whitepapers/AWS%20Storage%20Services%20Whitepaper-v9.pdf?did=wp_card&trk=wp_card
