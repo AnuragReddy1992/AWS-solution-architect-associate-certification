@@ -1,0 +1,127 @@
+Okay. Hello Cloud Gurus and welcome to this lecture. In this lecture,
+we're going to look at EC2 hibernate.
+So what we've learned so far is that we can stop and terminate EC2 instances and
+if we stop the instance,
+the data is kept on the disk with EBS and will remain on the
+desk until the EC2 instances is started again and if the instance
+is terminated, then by default,
+the root device volume will also be terminated.
+So when we start our EC2 instance, the following is going to happen.
+Essentially what's going to happen is your operating system is going to build
+up. So it's going to load windows or Linux we're then going to run our user data
+script.
+So these are our bootstrap scripts and if you don't know what bootstrap scripts
+are, we are going to cover it off in a few lectures,
+but essentially it's a script that runs when your EC2 instances first booted.
+So might be a script that goes in and installs Apache, for example.
+So to turn your EC2 instance into a web server,
+and we will have a lab coming up on that in this section of the course,
+and then our applications are going to go in and start.
+So this might be my SQL or SQL server or Apache or IaaS,
+et cetera.
+So there is a whole process to go through now with EC2 to hibernate.
+What we can do is we can hibernate our EC2 instance and this is where the
+operating system is told to perform hibernation,
+such as suspend to disk and hibernation saves the contents from the
+instance memory or the RAM to your EBS root volume and we
+persist the instance EBS root volume and any attach EBS data
+volumes.
+So essentially what it's doing is it's taking the RAM and it's saving that to
+your EBS root volume,
+and that makes it when you reboot it a lot faster to load up.
+So when you start your instance out of hibernation,
+the Amazon EBS root volume is restored to its previous state and then
+the RAM contents are reloaded and the processes that you were previously running
+on the instances are resumed.
+So you don't need to start the operating system all over again,
+and then start up my SQL. It basically,
+as a way of deploying your EC2 instances much faster
+and previously attached data volumes are reattached,
+and the instance retains its instance ID.
+So it keeps the same instance ID. Whereas if we stop an instance and restart it,
+that won't happen. So here it's got a diagram and it's a,
+from the official AWS documentation. So essentially we've got EC2 instance,
+it's running, it's using EBS and we've got our RAM in here.
+We're going to start the hibernation process.
+This will stop our EC2 instance and,
+or save that RAM down onto our EBS volume.
+It's then shut down and stopped and then when we start it,
+it's going to take the RAM from the EBS volume and load it back into the RAM and
+so we don't need to do things like restart the operating system or restart
+our applications, et cetera.
+So with EC2 hibernate the instance boots much faster.
+The operating system does not need to reboot because the in-memory state is
+preserved and this is useful for things like long running processes or services
+that take a lot of time to initialize. Okay.
+So here I am in the AWS console,
+I'm going to go to services and I'm going to click on EC2,
+which is under compute and in here,
+I'm going to go ahead and launch an instance and I'm going to go ahead and first
+we'll just start with Amazon Linux to AMI and if we just have a look at the
+t2.micro, we go ahead and hit next.
+You'll see we've got enable hibernation as an additional stop behavior
+and then it says to enable hibernation spaces allocated on the root volume to
+store the instance RAM,
+make sure that the root volume is large enough to store the RAM.
+So we just need to make sure that we've got enough space on our EBS volume to
+store the RAM. So let's go ahead and hit next and in here,
+we are going to have to encrypt the root volume.
+So if you are going to use hibernation,
+the root device volume must be encrypted. So encrypted.
+You can just click in there and just use your default AWS EBS key
+and what we're going to do is we're going to increase the size and I'm going to
+make this 25 gbs and then I'm going to go ahead and hit next and here,
+I'm just going to give it a name. So call it name and then we'll call it my
+hibernate EC2 and I'm going to go ahead and hit next to configure my security
+groups. I'm going to use my existing security groups.
+I'm going to use a web DMZ security group,
+which has got port 22 open to the world.
+I'm going to go ahead and hit review and launch and I'm going to go ahead and
+launch this EC2 instance. So that is now launching.
+If we go over and view our instances,
+it's going to take a couple of minutes to come up.
+So I'm just going to pause the video and wait for this to come up. Okay.
+So my EC2 instance is now live.
+What I'm going to do is go ahead and hit connect,
+and I'm going to use EC2 instance,
+connect to connect into it and this will allow me to SSH into my
+EC2 instance. And then once I've SSH,
+then I'm just going to run the uptime command and that will show me how long my
+EC2 instance has been up since it was rebooted and you can see here
+that it's two minutes. So if we go back over to the console,
+we can go into actions and we can go to instant state and you can see here that
+we've got stop and then we've got stop hibernate.
+So let's go ahead and click on stop hibernate and that is now going to go ahead
+and stop and hibernate my instance,
+it's going to write my RAM down to my root device volume,
+which is encrypted and then what we're going to do is once this has stopped,
+we're going to start it back up again. So I'm just going to pause the video.
+Okay. So that EC2 instance has now stopped.
+So if I go back in and go over to my actions, I can start that instance again.
+So I'm going to go ahead and start that back up.
+That is now starting and once it's up, we're going to go in and SSH into it.
+Okay. So it's now available.
+Let's go ahead and hit connect and we're going to use EC2 instance connect
+and hit connect and that will now connect into my EC2 instance. Now,
+like I said before,
+uptime will tell how long your EC2 instance has been up since it last rebooted.
+Now we didn't reboot it. We put it in to hibernation. So we type in uptime here.
+We can say that it's been six minutes,
+that EC2 first booted up so we can see that hibernation hasn't restarted
+yet. The instance, it's simply, basically put it into hibernation.
+So that is it for this lecture. Everyone, you can go in and delete a,
+your EC2 instance and now let's go ahead and have a look at my exam tips.
+So onto my exam tips,
+just remember the EC2 hibernate preserves the in memory RAM on persistent
+storage. So on EBS,
+much faster to boot up because you did not need to reload the operating system.
+Your instance RAM must be less than 150 gigs in size instance
+families can include C3, C4, C5, M3, M4, M5, R3, R4, R5
+as well as we just saw t2.micro.
+So there's a whole bunch of different families that is included.
+It's available for windows, Amazon,
+Linux 2 AMI and Ubuntu and instances can't be
+hibernated for more than 60 days and just remember that it's available for
+on-demand instances as well as reserved instances.
+So that is it for this lecture everyone, if you have any questions,
+please let me know. If not, feel free to move on to the next lecture. Thank you.
