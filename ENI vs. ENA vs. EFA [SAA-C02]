@@ -1,0 +1,155 @@
+Okay, hello Cloud Gurus,
+and welcome to this lecture.
+In this lecture, we're going to look at ENI versus
+ENA versus EFA.
+And you're going to get a whole bunch of different scenario
+questions in your exam, and you'll be expected
+to know the difference between the three
+and where you would use each one.
+So let's start with what these actually mean.
+And we'll start with ENI.
+And this is, Elastic Network Interface.
+And essentially, it's just a virtual network card.
+That's all it is.
+It's one of these bad boys in your EC2 instance.
+We didn't have Enhanced Networking.
+Enhanced Networking uses what's called single root I/O
+virtualization or SR-IOV,
+to provide high performance networking capabilities
+to unsupported instance types,
+and we'll look at that in a little bit more detail.
+Now, don't worry that, that slide says EN
+and at the top it says ENA.
+ENA is a subset of Enhanced networking
+and we'll have a look at that when we get to
+Enhanced Networking in a couple of slides from now.
+And then number three, we also have,
+Elastic Fabric Adapter.
+And this is a network device that you attach to your
+EC2 instance to accelerate High Performance Compute,
+so HPC and machine learning applications.
+So start with an ENI, like I said,
+it's just basically a virtual network card
+on your EC2 instance,
+when you provision an EC2 instance,
+it's going to have a ENI attached to it automatically,
+and then you can add additional ones.
+It basically allows a primary private IPv4 address,
+from the IPv4 address range of your VPC.
+And it also allows one or more secondary private
+IPv4 addresses from the IPv4
+address range of your VPC.
+With an ENI you get one elastic IP address,
+per private IPv4 address,
+you get one public IPv4 address and you get one or more
+IPv6 addresses.
+And your ENI you'll have one or more security groups
+you'll get a MAC address source
+and destination check flag
+as well as a description of what the ENI is.
+So where would you use ENI,
+what different kind of scenarios?
+Well, you might have multiple ENIs if you want to create
+a management network and you wanted to have,
+that separate to your production network.
+You can also, have an additional ENI
+if you're using network and security appliances in your VPC.
+It also allows you by having multiple ENIs you can create
+dual-homed instances with workloads or roles
+on distinct subnets.
+You might have your production subnet,
+and then you might have your database subnet,
+and you might want to segregate that
+by using multiple ENIs, and it allows you to create
+low budget high availability solutions.
+So that's where you're going to use an ENI.
+Moving on to Enhanced Networking sometimes,
+ENIs are just not capable of, you know,
+the network throughput that you need to do
+more intense workloads
+and that's where you can start using Enhanced Networking.
+This uses single root IO virtualization, or SR-IOV,
+to provide high performance networking capabilities
+on supported instance types.
+And SR-IOV is a method of device virtualization,
+that provides higher IO performance
+and lower CPU utilization,
+when compared to traditional network interfaces.
+So it's just a way of speeding up your network essentially.
+Enhanced Networking provides higher bandwidth,
+higher packets per second performance
+consistently lower it into instance latencies,
+and there's no additional charge
+for using Enhanced Networking,
+but your EC2 instance does have to support it.
+And you're going to use Enhanced Networking
+where you want good network performance.
+So depending on your instance type,
+Enhance Networking can be enabled using two methodologies,
+the Elastic Network Adapter or ENA,
+which is where we get the word ENA from, in this topic,
+and that supports network speeds of up to
+100 gigabits per second for supported instance types.
+Or you can use the intel 82599 Virtual Function,
+or VF interface, which supports network speeds
+of up to 10 gigabits per second,
+for supported instance types.
+And this is typically used on older instances.
+So in any scenario, question that you get in your exam,
+you probably want to choose ENA over VF,
+if you're given the option,
+I'm not sure if you will get VF as an option,
+most of the time, they just talk about,
+hey, you've got a EC2 instances doing really in, you know,
+extreme network workloads and you need like,
+50 gigabits per second, up and down.
+Should you use an ENI or multiple ENI's
+or should you use an Elastic Network Adapter,
+you want to use Elastic Network Adapter,
+because it's built for those speeds.
+Adding more and more ENIs won't necessarily
+speed up your network throughput.
+And then we've got our Elastic Fabric Adapter, EFA.
+An Elastic Fabric Adapter is a network device
+that you can attach to your EC2 instance
+to accelerate High Performance Computing or HPC,
+and machine learning applications.
+It's really important, if you get a scenario question
+and they're talking about ENI versus EFA versus EFA,
+and they're talking about HPC and machine learning,
+then you want to choose an Elastic Fabric Adapter.
+Elastic Fabric Adapters, provide lower
+and more consistent latency and higher throughputs
+than TCP transport, traditionally used in cloud based,
+HPC systems, and EFA can use OS-bypass.
+And OS-bypass enables high performance compute
+and machine learning applications
+to bypass the operating system kernel
+and to communicate directly with the EFA device.
+It makes it a lot faster with a lot lower latency.
+However, it's not supported on Windows currently,
+it's only supported with Linux.
+So onto my exam tips, you're going to be given
+different scenario questions and you'll be asked to choose
+whether you should be using an ENI enhance networking
+or an Elastic Fabric Adapter.
+ENI just use this for basic networking,
+perhaps you need a separate management workload
+to your production network or a separate logging network
+and you need to do this at a low cost.
+In this scenario, just use multiple ENI's for each network.
+Enhanced Networking is for when you need speeds
+between 10 gigabits per second and 100 gigabits per second
+anywhere where you need reliable high throughput
+and then Elastic Fabric Adapter,
+this is where you need to accelerate,
+High Performance Computing, HPC
+and machine learning applications
+or if you need to do an OS bypass.
+If you see a scenario questioning,
+if you see a scenario question mentioning HPC,
+or machine learning or asking about OS-bypass,
+then you want to choose an Elastic Fabric Adapter.
+So that is it for this lecture, everyone.
+If you have any questions, please let me know.
+If not feel free to move on to the next lecture. Thank you.
