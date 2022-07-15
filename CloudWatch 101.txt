@@ -1,0 +1,120 @@
+Okay, hello Cloud Gurus
+and welcome to this lecture.
+This lecture is on CloudWatch.
+Now, so CloudWatch comes up surprisingly a lot
+in the Certified Solutions Architect Associate Exam.
+Used to be more sort of geared
+towards the SysOps Administrator Associate
+and it still does feature extremely heavily in that as well.
+But it does come up in the
+Certified Solutions Architect Associate Exam
+and it is definitely worth three or four marks.
+So let's learn what CloudWatch is.
+So what is AWS CloudWatch?
+Well, CloudWatch is a monitoring service
+to monitor your AWS resources,
+as well as the applications that you run in AWS.
+So CloudWatch basically monitors performance.
+Whenever you hear the word CloudWatch, I want you
+to think of someone at the gym.
+So it's all about performance monitoring,
+and CloudWatch can monitor things like Compute.
+So inside Compute it can monitor things
+like our EC2 instances, it can monitor auto scaling groups,
+elastic load balancers, Route53 Health Checks.
+Now, I know we haven't covered these off yet.
+Don't worry, we are going to cover them off
+in the next sections of the course,
+but CloudWatch can basically go through and,
+not just monitor the EC2 instances,
+it can monitor a whole bunch of other things as well.
+It can monitor Storage and Content Delivery
+and you know all these services,
+so it can monitor our EBS volumes.
+We can monitor, you know, how busy the volumes are.
+We can monitor Storage Gateways,
+and we can monitor CloudFront using CloudWatch as well.
+So that's all CloudWatch is - it's a monitoring tool.
+And like I said, I want you to think
+of performance monitoring.
+Now CloudWatch with EC2, this is always
+a popular exam topic whether
+in the Solutions Architect Associate Exam
+or whether you're in the
+SysOps Administrator Associate Exam.
+But essentially CloudWatch can monitor, at host level,
+metrics such as CPU.
+It can monitor our network, it can monitor our disk,
+and it can do a status check.
+And it can monitor things like the underlying hypervisor,
+whether or not that is running
+and then it can also monitor the underlying EC2 instance.
+We'll have a look at that in the lab coming up
+in the next lecture.
+So what Amazon like to do is they like
+to try and confuse you and they like to try
+and confuse you with CloudTrail
+and they always have these questions where you'll
+be asked ... given a particular scenario
+and then you'll be asked whether you should
+be using CloudWatch or CloudTrail.
+And so CloudTrail basically is a CCTV
+for your AWS environment - increases the visibility
+into your users and resource activity
+by recording AWS Management Console actions and API calls.
+So every time you go in and create a S3 bucket
+or an EC2 instance, you're basically making an API call
+to AWS, and this is all recorded using CloudTrail,
+and you can actually go in and identify which users
+and accounts called AWS, the source IP address
+from which these calls were made,
+and when the calls were made.
+So that's what CloudTrail is,
+so every time you see CloudTrail,
+I want you to imagine a big CCTV camera.
+Whenever you see CloudWatch,
+I want you to imagine performance.
+So CloudWatch monitors performance,
+CloudTrail monitors API calls in the AWS platform.
+So just remember going into your exam
+that CloudWatch is used for monitoring performance,
+CloudWatch can monitor most of AWS
+as well as your applications that run on AWS,
+CloudWatch with EC2 will monitor events
+every five minutes by default,
+but you can also have detailed monitoring turned on
+and that will give you one-minute intervals
+and we'll look at how to do that in the next lab.
+You can also create CloudWatch alarms
+which trigger notifications,
+and we did that when we created a billing alarm,
+that was essentially creating a CloudWatch alarm
+for our billing.
+We're going to do that in the next lab as well
+but we're going to create some EC2 performance alerts,
+and then CloudWatch is all about performance
+whereas CloudTrail is about auditing
+and I cannot stress that enough
+if you see a scenario-based question that's asking,
+"Who's provisioning what resource
+"in AWS such as S3 or EC2?"
+That's always going to be CloudTrail.
+If it's asking you what the network throughput is
+or the disk IO on your EC2 instance,
+that's going to be CloudWatch.
+So just remember CloudWatch is about performance,
+just think of going to the gym,
+whereas CloudTrail is all about auditing,
+think of some big CCTV camera
+or someone with like a little sort
+of detective magnifying glass.
+So that is it for this lecture guys.
+The best way to learn anything
+in AWS is to get our hands dirty with it.
+So in the next lecture we're going to go ahead
+and go in and provision an EC2 instance
+with CloudWatch detailed monitoring turned on.
+Then we're going to go in and start stressing
+that EC2 instance and see what happens.
+So if you got the time, please join me in the next lecture.
+Thank you!
